@@ -1,10 +1,12 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getProductBySlug } from '@/data/products'
+import { getProductByHierarchy, getAllProductFamilies } from '@/data/products'
+import { type ProductFamilySlug } from '@/types/product'
 import { ProductImageFallback } from '@/components/ui/ProductImageFallback'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
+import { Check, ArrowRight } from 'lucide-react'
 
 interface PageProps {
   params: Promise<{
@@ -15,35 +17,62 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { productSlug } = await params
-  const product = getProductBySlug(productSlug)
+  const { familySlug, categorySlug, productSlug } = await params
+  const result = getProductByHierarchy(familySlug as ProductFamilySlug, categorySlug, productSlug)
   
-  if (!product) {
+  if (!result) {
     return {
-      title: 'Product Not Found',
+      title: 'Product Not Found - Goyal Trading Company',
     }
   }
 
+  const { product, category } = result
+
   return {
-    title: `${product.name} - Goyal Trading Company`,
+    title: `${product.name} - ${category.name} | Goyal Trading Company`,
     description: product.description,
   }
 }
 
+export async function generateStaticParams() {
+  const families = getAllProductFamilies()
+  const params: Array<{ familySlug: string; categorySlug: string; productSlug: string }> = []
+  
+  for (const family of families) {
+    for (const category of family.categories) {
+      for (const subcategory of category.subcategories) {
+        for (const product of subcategory.products) {
+          params.push({
+            familySlug: family.slug,
+            categorySlug: category.slug,
+            productSlug: product.slug,
+          })
+        }
+      }
+    }
+  }
+  
+  return params
+}
+
 export default async function ProductPage({ params }: PageProps) {
   const { familySlug, categorySlug, productSlug } = await params
-  const product = getProductBySlug(productSlug)
+  const result = getProductByHierarchy(familySlug as ProductFamilySlug, categorySlug, productSlug)
 
-  if (!product) {
+  if (!result) {
     notFound()
   }
 
+  const { product, category, family } = result
+  const quoteUrl = `/contact/request-quote?product=${encodeURIComponent(product.name)}&family=${encodeURIComponent(family.slug)}&category=${encodeURIComponent(category.slug)}`
+  const sampleUrl = `/contact/request-sample?product=${encodeURIComponent(product.name)}&family=${encodeURIComponent(family.slug)}&category=${encodeURIComponent(category.slug)}`
+
   return (
     <div className="min-h-screen">
-      {/* Breadcrumb */}
-      <section className="bg-gray-50 py-4">
+      {/* Breadcrumb Navigation */}
+      <section className="bg-gray-50 py-4 border-b border-gray-200">
         <div className="container mx-auto px-6">
-          <nav className="flex items-center gap-2 text-sm">
+          <nav className="flex flex-wrap items-center gap-2 text-sm" aria-label="Breadcrumb">
             <Link href="/products" className="text-gray-500 hover:text-primary transition-colors">
               Products
             </Link>
@@ -52,34 +81,34 @@ export default async function ProductPage({ params }: PageProps) {
               href={`/products/${familySlug}`} 
               className="text-gray-500 hover:text-primary transition-colors"
             >
-              {familySlug}
+              {family.shortName || family.name}
             </Link>
             <span className="text-gray-400">/</span>
             <Link 
               href={`/products/${familySlug}/${categorySlug}`} 
               className="text-gray-500 hover:text-primary transition-colors"
             >
-              {categorySlug}
+              {category.name}
             </Link>
             <span className="text-gray-400">/</span>
-            <span className="text-primary font-medium">{product.name}</span>
+            <span className="text-primary font-semibold">{product.name}</span>
           </nav>
         </div>
       </section>
 
-      {/* Product Detail */}
-      <section className="py-24 bg-white">
+      {/* Product Detail Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              {/* Product Image */}
-              <div className="aspect-square relative bg-gray-50 rounded-2xl overflow-hidden shadow-lg">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+              {/* Product Visual */}
+              <div className="aspect-square relative bg-gray-50 rounded-2xl overflow-hidden shadow-md border border-gray-100 sticky top-28">
                 {product.image ? (
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                    className="object-cover"
                     priority
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     quality={90}
@@ -94,58 +123,59 @@ export default async function ProductPage({ params }: PageProps) {
                 )}
               </div>
 
-              {/* Product Info */}
+              {/* Product Specifications & Details */}
               <div>
-                <div className="mb-6">
-                  <span className="font-sans text-caption font-semibold text-accent uppercase tracking-wider">
-                    {categorySlug}
+                <div className="mb-4">
+                  <span className="inline-block px-3 py-1 bg-accent/10 text-accent font-sans text-xs font-semibold uppercase tracking-wider rounded-md">
+                    {category.name}
                   </span>
                 </div>
                 
-                <h1 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-6 leading-tight">
+                <h1 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-4 leading-tight">
                   {product.name}
                 </h1>
                 
-                <p className="font-body text-body-lg text-gray-600 mb-10 leading-relaxed">
+                <p className="font-body text-body-lg text-gray-600 mb-8 leading-relaxed">
                   {product.description}
                 </p>
 
+                {/* Available Technical Specifications */}
                 {product.specifications && (
-                  <div className="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100 shadow-sm">
-                    <h3 className="font-sans text-h3 text-primary mb-6">Specifications</h3>
-                    <div className="space-y-4">
+                  <div className="bg-gray-50 rounded-2xl p-6 mb-8 border border-gray-200">
+                    <h2 className="font-sans text-h3 text-primary mb-4">Technical Specifications</h2>
+                    <div className="space-y-3">
                       {product.specifications.fabric && (
-                        <div className="flex justify-between py-3 border-b border-gray-200">
-                          <span className="font-body text-body text-gray-500">Fabric</span>
-                          <span className="font-body text-body text-gray-900 font-medium">{product.specifications.fabric}</span>
+                        <div className="flex justify-between py-2.5 border-b border-gray-200 text-sm">
+                          <span className="font-body text-gray-500">Fabric Composition</span>
+                          <span className="font-body text-gray-900 font-semibold">{product.specifications.fabric}</span>
                         </div>
                       )}
                       {product.specifications.gsm && (
-                        <div className="flex justify-between py-3 border-b border-gray-200">
-                          <span className="font-body text-body text-gray-500">GSM</span>
-                          <span className="font-body text-body text-gray-900 font-medium">{product.specifications.gsm}</span>
+                        <div className="flex justify-between py-2.5 border-b border-gray-200 text-sm">
+                          <span className="font-body text-gray-500">Fabric Weight</span>
+                          <span className="font-body text-gray-900 font-semibold">{product.specifications.gsm} GSM</span>
                         </div>
                       )}
                       {product.specifications.threadCount && (
-                        <div className="flex justify-between py-3 border-b border-gray-200">
-                          <span className="font-body text-body text-gray-500">Thread Count</span>
-                          <span className="font-body text-body text-gray-900 font-medium">{product.specifications.threadCount}</span>
+                        <div className="flex justify-between py-2.5 border-b border-gray-200 text-sm">
+                          <span className="font-body text-gray-500">Thread Count</span>
+                          <span className="font-body text-gray-900 font-semibold">{product.specifications.threadCount}</span>
                         </div>
                       )}
                       {product.specifications.material && (
-                        <div className="flex justify-between py-3 border-b border-gray-200">
-                          <span className="font-body text-body text-gray-500">Material</span>
-                          <span className="font-body text-body text-gray-900 font-medium">{product.specifications.material}</span>
+                        <div className="flex justify-between py-2.5 border-b border-gray-200 text-sm">
+                          <span className="font-body text-gray-500">Material Type</span>
+                          <span className="font-body text-gray-900 font-semibold">{product.specifications.material}</span>
                         </div>
                       )}
                       {product.specifications.features && product.specifications.features.length > 0 && (
-                        <div className="pt-4">
-                          <span className="font-body text-body text-gray-500 block mb-3">Features</span>
+                        <div className="pt-3">
+                          <span className="font-body text-sm font-semibold text-gray-700 block mb-2">Key Garment Features</span>
                           <ul className="space-y-2">
                             {product.specifications.features.map((feature, index) => (
-                              <li key={index} className="font-body text-body text-gray-900 flex items-start">
-                                <div className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0" />
-                                {feature}
+                              <li key={index} className="font-body text-sm text-gray-800 flex items-center gap-2">
+                                <Check size={16} className="text-accent flex-shrink-0" />
+                                <span>{feature}</span>
                               </li>
                             ))}
                           </ul>
@@ -155,14 +185,15 @@ export default async function ProductPage({ params }: PageProps) {
                   </div>
                 )}
 
+                {/* Tags */}
                 {product.tags && product.tags.length > 0 && (
-                  <div className="mb-10">
-                    <h3 className="font-sans text-h3 text-primary mb-4">Tags</h3>
+                  <div className="mb-8">
+                    <span className="font-sans text-xs font-semibold text-gray-500 uppercase tracking-wider block mb-3">Categories & Applications</span>
                     <div className="flex flex-wrap gap-2">
                       {product.tags.map((tag, index) => (
                         <span 
                           key={index} 
-                          className="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-full font-medium hover:bg-accent hover:text-white transition-colors duration-300 cursor-default"
+                          className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full font-medium"
                         >
                           {tag}
                         </span>
@@ -171,15 +202,16 @@ export default async function ProductPage({ params }: PageProps) {
                   </div>
                 )}
 
-                <div className="flex flex-col sm:flex-row gap-4">
+                {/* Primary Pre-filled Inquire Actions */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-2">
                   <Button variant="primary" size="lg" fullWidth asChild>
-                    <Link href="/contact/request-quote">
-                      {product.inquiryLabel || 'Request Quote'}
+                    <Link href={quoteUrl}>
+                      {product.inquiryLabel || 'Request Bulk Quote'}
                     </Link>
                   </Button>
                   <Button variant="secondary" size="lg" fullWidth asChild>
-                    <Link href="/contact/request-sample">
-                      Request Sample
+                    <Link href={sampleUrl}>
+                      Request Garment Sample
                     </Link>
                   </Button>
                 </div>
@@ -189,8 +221,8 @@ export default async function ProductPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-primary relative overflow-hidden">
+      {/* CTA Section */}
+      <section className="py-20 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
           backgroundSize: '40px 40px'
@@ -198,23 +230,24 @@ export default async function ProductPage({ params }: PageProps) {
         
         <div className="container mx-auto px-6 text-center relative z-10">
           <h2 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-white mb-4 leading-tight">
-            Interested in {product.name}?
+            Order Custom {product.name}
           </h2>
           <p className="font-body text-body-lg text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Contact us for custom manufacturing, bulk pricing, and sample requests for this product.
+            We manufacture for sports clubs, institutions, academies, and corporate brands with custom embroidery, printing, and bespoke sizing.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link 
-              href="/contact/request-quote"
-              className="inline-block px-8 py-4 bg-accent text-white font-sans font-semibold rounded-lg hover:bg-accent/90 transition-colors"
+              href={quoteUrl}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white font-sans font-semibold rounded-lg hover:bg-accent/90 transition-colors shadow-sm"
             >
-              Request Quote
+              <span>Request Quote for this Product</span>
+              <ArrowRight size={18} />
             </Link>
             <Link 
-              href="/contact/request-sample"
+              href={sampleUrl}
               className="inline-block px-8 py-4 bg-white/10 text-white font-sans font-semibold rounded-lg hover:bg-white/20 transition-colors border border-white/30"
             >
-              Request Sample
+              Order Sample
             </Link>
           </div>
         </div>

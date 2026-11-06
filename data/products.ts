@@ -1528,6 +1528,27 @@ export function getProductBySlug(slug: string): Product | undefined {
   return getAllProducts().find(p => p.slug === slug)
 }
 
+export function getProductByHierarchy(
+  familySlug: ProductFamilySlug,
+  categorySlug: string,
+  productSlug: string
+): { product: Product; category: ProductCategory; family: ProductFamily } | undefined {
+  const family = getProductFamily(familySlug)
+  if (!family) return undefined
+
+  const category = family.categories.find(c => c.slug === categorySlug)
+  if (!category) return undefined
+
+  for (const subcategory of category.subcategories) {
+    const product = subcategory.products.find(p => p.slug === productSlug)
+    if (product) {
+      return { product, category, family }
+    }
+  }
+
+  return undefined
+}
+
 export function getProductsByFamily(familySlug: ProductFamilySlug): Product[] {
   const family = getProductFamily(familySlug)
   if (!family) return []
