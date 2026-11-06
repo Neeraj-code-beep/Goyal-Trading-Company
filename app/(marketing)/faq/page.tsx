@@ -10,11 +10,11 @@ const faqs = [
     questions: [
       {
         q: 'How long has Goyal Trading Company been in business?',
-        a: 'Goyal Trading Company was established in 2000 and has over 26 years of experience in the sports garment industry.',
+        a: 'Goyal Trading Company was established in 2000, bringing over two decades of dedicated manufacturing experience in the sports and activewear apparel industry.',
       },
       {
         q: 'What is your production capacity?',
-        a: 'We have a monthly production capacity of 10,000 sets across our 2 production units with a team of 26-50 skilled professionals.',
+        a: 'We operate 2 specialized manufacturing units in New Delhi, equipped for flexible batch production to handle medium-to-large bulk institutional and corporate orders.',
       },
       {
         q: 'Do you export internationally?',
@@ -68,8 +68,8 @@ const faqs = [
         a: 'We maintain strict quality control with centralized systems ensuring color fastness, excellent fabric quality, faultless fitting, fine stitching, and shrinkage-free products.',
       },
       {
-        q: 'Are you certified?',
-        a: 'Yes, we are GST registered (07AFEPG9418H1ZF), have DGFT/IE export license (0511050160), and are fully tax compliant.',
+        q: 'Are you certified and legally registered?',
+        a: 'Yes, we are a GST-registered enterprise holding an official DGFT Import-Export License with full statutory tax compliance in New Delhi, India.',
       },
     ],
   },

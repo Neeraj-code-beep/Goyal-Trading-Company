@@ -7,23 +7,23 @@ import { staggerContainer, slideUp } from '@/lib/animations/variants'
 const credentials = [
   {
     icon: ShieldCheck,
-    name: 'GST Registration',
-    description: '07AFEPG9418H1ZF',
+    name: 'GST Registered',
+    description: 'Fully Compliant Tax Enterprise',
   },
   {
     icon: Globe,
-    name: 'DGFT/IE Code',
-    description: '0511050160 - Export License',
+    name: 'DGFT Export Licensed',
+    description: 'Authorized IEC Holder for Global Trade',
   },
   {
     icon: FileText,
-    name: 'PAN',
-    description: 'AFEPG9418H',
+    name: 'Manufacturing Units',
+    description: '2 Dedicated Facilities in New Delhi',
   },
   {
     icon: Award,
-    name: 'Established',
-    description: 'Since 2000',
+    name: 'Industry Heritage',
+    description: 'Established in 2000',
   },
 ]
 

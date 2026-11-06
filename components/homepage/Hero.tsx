@@ -178,16 +178,16 @@ export function Hero() {
                   </div>
                   <span className="font-body text-white/80 text-xs">Established</span>
                 </div>
-                {/* Experience */}
+                {/* Dual Facilities */}
                 <div className="flex flex-col items-center gap-2">
                   <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                    <span className="font-sans text-white font-bold text-xs">26+</span>
+                    <span className="font-sans text-white font-bold text-xs">2</span>
                   </div>
-                  <span className="font-body text-white/80 text-xs">Years Exp.</span>
+                  <span className="font-body text-white/80 text-xs">Units</span>
                 </div>
               </motion.div>
 
-              {/* Capacity Metrics - Persistent */}
+              {/* Manufacturing Focus - Persistent */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -195,12 +195,12 @@ export function Hero() {
                 className="mt-8 flex flex-wrap justify-center gap-8 text-white/90"
               >
                 <div className="text-center">
-                  <div className="font-sans text-h2-mobile md:text-h2-tablet lg:text-h2 font-bold text-white">10,000</div>
-                  <div className="font-body text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm text-white/70 mt-1">Sets/Month</div>
+                  <div className="font-sans text-h2-mobile md:text-h2-tablet lg:text-h2 font-bold text-white">B2B Bulk</div>
+                  <div className="font-body text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm text-white/70 mt-1">Manufacturing</div>
                 </div>
                 <div className="text-center">
                   <div className="font-sans text-h2-mobile md:text-h2-tablet lg:text-h2 font-bold text-white">Global</div>
-                  <div className="font-body text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm text-white/70 mt-1">Export</div>
+                  <div className="font-body text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm text-white/70 mt-1">Export Supply</div>
                 </div>
               </motion.div>
             </motion.div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { StatCard } from '@/components/shared/StatCard'
-import { Factory, Calendar, Building2, Users } from 'lucide-react'
+import { Calendar, Building2, Layers, Globe } from 'lucide-react'
 
 export function TrustStatistics() {
   return (
@@ -16,34 +16,34 @@ export function TrustStatistics() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
-            icon={Factory}
-            value={10000}
-            label="Sets/Month"
-            description="Production Capacity"
+            icon={Calendar}
+            value="2000"
+            label="Year Established"
+            description="Over 2 Decades in Manufacturing"
             iconColor="text-accent"
             delay={0}
           />
           <StatCard
-            icon={Calendar}
-            value={26}
-            label="Years"
-            description="Industry Experience"
+            icon={Building2}
+            value={2}
+            label="Manufacturing Units"
+            description="Dedicated Delhi Facilities"
             iconColor="text-accent"
             delay={0.1}
           />
           <StatCard
-            icon={Building2}
-            value={2}
-            label="Units"
-            description="Production Facilities"
+            icon={Layers}
+            value={13}
+            label="Product Families"
+            description="Sportswear & Institutional Catalog"
             iconColor="text-success"
             delay={0.2}
           />
           <StatCard
-            icon={Users}
-            value={50}
-            label="People"
-            description="Skilled Workforce"
+            icon={Globe}
+            value="Global"
+            label="Export Ready"
+            description="Pan-India & International Trade"
             iconColor="text-success"
             delay={0.3}
           />

@@ -6,30 +6,30 @@ import { staggerContainer, slideUp } from '@/lib/animations/variants'
 const credentials = [
   {
     metric: 'GST REGISTERED',
-    detail: '07AFEPG9418H1ZF',
+    detail: 'VERIFIED TAX ENTITY',
   },
   {
     metric: 'DGFT / IE CODE',
-    detail: '0511050160 - Export License',
+    detail: 'EXPORT LICENSED',
   },
   {
-    metric: '26+ YEARS',
-    detail: 'SINCE 2000',
+    metric: 'ESTABLISHED 2000',
+    detail: 'OVER TWO DECADES EXP.',
   },
   {
-    metric: '10K SETS/MONTH',
-    detail: 'PRODUCTION CAPACITY',
+    metric: '2 UNITS',
+    detail: 'PRODUCTION FACILITIES',
   },
 ]
 
 const organizations = [
   {
-    name: 'Software Technology Parks of India',
-    location: 'Noida',
+    name: 'Government & Paramilitary Departments',
+    location: 'Institutional athletic & training uniforms',
   },
   {
-    name: 'CRPF',
-    location: 'Greater Noida',
+    name: 'Educational & Sports Academies',
+    location: 'Student athletic kits & custom tracksuits',
   },
 ]
 

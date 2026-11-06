@@ -1,29 +1,29 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Building2, ShoppingBag, Briefcase, Shirt } from 'lucide-react'
+import { Trophy, GraduationCap, Building2, Shield } from 'lucide-react'
 import { staggerContainer, slideUp } from '@/lib/animations/variants'
 
 const industries = [
   {
+    icon: Trophy,
+    name: 'Sports & Athletic Clubs',
+    description: 'High-performance team kits, tracksuits, and training gear.',
+  },
+  {
+    icon: GraduationCap,
+    name: 'Schools & Colleges',
+    description: 'Durable institutional uniforms, physical education kits, and winter wear.',
+  },
+  {
     icon: Building2,
-    name: 'Corporate Uniforms',
-    description: 'Professional attire for corporate and institutional clients.',
+    name: 'Corporate Organizations',
+    description: 'Custom staff polo shirts, corporate activewear, and branded event apparel.',
   },
   {
-    icon: ShoppingBag,
-    name: 'Retail Fashion',
-    description: 'Trendy clothing for fashion retailers and boutiques.',
-  },
-  {
-    icon: Briefcase,
-    name: 'Workwear',
-    description: 'Durable and functional workwear for various industries.',
-  },
-  {
-    icon: Shirt,
-    name: 'Ethnic Fashion',
-    description: 'Traditional and contemporary ethnic wear manufacturers.',
+    icon: Shield,
+    name: 'Institutional & Security',
+    description: 'Specialized uniform apparel and durable tactical wear for institutional forces.',
   },
 ]
 

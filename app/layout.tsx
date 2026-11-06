@@ -25,12 +25,12 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Goyal Trading Company - Sportswear Manufacturing Since 2000',
-  description: 'Premium sportswear manufacturing for global retailers. 26+ years of experience in track suits, t-shirts, corporate wear, school uniforms, and custom manufacturing. GST registered, export licensed.',
+  description: 'B2B sportswear and clothing manufacturer based in New Delhi. Established in 2000, specializing in bulk manufacturing of track suits, athletic gear, t-shirts, school uniforms, and corporate apparel.',
   keywords: ['sportswear manufacturing', 'track suits', 't-shirts', 'corporate wear', 'school uniforms', 'custom manufacturing', 'B2B textiles', 'export manufacturing', 'OEM services'],
   authors: [{ name: 'Goyal Trading Company' }],
   openGraph: {
     title: 'Goyal Trading Company - Sportswear Manufacturing Since 2000',
-    description: 'Premium sportswear manufacturing for global retailers. 10,000 sets/month capacity.',
+    description: 'B2B sportswear and garment manufacturer in New Delhi. Over two decades of manufacturing excellence.',
     type: 'website',
     locale: 'en_US',
   },

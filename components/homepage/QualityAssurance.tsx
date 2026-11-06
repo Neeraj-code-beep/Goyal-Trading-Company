@@ -8,22 +8,22 @@ const qualitySteps = [
   {
     icon: Search,
     title: 'Raw Material Testing',
-    description: 'Comprehensive testing of all incoming materials for quality and consistency.',
+    description: 'Visual inspection of fabric rolls, GSM consistency, and color uniformity prior to cutting.',
   },
   {
     icon: Shield,
     title: 'In-Process Inspection',
-    description: 'Real-time quality checks during production to catch issues early.',
+    description: 'In-line stitching checks and dimensional verification during garment assembly.',
   },
   {
     icon: CheckCircle,
     title: 'Final Quality Check',
-    description: 'Thorough inspection of finished products before packaging.',
+    description: 'Thorough inspection of finished products, trims, and zippers before packaging.',
   },
   {
     icon: FileText,
-    title: 'Documentation',
-    description: 'Complete quality reports and certifications for every batch.',
+    title: 'Order Verification',
+    description: 'Accurate packing lists, quantity counts, and batch labeling for delivery.',
   },
 ]
 
@@ -113,12 +113,12 @@ export function QualityAssurance() {
               <div className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">Inspection Coverage</div>
             </div>
             <div>
-              <div className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 font-bold text-accent mb-2">ISO 9001</div>
-              <div className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">Certified Process</div>
+              <div className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 font-bold text-accent mb-2">In-House</div>
+              <div className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">Standardized QC Protocol</div>
             </div>
             <div>
-              <div className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 font-bold text-accent mb-2">&lt;1%</div>
-              <div className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">Defect Rate</div>
+              <div className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 font-bold text-accent mb-2">Strict</div>
+              <div className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">Stitching & Sizing Checks</div>
             </div>
           </div>
         </motion.div>

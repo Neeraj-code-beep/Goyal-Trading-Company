@@ -12,7 +12,7 @@ interface AnnouncementBarProps {
 }
 
 export function AnnouncementBar({
-  message = 'Free shipping on orders over 500 units',
+  message = 'B2B Bulk Sportswear & Uniform Manufacturing • Domestic & Global Delivery • Est. 2000',
   link,
   linkText = 'Learn more',
   dismissible = true,

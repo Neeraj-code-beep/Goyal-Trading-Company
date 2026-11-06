@@ -7,33 +7,33 @@ import { staggerContainer, slideUp } from '@/lib/animations/variants'
 const features = [
   {
     icon: Shield,
-    title: 'Quality Assurance',
-    description: 'Multi-stage quality checks with certified processes ensuring consistent output.',
+    title: 'In-House Quality Checks',
+    description: 'Systematic inspection protocols covering fabric integrity, stitching strength, and finishing.',
   },
   {
     icon: Truck,
-    title: 'Reliable Delivery',
-    description: '98% on-time delivery rate with global logistics partnerships.',
+    title: 'Dependable Logistics',
+    description: 'Coordinated freight delivery across India by road and sea shipping for global export orders.',
   },
   {
     icon: Users,
-    title: 'Expert Team',
-    description: '15+ years of industry experience with skilled professionals.',
+    title: 'Experienced Craftsmen',
+    description: 'Dedicated team of skilled tailors, pattern masters, and finishing technicians in New Delhi.',
   },
   {
     icon: Award,
-    title: 'Certified Processes',
-    description: 'BSCI, WRAP, and GOTS certified manufacturing facilities.',
+    title: 'Established Manufacturing',
+    description: 'Over two decades of continuous manufacturing experience with verified business credentials.',
   },
   {
     icon: Clock,
-    title: 'Fast Turnaround',
-    description: 'Quick production cycles with flexible scheduling.',
+    title: 'Flexible Batch Production',
+    description: 'Agile manufacturing setups capable of handling customized small-to-large bulk runs.',
   },
   {
     icon: DollarSign,
-    title: 'Transparent Pricing',
-    description: 'No hidden costs with clear, upfront pricing models.',
+    title: 'Direct Factory Pricing',
+    description: 'Competitive manufacturer pricing without intermediary markups for bulk procurement.',
   },
 ]
 

@@ -79,16 +79,16 @@ export default function AboutPage() {
                 {/* Floating Experience Badge */}
                 <div className="absolute -bottom-6 -left-6 bg-accent text-white rounded-xl p-4 shadow-xl">
                   <div className="text-center">
-                    <div className="font-sans text-3xl font-bold">26+</div>
-                    <div className="font-body text-sm">Years</div>
+                    <div className="font-sans text-3xl font-bold">2000</div>
+                    <div className="font-body text-sm">Est.</div>
                   </div>
                 </div>
 
                 {/* Floating Capacity Badge */}
                 <div className="absolute -top-4 -right-4 bg-white/10 backdrop-blur-sm text-white rounded-xl p-4 border border-white/30">
                   <div className="text-center">
-                    <div className="font-sans text-2xl font-bold">10K</div>
-                    <div className="font-body text-xs">Sets/Month</div>
+                    <div className="font-sans text-2xl font-bold">2</div>
+                    <div className="font-body text-xs">Units</div>
                   </div>
                 </div>
 
@@ -109,14 +109,14 @@ export default function AboutPage() {
                 Our Story
               </span>
               <h2 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-8 leading-tight">
-                26 Years of Excellence in Sportswear Manufacturing
+                Manufacturing Excellence in Sportswear Since 2000
               </h2>
               <div className="space-y-6">
                 <p className="font-body text-body-lg text-gray-600 leading-relaxed">
-                  Operated from the capital city of India, New Delhi, Goyal Trading Company is a premier entity engaged in manufacturing, trading and supplying a wide range of sportswear since 2000. The company has established itself as one of the largest manufacturers, suppliers and traders of versatile range of sports wear and related products.
+                  Operated from the capital city of India, New Delhi, Goyal Trading Company is an established manufacturer and supplier engaged in manufacturing and supplying a comprehensive range of sportswear since 2000.
                 </p>
                 <p className="font-body text-body-lg text-gray-600 leading-relaxed">
-                  With over 26 years of experience in the sports garment industry, we have built a reputation for quality, reliability, and customer satisfaction. Our commitment to excellence has enabled us to serve clients across domestic and international markets.
+                  With over two decades of dedicated manufacturing experience in the sports garment industry, we have built a reputation for reliable stitching, transparent wholesale pricing, and consistent quality across domestic and export markets.
                 </p>
               </div>
             </div>
@@ -135,8 +135,8 @@ export default function AboutPage() {
                 <div className="absolute bottom-6 left-6 right-6">
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                     <div className="text-center">
-                      <div className="font-sans text-2xl font-bold text-white">26+</div>
-                      <div className="font-body text-sm text-white/80">Years of Experience</div>
+                      <div className="font-sans text-2xl font-bold text-white">2000</div>
+                      <div className="font-body text-sm text-white/80">Established</div>
                     </div>
                   </div>
                 </div>
@@ -179,10 +179,10 @@ export default function AboutPage() {
           </div>
           
           <BusinessMetricsGrid metrics={[
-            { metric: '10,000', label: 'SETS/MONTH', detail: 'Production Capacity' },
+            { metric: '2000', label: 'ESTABLISHED', detail: 'Year Founded' },
             { metric: '02', label: 'UNITS', detail: 'Production Facilities' },
-            { metric: '26–50', label: 'PEOPLE', detail: 'Team Size' },
-            { metric: '2,000', label: 'SQ FT', detail: 'Premises Size' },
+            { metric: '13', label: 'FAMILIES', detail: 'Product Range' },
+            { metric: 'Global', label: 'REACH', detail: 'Export Ready' },
           ]} />
         </div>
       </section>
@@ -298,15 +298,15 @@ export default function AboutPage() {
                     </div>
                     <div className="flex justify-between py-3 border-b border-gray-100">
                       <span className="font-body text-body text-gray-500">GST Registration</span>
-                      <span className="font-body text-body text-gray-900 font-medium">07AFEPG9418H1ZF</span>
-                    </div>
-                    <div className="flex justify-between py-3 border-b border-gray-100">
-                      <span className="font-body text-body text-gray-500">PAN No.</span>
-                      <span className="font-body text-body text-gray-900 font-medium">AFEPG9418H</span>
+                      <span className="font-body text-body text-gray-900 font-medium">Verified & Compliant</span>
                     </div>
                     <div className="flex justify-between py-3 border-b border-gray-100">
                       <span className="font-body text-body text-gray-500">DGFT/IE Code</span>
-                      <span className="font-body text-body text-gray-900 font-medium">0511050160</span>
+                      <span className="font-body text-body text-gray-900 font-medium">Export Licensed</span>
+                    </div>
+                    <div className="flex justify-between py-3 border-b border-gray-100">
+                      <span className="font-body text-body text-gray-500">Operating Base</span>
+                      <span className="font-body text-body text-gray-900 font-medium">Shastri Nagar, Delhi</span>
                     </div>
                   </div>
                 </div>
@@ -336,13 +336,14 @@ export default function AboutPage() {
               Organizations Served
             </span>
             <h2 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-8 leading-tight">
-              Trusted by Government & Private Organizations
+              Trusted Across Public & Private Sectors
             </h2>
             
             <div className="space-y-4">
               {[
-                { name: 'Software Technology Parks of India', location: 'Noida, Uttar Pradesh' },
-                { name: 'CRPF', location: 'Greater Noida, Uttar Pradesh' },
+                { name: 'Government & Institutional Departments', location: 'Institutional uniform supplies & physical training apparel' },
+                { name: 'Sports & Athletic Academies', location: 'Custom athletic wear, tracksuits & sports team apparel' },
+                { name: 'Educational Institutions & Schools', location: 'Durable school uniforms & sports day apparel' },
               ].map((org) => (
                 <div key={org.name} className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl border border-gray-100">
                   <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">

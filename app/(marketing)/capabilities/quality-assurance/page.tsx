@@ -224,23 +224,23 @@ export default function QualityAssurancePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 bg-white/5 rounded-xl border border-white/10">
                   <h3 className="font-sans text-h3 text-white mb-2">GST Registered</h3>
-                  <p className="font-body text-body text-white/70">07AFEPG9418H1ZF</p>
-                  <p className="font-body text-sm text-white/50 mt-2">Registered since 01-07-2017</p>
+                  <p className="font-body text-body text-white/70">Compliant Indian Tax Entity</p>
+                  <p className="font-body text-sm text-white/50 mt-2">Verified statutory registration</p>
                 </div>
                 <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                  <h3 className="font-sans text-h3 text-white mb-2">Export License</h3>
-                  <p className="font-body text-body text-white/70">DGFT/IE Code: 0511050160</p>
+                  <h3 className="font-sans text-h3 text-white mb-2">Export Licensed</h3>
+                  <p className="font-body text-body text-white/70">DGFT / Import-Export Code</p>
                   <p className="font-body text-sm text-white/50 mt-2">Authorized for international trade</p>
                 </div>
                 <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                  <h3 className="font-sans text-h3 text-white mb-2">PAN Registered</h3>
-                  <p className="font-body text-body text-white/70">AFEPG9418H</p>
-                  <p className="font-body text-sm text-white/50 mt-2">Permanent Account Number</p>
+                  <h3 className="font-sans text-h3 text-white mb-2">Established Heritage</h3>
+                  <p className="font-body text-body text-white/70">Founded in 2000</p>
+                  <p className="font-body text-sm text-white/50 mt-2">Over two decades of operation</p>
                 </div>
                 <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                  <h3 className="font-sans text-h3 text-white mb-2">Tax Compliant</h3>
-                  <p className="font-body text-body text-white/70">CST & VAT Registered</p>
-                  <p className="font-body text-sm text-white/50 mt-2">Full tax compliance</p>
+                  <h3 className="font-sans text-h3 text-white mb-2">Manufacturing Facilities</h3>
+                  <p className="font-body text-body text-white/70">2 Production Units in Delhi</p>
+                  <p className="font-body text-sm text-white/50 mt-2">Equipped for bulk apparel manufacturing</p>
                 </div>
               </div>
             </div>
