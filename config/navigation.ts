@@ -17,24 +17,23 @@ export const navigation = {
     },
     { 
       name: 'Capabilities', 
-      href: '/capabilities',
+      href: '/capabilities/manufacturing',
       children: [
-        { name: 'Manufacturing', href: '/capabilities/manufacturing' },
-        { name: 'Infrastructure', href: '/capabilities/infrastructure' },
-        { name: 'Quality Assurance', href: '/capabilities/quality-assurance' },
-        { name: 'Custom Solutions', href: '/capabilities/custom-solutions' },
+        { name: 'Manufacturing', href: '/capabilities/manufacturing', description: 'Garment manufacturing facilities and capacity' },
+        { name: 'Infrastructure', href: '/capabilities/infrastructure', description: 'Machinery and production units' },
+        { name: 'Quality Assurance', href: '/capabilities/quality-assurance', description: 'Quality inspection and standards' },
       ],
     },
-    { name: 'Quality', href: '/quality' },
     { name: 'Gallery', href: '/gallery' },
+    { name: 'FAQ', href: '/faq' },
     { name: 'Contact', href: '/contact' },
   ],
   footer: {
     company: [
       { name: 'About Us', href: '/about' },
-      { name: 'Our Story', href: '/about/our-story' },
-      { name: 'Mission & Vision', href: '/about/mission-vision' },
-      { name: 'Team', href: '/about/team' },
+      { name: 'Manufacturing Facilities', href: '/capabilities/manufacturing' },
+      { name: 'Infrastructure & Machinery', href: '/capabilities/infrastructure' },
+      { name: 'Quality Assurance', href: '/capabilities/quality-assurance' },
     ],
     products: [
       { name: 'All Products', href: '/products' },
@@ -44,10 +43,10 @@ export const navigation = {
       })),
     ],
     capabilities: [
-      { name: 'Manufacturing', href: '/capabilities/manufacturing' },
-      { name: 'Infrastructure', href: '/capabilities/infrastructure' },
+      { name: 'Manufacturing Facilities', href: '/capabilities/manufacturing' },
+      { name: 'Infrastructure & Machinery', href: '/capabilities/infrastructure' },
       { name: 'Quality Assurance', href: '/capabilities/quality-assurance' },
-      { name: 'Custom Solutions', href: '/capabilities/custom-solutions' },
+      { name: 'Product Gallery', href: '/gallery' },
     ],
     support: [
       { name: 'Contact Us', href: '/contact' },

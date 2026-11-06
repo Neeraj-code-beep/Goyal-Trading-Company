@@ -207,58 +207,71 @@ export function Navbar({ onMobileMenuChange }: NavbarProps = {}) {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            {navigation.main.map((item) => (
-              <div
-                key={item.name}
-                className="relative"
-                onMouseEnter={item.name === 'Products' ? handleProductsHover : item.name === 'Capabilities' ? handleCapabilitiesHover : undefined}
-                onMouseLeave={item.name === 'Products' ? handleProductsLeave : item.name === 'Capabilities' ? handleCapabilitiesLeave : undefined}
-              >
-                {item.children ? (
-                  <button
-                    className={`
-                      font-sans text-nav uppercase transition-all duration-300 relative py-2 flex items-center gap-1
-                      ${pathname.startsWith(item.href)
-                        ? 'text-accent font-semibold'
-                        : 'text-primary hover:text-accent'
-                      }
-                    `}
-                  >
-                    {item.name}
-                    <ChevronDown size={16} className="flex-shrink-0" />
-                    {pathname.startsWith(item.href) && (
-                      <motion.div
-                        layoutId="activeNav"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"
-                        initial={false}
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className={`
-                      font-sans text-nav uppercase transition-all duration-300 relative py-2
-                      ${pathname === item.href
-                        ? 'text-accent font-semibold'
-                        : 'text-primary hover:text-accent'
-                      }
-                    `}
-                  >
-                    {item.name}
-                    {pathname === item.href && (
-                      <motion.div
-                        layoutId="activeNav"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"
-                        initial={false}
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </Link>
-                )}
-              </div>
-            ))}
+            {navigation.main.map((item) => {
+              const isItemActive = item.name === 'Products' 
+                ? pathname.startsWith('/products')
+                : item.name === 'Capabilities'
+                ? pathname.startsWith('/capabilities')
+                : pathname === item.href
+
+              const isDropdownOpen = item.name === 'Products' ? isMegaMenuOpen : item.name === 'Capabilities' ? isCapabilitiesOpen : false
+
+              return (
+                <div
+                  key={item.name}
+                  className="relative"
+                  onMouseEnter={item.name === 'Products' ? handleProductsHover : item.name === 'Capabilities' ? handleCapabilitiesHover : undefined}
+                  onMouseLeave={item.name === 'Products' ? handleProductsLeave : item.name === 'Capabilities' ? handleCapabilitiesLeave : undefined}
+                >
+                  {item.children ? (
+                    <button
+                      type="button"
+                      aria-expanded={isDropdownOpen}
+                      aria-haspopup="true"
+                      className={`
+                        font-sans text-nav uppercase transition-all duration-300 relative py-2 flex items-center gap-1
+                        ${isItemActive
+                          ? 'text-accent font-semibold'
+                          : 'text-primary hover:text-accent'
+                        }
+                      `}
+                    >
+                      {item.name}
+                      <ChevronDown size={16} className={`flex-shrink-0 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                      {isItemActive && (
+                        <motion.div
+                          layoutId="activeNav"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"
+                          initial={false}
+                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className={`
+                        font-sans text-nav uppercase transition-all duration-300 relative py-2
+                        ${isItemActive
+                          ? 'text-accent font-semibold'
+                          : 'text-primary hover:text-accent'
+                        }
+                      `}
+                    >
+                      {item.name}
+                      {isItemActive && (
+                        <motion.div
+                          layoutId="activeNav"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent"
+                          initial={false}
+                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </Link>
+                  )}
+                </div>
+              )
+            })}
           </div>
 
           {/* CTA Button */}
