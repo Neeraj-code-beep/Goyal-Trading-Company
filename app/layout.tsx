@@ -1,27 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter, Open_Sans, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { AnnouncementBar } from '@/components/layout/AnnouncementBar'
 import { LayoutWrapper } from '@/components/layout/LayoutWrapper'
 import { Footer } from '@/components/layout/Footer'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const openSans = Open_Sans({
-  subsets: ['latin'],
-  variable: '--font-open-sans',
-  display: 'swap',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'Goyal Trading Company - Sportswear Manufacturing Since 2000',
@@ -42,11 +23,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${openSans.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-body antialiased">
+    <html lang="en">
+      <body className="font-body antialiased bg-white text-gray-900">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <AnnouncementBar />
         <LayoutWrapper>
-          {children}
+          <div id="main-content">
+            {children}
+          </div>
         </LayoutWrapper>
         <Footer />
       </body>
