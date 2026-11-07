@@ -1,8 +1,3 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import { staggerContainer, slideUp } from '@/lib/animations/variants'
-
 const credentials = [
   {
     metric: 'GST REGISTERED',
@@ -43,36 +38,26 @@ export function TrustSignals() {
       }} />
       
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
-        >
+        <div>
           {/* Business Credentials Section */}
-          <motion.div variants={slideUp} className="mb-20">
-            <motion.div variants={slideUp} className="mb-6">
+          <div className="mb-20">
+            <div className="mb-6">
               <span className="font-sans text-caption font-semibold text-accent uppercase tracking-wider">
                 VERIFIED BUSINESS CREDENTIALS
               </span>
-            </motion.div>
-            <motion.h2
-              variants={slideUp}
+            </div>
+            <h2
               id="trust-signals-heading"
               className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-white mb-12 leading-tight"
             >
               Built on Verified Business Credentials
-            </motion.h2>
+            </h2>
 
             {/* Credentials Rail */}
-            <motion.div
-              variants={slideUp}
-              className="grid grid-cols-2 md:grid-cols-4 gap-0 border-y border-white/10"
-            >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-y border-white/10">
               {credentials.map((cred, index) => (
-                <motion.div
+                <div
                   key={cred.metric}
-                  variants={slideUp}
                   className={`p-8 border-r border-white/10 ${
                     index === 0 || index === 1 ? 'border-t' : ''
                   } ${
@@ -86,33 +71,26 @@ export function TrustSignals() {
                   <div className="font-body text-sm text-white/70 leading-relaxed">
                     {cred.detail}
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Organizations Served Section */}
-          <motion.div variants={slideUp}>
-            <motion.div variants={slideUp} className="mb-6">
+          <div>
+            <div className="mb-6">
               <span className="font-sans text-caption font-semibold text-accent uppercase tracking-wider">
-                ORGANIZATIONS SERVED
+                SECTORS SERVED
               </span>
-            </motion.div>
-            <motion.h3
-              variants={slideUp}
-              className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 text-white mb-8 leading-tight"
-            >
-              Organizations We&apos;ve Served
-            </motion.h3>
+            </div>
+            <h3 className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 text-white mb-8 leading-tight">
+              Sectors We Serve
+            </h3>
 
-            <motion.div
-              variants={slideUp}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {organizations.map((org, index) => (
-                <motion.div
+                <div
                   key={index}
-                  variants={slideUp}
                   className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 hover:border-accent/30 transition-colors"
                 >
                   <div className="flex items-start gap-4">
@@ -124,11 +102,11 @@ export function TrustSignals() {
                       <p className="font-body text-sm text-white/60">{org.location}</p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

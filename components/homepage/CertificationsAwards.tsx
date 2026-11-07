@@ -1,8 +1,4 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import { ShieldCheck, FileText, Globe, Award } from 'lucide-react'
-import { staggerContainer, slideUp } from '@/lib/animations/variants'
 
 const credentials = [
   {
@@ -44,61 +40,37 @@ export function CertificationsAwards() {
       <div className="absolute top-40 left-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
-          className="text-center mb-16"
-        >
-          <motion.h2
-            variants={slideUp}
+        <div className="text-center mb-16">
+          <h2
             id="credentials-heading"
             className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-4"
           >
             Business Credentials
-          </motion.h2>
-          <motion.p
-            variants={slideUp}
-            className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed"
-          >
-            Registered and compliant with all statutory requirements for manufacturing and export operations.
-          </motion.p>
-        </motion.div>
+          </h2>
+          <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            Registered and compliant with statutory requirements for manufacturing and export operations.
+          </p>
+        </div>
 
-        {/* Credentials */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {credentials.map((cred) => (
-              <motion.div
-                key={cred.name}
-                variants={slideUp}
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-                className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all text-center border border-gray-100 hover:border-accent/30 group"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
-                  className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition-colors"
-                >
-                  <cred.icon size={32} strokeWidth={2} className="text-accent" />
-                </motion.div>
-                <h4 className="font-sans text-h3-mobile md:text-h3-tablet lg:text-h3 text-primary mb-2 leading-tight group-hover:text-accent transition-colors">
-                  {cred.name}
-                </h4>
-                <p className="font-body text-body-mobile md:text-body-tablet lg:text-body text-gray-500 leading-relaxed">
-                  {cred.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        {/* Credentials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {credentials.map((cred) => (
+            <div
+              key={cred.name}
+              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 text-center border border-gray-100 hover:border-accent/30 group"
+            >
+              <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition-colors">
+                <cred.icon size={32} strokeWidth={2} className="text-accent" />
+              </div>
+              <h3 className="font-sans text-h3-mobile md:text-h3-tablet lg:text-h3 text-primary mb-2 leading-tight group-hover:text-accent transition-colors">
+                {cred.name}
+              </h3>
+              <p className="font-body text-body-mobile md:text-body-tablet lg:text-body text-gray-500 leading-relaxed">
+                {cred.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

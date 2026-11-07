@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { heroSlides } from '@/data/hero-images'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export function Hero() {
   const { scrollY } = useScroll()
@@ -63,9 +64,14 @@ export function Hero() {
           transition={{ duration: 0.8, ease: 'easeInOut' }}
           className="absolute inset-0 z-0"
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${currentSlide.imageUrl})` }}
+          <Image
+            src={currentSlide.imageUrl}
+            alt={currentSlide.imageAlt}
+            fill
+            priority={currentIndex === 0}
+            sizes="100vw"
+            quality={85}
+            className="object-cover object-center"
           />
         </motion.div>
       </AnimatePresence>

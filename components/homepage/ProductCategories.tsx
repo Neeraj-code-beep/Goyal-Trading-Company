@@ -1,9 +1,5 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import { staggerContainer, slideUp } from '@/lib/animations/variants'
 import { getFeaturedProductFamilies } from '@/data/products'
 import { ProductImageFallback } from '@/components/ui/ProductImageFallback'
 import Image from 'next/image'
@@ -22,43 +18,24 @@ export function ProductCategories() {
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
-          className="text-center mb-16"
-        >
-          <motion.h2
-            variants={slideUp}
+        <div className="text-center mb-16">
+          <h2
             id="product-categories-heading"
             className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-4"
           >
             Product Categories
-          </motion.h2>
-          <motion.p
-            variants={slideUp}
-            className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed"
-          >
-            Comprehensive range of sportswear, corporate wear, school uniforms, and accessories manufactured to your specifications.
-          </motion.p>
-        </motion.div>
+          </h2>
+          <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            Comprehensive range of sportswear, corporate wear, school uniforms, and athletic apparel manufactured to your specifications.
+          </p>
+        </div>
 
         {/* Categories Grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {families.map((family, _index) => (
-            <motion.div
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {families.map((family) => (
+            <div
               key={family.slug}
-              variants={slideUp}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-200 hover:border-accent/30"
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 hover:border-accent/30"
             >
               {/* Image/Fallback */}
               <div className="aspect-[4/3] relative overflow-hidden">
@@ -93,35 +70,24 @@ export function ProductCategories() {
                   href={`/products/${family.slug}`}
                   className="inline-flex items-center gap-2 text-accent font-sans font-semibold text-body-mobile md:text-body-tablet lg:text-body group-hover:gap-3 transition-all"
                 >
-                  Explore {family.shortName}
-                  <motion.span
-                    whileHover={{ x: 4 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ArrowRight size={16} strokeWidth={2} />
-                  </motion.span>
+                  <span>Explore {family.shortName}</span>
+                  <ArrowRight size={16} strokeWidth={2} className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* View All CTA */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={slideUp}
-          className="text-center mt-12"
-        >
+        <div className="text-center mt-12">
           <Link
             href="/products"
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-sans font-semibold rounded-lg hover:bg-primary-dark transition-colors"
           >
-            View All Products
+            <span>View All Products</span>
             <ArrowRight size={20} strokeWidth={2} />
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

@@ -1,8 +1,4 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import { Shield, Truck, Users, Award, Clock, DollarSign } from 'lucide-react'
-import { staggerContainer, slideUp } from '@/lib/animations/variants'
 
 const features = [
   {
@@ -54,60 +50,37 @@ export function WhyChooseUs() {
       <div className="absolute top-20 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
-          className="text-center mb-16"
-        >
-          <motion.h2
-            variants={slideUp}
+        <div className="text-center mb-16">
+          <h2
             id="why-choose-us-heading"
             className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-4"
           >
             Why Choose Us
-          </motion.h2>
-          <motion.p
-            variants={slideUp}
-            className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed"
-          >
-            We combine manufacturing excellence with transparency to deliver premium textile solutions for global retailers.
-          </motion.p>
-        </motion.div>
+          </h2>
+          <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            We combine manufacturing excellence with transparent operations to deliver reliable apparel solutions for bulk procurement.
+          </p>
+        </div>
 
         {/* Features Grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10"
-        >
-          {features.map((feature, _index) => (
-            <motion.div
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+          {features.map((feature) => (
+            <div
               key={feature.title}
-              variants={slideUp}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100 hover:border-accent/20 group"
+              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-accent/20 group"
             >
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors"
-              >
+              <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
                 <feature.icon size={24} strokeWidth={2} className="text-accent" />
-              </motion.div>
+              </div>
               <h3 className="font-sans text-h3-mobile md:text-h3-tablet lg:text-h3 text-primary mb-2 leading-tight group-hover:text-accent transition-colors">
                 {feature.title}
               </h3>
               <p className="font-body text-body-mobile md:text-body-tablet lg:text-body text-gray-500 leading-relaxed">
                 {feature.description}
               </p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

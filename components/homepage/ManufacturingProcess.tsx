@@ -7,33 +7,33 @@ import { staggerContainer, slideUp } from '@/lib/animations/variants'
 const processSteps = [
   {
     step: 1,
-    title: 'Design & Development',
-    description: 'Custom design creation with technical specifications and material selection.',
+    title: 'Design & Pattern Drafting',
+    description: 'Custom pattern drafting with precise technical specifications and material selection.',
   },
   {
     step: 2,
-    title: 'Sourcing',
-    description: 'Premium raw material procurement from certified suppliers worldwide.',
+    title: 'Fabric Sourcing & Knitting',
+    description: 'Direct procurement of quality yarn, circular/flat knitting, and fabric preparation.',
   },
   {
     step: 3,
-    title: 'Production',
-    description: 'State-of-the-art manufacturing with quality control at every stage.',
+    title: 'Cutting & Stitching',
+    description: 'Precision table cutting and assembly at dedicated stitching stations in our Delhi units.',
   },
   {
     step: 4,
-    title: 'Quality Assurance',
-    description: 'Multi-stage inspection ensuring compliance with international standards.',
+    title: 'In-House Quality Checks',
+    description: 'Rigorous inspection verifying stitching integrity, dimensional accuracy, and finishing.',
   },
   {
     step: 5,
-    title: 'Packaging',
-    description: 'Secure packaging with proper labeling and documentation.',
+    title: 'Packaging & Verification',
+    description: 'Order verification, bulk packing, and proper batch labeling for institutional delivery.',
   },
   {
     step: 6,
-    title: 'Delivery',
-    description: 'Global logistics coordination for timely delivery to your location.',
+    title: 'Logistics & Dispatch',
+    description: 'Coordinated domestic road freight and sea cargo dispatch for timely delivery.',
   },
 ]
 

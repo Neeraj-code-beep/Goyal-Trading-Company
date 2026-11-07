@@ -1,10 +1,6 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
-import { staggerContainer, slideUp } from '@/lib/animations/variants'
 import { getFeaturedProducts } from '@/data/products'
 import { ProductImageFallback } from '@/components/ui/ProductImageFallback'
 import Image from 'next/image'
@@ -28,46 +24,28 @@ export function FeaturedProducts() {
       <div className="absolute top-20 right-20 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
-          className="text-center mb-16"
-        >
-          <motion.h2
-            variants={slideUp}
+        <div className="text-center mb-16">
+          <h2
             id="featured-products-heading"
             className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-4"
           >
             Featured Products
-          </motion.h2>
-          <motion.p
-            variants={slideUp}
-            className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed"
-          >
-            Our most popular products trusted by global retailers for quality and consistency.
-          </motion.p>
-        </motion.div>
+          </h2>
+          <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            Highlighted athletic and institutional garments manufactured for wholesale and institutional clients.
+          </p>
+        </div>
 
         {/* Products Grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredProducts.map((product) => (
-            <motion.div
+            <Link
               key={product.id}
-              variants={slideUp}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100 hover:border-accent/30 group"
+              href={`/products/${product.familySlug}/${product.categorySlug}/${product.slug}`}
+              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-accent/30 group block"
             >
               {/* Product Image */}
-              <div className="aspect-[4/5] bg-gray-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+              <div className="aspect-[4/5] bg-gray-100 rounded-xl mb-4 relative overflow-hidden">
                 {product.image ? (
                   <Image
                     src={product.image}
@@ -85,13 +63,9 @@ export function FeaturedProducts() {
                   />
                 )}
                 {/* Hover overlay */}
-                <motion.div
-                  className="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                >
+                <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <span className="text-white font-semibold text-sm">View Details</span>
-                </motion.div>
+                </div>
               </div>
 
               {/* Product Info */}
@@ -111,25 +85,19 @@ export function FeaturedProducts() {
                   </div>
                 )}
               </div>
-            </motion.div>
+            </Link>
           ))}
-        </motion.div>
+        </div>
 
         {/* CTA */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={slideUp}
-          className="text-center mt-12"
-        >
+        <div className="text-center mt-12">
           <Button variant="secondary" size="lg" asChild>
             <Link href="/products">
-              View All Products
+              <span>View All Products</span>
               <ArrowRight size={16} className="ml-2" />
             </Link>
           </Button>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

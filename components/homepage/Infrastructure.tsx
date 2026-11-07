@@ -1,28 +1,23 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import { staggerContainer, slideUp } from '@/lib/animations/variants'
-
 const infrastructureData = [
   {
     metric: '02',
     label: 'PRODUCTION UNITS',
-    description: 'Dedicated manufacturing facilities for specialized production',
+    description: 'Dedicated manufacturing facilities in New Delhi',
   },
   {
-    metric: '2,000 SQ FT',
-    label: 'PREMISES',
-    description: 'Permanent urban infrastructure in Delhi',
+    metric: 'DELHI',
+    label: 'URBAN BASE',
+    description: 'Permanent commercial facility in Shastri Nagar',
   },
   {
-    metric: '26–50',
-    label: 'TEAM SIZE',
-    description: 'Skilled professionals across design, production, and quality',
+    metric: 'IN-HOUSE',
+    label: 'STITCHING & QA',
+    description: 'Dedicated craftsmen across cutting, assembly, and finishing',
   },
   {
-    metric: 'MODERN',
-    label: 'SETUP',
-    description: 'Circular knitting, dyeing, and finishing machinery',
+    metric: 'CIRCULAR',
+    label: 'KNIT & FLAT KNIT',
+    description: 'Specialized knitting machinery and commercial finishing units',
   },
 ]
 
@@ -41,56 +36,37 @@ export function Infrastructure() {
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left - Feature Panel */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={staggerContainer}
-          >
-            <motion.div variants={slideUp} className="mb-6">
+          <div>
+            <div className="mb-6">
               <span className="font-sans text-caption font-semibold text-accent uppercase tracking-wider">
                 Established Operations
               </span>
-            </motion.div>
-            <motion.h2
-              variants={slideUp}
+            </div>
+            <h2
               id="infrastructure-heading"
               className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-white mb-6 leading-tight"
             >
               Our Infrastructure
-            </motion.h2>
-            <motion.p
-              variants={slideUp}
-              className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-white/80 max-w-xl leading-relaxed mb-8"
-            >
-              Established manufacturing infrastructure in Delhi with dedicated production units, modern equipment, and skilled professionals enabling quality production for global B2B clients.
-            </motion.p>
-            <motion.div
-              variants={slideUp}
-              className="flex items-center gap-2 text-white/60 text-sm"
-            >
-              <span>Delhi · Established Setup</span>
-            </motion.div>
-          </motion.div>
+            </h2>
+            <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-white/80 max-w-xl leading-relaxed mb-8">
+              Established manufacturing infrastructure in New Delhi with dedicated production units, flat knit and circular knitting equipment, and skilled craftsmen enabling quality bulk production.
+            </p>
+            <div className="flex items-center gap-2 text-white/60 text-sm">
+              <span>Shastri Nagar, Delhi · Established Manufacturing Base</span>
+            </div>
+          </div>
 
           {/* Right - Technical Data Grid */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={staggerContainer}
-            className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
-          >
-            <motion.div variants={slideUp} className="mb-6">
+          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div className="mb-6">
               <span className="font-sans text-xs font-semibold text-accent uppercase tracking-wider">
                 VERIFIED OPERATIONAL DATA
               </span>
-            </motion.div>
+            </div>
             <div className="grid grid-cols-2 gap-0">
               {infrastructureData.map((item, index) => (
-                <motion.div
+                <div
                   key={item.label}
-                  variants={slideUp}
                   className={`p-6 border-b border-r border-white/10 ${
                     index === 0 || index === 1 ? 'border-t' : ''
                   } ${
@@ -107,10 +83,10 @@ export function Infrastructure() {
                   <p className="font-body text-xs text-white/60 leading-relaxed">
                     {item.description}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
