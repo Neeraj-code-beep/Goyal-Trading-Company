@@ -1,4 +1,4 @@
-import { Package, Shirt, Briefcase, Backpack, Droplets, Shield, Scissors, Layers } from 'lucide-react'
+import { LucideIcon, Package, Shirt, Briefcase, Backpack, Droplets, Shield, Scissors, Layers } from 'lucide-react'
 
 interface ProductImageFallbackProps {
   categoryName?: string
@@ -7,7 +7,7 @@ interface ProductImageFallbackProps {
   className?: string
 }
 
-const categoryIcons: Record<string, any> = {
+const categoryIcons: Record<string, LucideIcon> = {
   'track-suits': Shirt,
   't-shirts': Shirt,
   'sports-wear': Shirt,

@@ -26,16 +26,20 @@
   position: absolute;
   width: auto;
   height: auto;
-  padding: 1rem;
+  padding: 0.75rem 1.5rem;
   margin: 0;
   overflow: visible;
   clip: auto;
   white-space: normal;
   top: 1rem;
   left: 1rem;
-  z-index: 50;
-  background: white;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  background: #1A365D;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: 2px solid #ED8936;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 /* Accessibility: Focus visible */

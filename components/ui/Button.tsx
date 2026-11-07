@@ -1,11 +1,11 @@
 'use client'
 
 import { ButtonHTMLAttributes, forwardRef } from 'react'
-import { motion, HTMLMotionProps } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 
-export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag'> {
+export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag' | 'onDragEnd' | 'onDragStart' | 'onAnimationStart'> {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'dark-surface' | 'light-surface' | 'text'
   size?: 'sm' | 'md' | 'lg'
   fullWidth?: boolean
@@ -35,12 +35,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = 'inline-flex items-center justify-center font-sans font-semibold transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60 focus-visible:ring-2 focus-visible:ring-offset-2'
     
     const variants = {
-      primary: 'bg-accent text-white border-none focus:ring-accent hover:bg-accent-light hover:shadow-lg hover:-translate-y-0.5 active:bg-accent-dark active:translate-y-0 active:shadow-md',
+      primary: 'bg-primary text-white border-none focus:ring-primary hover:bg-primary-light hover:shadow-lg hover:-translate-y-0.5 active:bg-primary-dark active:translate-y-0 active:shadow-md',
       secondary: 'bg-transparent text-primary border-2 border-primary focus:ring-primary hover:bg-primary/5 hover:border-primary-light hover:shadow-md hover:-translate-y-0.5 active:bg-primary/10 active:translate-y-0 active:shadow-sm',
-      tertiary: 'bg-transparent text-gray-500 border-none focus:ring-gray-500 hover:text-primary hover:underline hover:underline-offset-4',
-      'dark-surface': 'bg-accent text-white border-none focus:ring-accent hover:bg-accent-light hover:shadow-lg hover:-translate-y-0.5 active:bg-accent-dark active:translate-y-0 active:shadow-md',
+      tertiary: 'bg-transparent text-gray-700 border-none focus:ring-gray-500 hover:text-primary hover:underline hover:underline-offset-4',
+      'dark-surface': 'bg-white text-primary border-none focus:ring-white hover:bg-gray-100 hover:shadow-lg hover:-translate-y-0.5 active:bg-gray-200 active:translate-y-0 active:shadow-md',
       'light-surface': 'bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 focus:ring-white hover:bg-white/20 hover:border-white/50 hover:shadow-md hover:-translate-y-0.5 active:bg-white/30 active:translate-y-0 active:shadow-sm',
-      text: 'bg-transparent text-accent border-none focus:ring-accent hover:text-accent-light hover:underline hover:underline-offset-4',
+      text: 'bg-transparent text-primary border-none focus:ring-primary hover:text-accent hover:underline hover:underline-offset-4',
     }
     
     const sizes = {
@@ -60,17 +60,34 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       </>
     )
 
-    const MotionComponent = asChild ? motion.span : motion.button
-
-    const motionProps: HTMLMotionProps<'button'> = {
+    const motionProps = {
       whileHover: variant !== 'tertiary' && variant !== 'text' ? { scale: 1.02, y: -2 } : undefined,
       whileTap: variant !== 'tertiary' && variant !== 'text' ? { scale: 0.98, y: 0 } : undefined,
       transition: { duration: 0.2, ease: 'easeOut' },
     }
 
+    if (asChild) {
+      return (
+        <motion.span
+          className={cn(
+            baseStyles,
+            variants[variant],
+            sizes[size],
+            fullWidth && 'w-full',
+            textTransform,
+            'tracking-wider',
+            className
+          )}
+          {...motionProps}
+        >
+          {buttonContent}
+        </motion.span>
+      )
+    }
+
     return (
-      <MotionComponent
-        ref={ref as any}
+      <motion.button
+        ref={ref}
         className={cn(
           baseStyles,
           variants[variant],
@@ -82,10 +99,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         disabled={disabled || loading}
         {...motionProps}
-        {...(props as any)}
+        {...props}
       >
         {buttonContent}
-      </MotionComponent>
+      </motion.button>
     )
   }
 )
