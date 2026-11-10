@@ -11,16 +11,16 @@ export function Hero() {
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 200])
   const prefersReducedMotion = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
-  
+
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
     if (prefersReducedMotion) return
-    
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroSlides.length)
     }, 6000)
-    
+
     return () => clearInterval(interval)
   }, [prefersReducedMotion])
 
@@ -147,9 +147,9 @@ export function Hero() {
                 <Button variant="primary" size="lg" asChild>
                   <Link href="/contact/request-quote">Request a Quote</Link>
                 </Button>
-                <Button 
-                  variant="light-surface" 
-                  size="lg" 
+                <Button
+                  variant="light-surface"
+                  size="lg"
                   asChild
                 >
                   <Link href={currentSlide.secondaryCta.href}>{currentSlide.secondaryCta.label}</Link>
@@ -220,9 +220,8 @@ export function Hero() {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`h-1 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'w-8 bg-accent' : 'w-2 bg-white/30'
-            }`}
+            className={`h-1 rounded-full transition-all duration-300 ${index === currentIndex ? 'w-8 bg-accent' : 'w-2 bg-white/30'
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

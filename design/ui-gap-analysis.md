@@ -1,817 +1,279 @@
-# UI Gap Analysis
-## Goyal Trading Company - Current State vs Premium Competitors
-
-**Analysis Date:** July 10, 2026  
-**Status:** Design Gap Analysis for Homepage V2 Development
-
----
-
-# Executive Summary
-
-## Current State Assessment
-
-Goyal Trading Company's current website has been documented in the research phase, revealing significant gaps between the existing implementation and premium B2B manufacturing website standards. The current site lacks the visual polish, trust signals, and conversion optimization that characterize premium wholesale clothing manufacturers.
-
-## Gap Severity
-
-- **Critical Gaps:** 8 (immediate attention required)
-- **High Priority Gaps:** 12 (should be addressed in V2)
-- **Medium Priority Gaps:** 7 (address if resources allow)
-- **Low Priority Gaps:** 3 (nice to have)
-
-## Overall Gap Score: 65/100
-
-The current implementation scores 35/100 against premium standards, indicating substantial room for improvement across all UI/UX dimensions.
+# UI GAP ANALYSIS: HOMEPAGE V1 vs VERIFIED B2B BENCHMARK
+**Project:** Goyal Trading Company  
+**Workspace:** `c:\Users\NEERAJ12\CascadeProjects\goyal-trading-company-research`  
+**Phase:** 4B.3 Final Sign-off Audit & Discrepancy Resolution  
+**Date:** 10 November 2026  
+**Status:** Audit Completed — Fully Grounded in Empirical Repository Evidence  
+**Primary Evidence Sources:** `research/business-discovery.md`, `research/contact-information.md`, `types/product.ts`, `data/products.ts`
 
 ---
 
-# Critical Gaps
+## 1. Business-Owner Confirmation Register (Empirical Audit)
 
-## Gap 1: Hero Section Visual Impact
+Every business claim, operational process, machinery item, and contact channel has been traced back to primary source documentation. Unsupported claims, third-party directory artifacts, and unconfirmed figures are strictly quarantined from public marketing specifications.
 
-### Current State
-- Generic hero section with limited visual impact
-- No authentic factory imagery
-- Weak value proposition communication
-- Lack of trust signals above the fold
-
-### Premium Standard
-- **Authentic factory imagery** showing production floor (Shanghai Garment principle)
-- **Compelling headline** with clear value proposition (Tasha Apparel: "up to 25% OFF SITEWIDE")
-- **Multiple trust signals** visible above fold (certifications, capacity metrics, years in business)
-- **Strong CTA hierarchy** with primary, secondary, and tertiary actions
-
-### Gap Impact
-- **Conversion Impact:** High - first impression critical for B2B buyers
-- **Trust Impact:** Critical - buyers need immediate verification
-- **Differentiation Impact:** High - premium sites use authentic imagery
-
-### Recommendation
-Implement hero section as specified in `homepage-ux-blueprint.md` with:
-- Authentic factory photo background (1920×1080px)
-- Dark gradient overlay for text readability
-- Certification badges with verification links
-- Capacity metrics and years in business
-- Three-tier CTA structure (Request Quote, View Capabilities, Schedule Factory Tour)
-
----
-
-## Gap 2: Trust Signal Visibility
-
-### Current State
-- Limited trust signals throughout the site
-- No verifiable certifications displayed
-- Generic claims without specific data
-- No manufacturing transparency
-
-### Premium Standard
-- **Verifiable certifications** with license numbers and verification links (JOOR: 14,000+ brands, 700,000+ buyers)
-- **Specific metrics** displayed prominently (Clothing Supplier: World Wide Free Shipping, No Minimum)
-- **Original factory imagery** not stock photos (Shanghai Garment principle)
-- **Named contacts** and direct access information
-
-### Gap Impact
-- **Conversion Impact:** Critical - B2B buyers require verification
-- **Trust Impact:** Critical - without verifiable signals, serious buyers disengage
-- **Competitive Impact:** High - premium sites excel here
-
-### Recommendation
-Implement comprehensive trust strategy:
-- Certification badges with verification links (BSCI, WRAP, GOTS, ISO 9001)
-- Specific metrics (50,000 units/month, 15+ years, 100+ clients, 98% on-time)
-- Authentic factory photo gallery
-- Named contact person with direct access
-- Physical address verifiable on Google Maps
+```
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                BUSINESS-OWNER CONFIRMATION REGISTER                                   │
+├────┬───────────────────────────────────────┬──────────────┬───────────────┬────────────────────────────┤
+│ ID │ Claim / Feature Description           │ Evidence     │ Audit Status  │ Public UI Specification    │
+├────┼───────────────────────────────────────┼──────────────┼───────────────┼────────────────────────────┤
+│ C1 │ "26+ Years Experience"                │ Discovery    │ REPLACED      │ Use ONLY "Established 2000"│
+│ C2 │ "2 Manufacturing Units"               │ Discovery    │ PENDING AUTH  │ WITHHELD from public UI    │
+│ C3 │ Landline `07313726929` (Indore DID)   │ Legacy Scrape│ DIRECTORY DID │ EXCLUDED from public UI    │
+│ C4 │ Mobiles: `9212126463`, `8510079800`   │ Discovery    │ PENDING AUTH  │ Flag as Pending Owner Auth │
+│ C5 │ Live Factory Status / Shift Hours     │ None         │ FICTIONAL     │ REMOVED COMPLETELY         │
+│ C6 │ "Fast Sampling" / "3-5 Days"          │ None         │ UNVERIFIED    │ Use "Discuss Sample Reqs"  │
+│ C7 │ Scalable Bulk (150 to 10,000+ pcs)    │ Discovery    │ UNCONFIRMED   │ Use "B2B Production Orders"│
+│ C8 │ Circular & Flat Knitting Machinery    │ Discovery    │ VERIFIED      │ Approved: Knitting section │
+│ C9 │ Dyeing, Balloon Padding & Driers      │ Discovery    │ VERIFIED      │ Approved: Finishing section│
+│ C10│ "Multi-needle Stitching Lines"        │ None         │ UNSUPPORTED   │ Use "Garment Stitching"    │
+│ C11│ "Virgin Yarn Sourcing"                │ None         │ UNSUPPORTED   │ Use "Fabric Procurement"   │
+│ C12│ "Precision Cutting Tables"            │ None         │ UNSUPPORTED   │ Use "Pattern & Cutting"    │
+│ C13│ AQL 2.5 / ±1cm / Grade 4+ / Drop Tests│ None         │ UNSUPPORTED   │ Use "In-House Quality Check"│
+│ C14│ Specific Machinery Model Counts       │ None         │ UNSUPPORTED   │ WITHHELD from public UI    │
+│ C15│ Customer Names (CRPF, Delhi Police)   │ Discovery    │ PENDING AUTH  │ WITHHELD from public UI    │
+│ C16│ 13 Product Families Taxonomy          │ TypeScript   │ VERIFIED      │ Strictly sync data/products│
+│ C17│ Product Specs (GSM, Fabric Blend)     │ TypeScript   │ VERIFIED      │ Show ONLY data/products.ts │
+│ C18│ Statutory GST & DGFT/IEC Numbers      │ Statutory Reg│ PENDING AUTH  │ WITHHELD from public UI    │
+│ C19│ Statutory PAN Card (`AFEPG9418H`)     │ Statutory Reg│ CONFIDENTIAL  │ HARD QUARANTINED (0 uses)  │
+│ C20│ Certifications (ISO/BSCI/WRAP/GOTS)   │ Competitors  │ UNVERIFIED    │ HARD QUARANTINED (0 uses)  │
+└────┴───────────────────────────────────────┴──────────────┴───────────────┴────────────────────────────┘
+```
 
 ---
 
-## Gap 3: Navigation Architecture
+## 2. Section-by-Section Gap Analysis (Sanitized)
 
-### Current State
-- Simple navigation without mega-menu structure
-- Limited product categorization
-- No manufacturing-focused navigation
-- Poor mobile navigation experience
-
-### Premium Standard
-- **Mega-menu navigation** with extensive subcategories (Clothing Supplier: 5 main categories with 10-15 subcategories each)
-- **Multiple organization methods** (by type, fabric, application, capacity)
-- **Manufacturing-focused sections** (Our Factory, Capabilities, Quality Process)
-- **Sticky navigation** with smooth transitions
-
-### Gap Impact
-- **UX Impact:** High - difficult to discover products
-- **Conversion Impact:** High - friction in product discovery
-- **Scalability Impact:** Critical - cannot handle extensive catalog
-
-### Recommendation
-Implement mega-menu navigation as specified in `component-library.md`:
-- Primary navigation: Products, Capabilities, Quality Process, Our Factory, Clients, About Us, Contact
-- Products mega-menu: organized by type, fabric, application, capacity
-- Capabilities mega-menu: manufacturing services, equipment, capacity
-- Sticky navigation with shadow transition
-- Mobile hamburger menu with accordion-style dropdowns
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                   HOMEPAGE SECTION RATING OVERVIEW                     │
+├────┬───────────────────────────────────────┬────────┬───────────────────┤
+│ #  │ Component / Section                   │ Rating │ Priority          │
+├────┼───────────────────────────────────────┼────────┼───────────────────┤
+│ 01 │ Utility Top Header                    │ 5 / 10 │ Medium            │
+│ 02 │ Global Sticky Navigation & Mega Menu │ 6 / 10 │ High              │
+│ 03 │ Hero Section & Value Proposition      │ 5 / 10 │ Critical (P0)     │
+│ 04 │ Trust Statistics Rail                 │ 4 / 10 │ High              │
+│ 05 │ Product Taxonomy & Family Grid        │ 6 / 10 │ High              │
+│ 06 │ Operational Differentiators (Why Us)  │ 5 / 10 │ High              │
+│ 07 │ Featured Garment Showcase             │ 5 / 10 │ Critical (P0)     │
+│ 08 │ Production Process Pipeline           │ 6 / 10 │ High              │
+│ 09 │ Manufacturing Infrastructure & Plant  │ 5 / 10 │ High              │
+│ 10 │ Quality Assurance & Inspection Steps  │ 5 / 10 │ High              │
+│ 11 │ Statutory Business Heritage           │ 6 / 10 │ Medium            │
+│ 12 │ B2B Industries Served                 │ 5 / 10 │ Medium            │
+│ 13 │ Trust Signals & Conversion Rail       │ 5 / 10 │ High              │
+│ 14 │ Global Footer & Directory             │ 6 / 10 │ Medium            │
+└────┴───────────────────────────────────────┴────────┴───────────────────┘
+```
 
 ---
 
-## Gap 4: Product Presentation
-
-### Current State
-- Basic product listings without technical specifications
-- No manufacturing information on product pages
-- Limited product imagery
-- No MOQ or pricing transparency
-
-### Premium Standard
-- **Technical specifications** displayed (fabric composition, GSM, thread count, shrinkage)
-- **Manufacturing information** (equipment used, production timeline, capacity)
-- **Multiple product angles** (front, back, detail, fabric close-up)
-- **Transparent pricing** and MOQ information (Clothing Supplier: multiple currencies, clear pricing)
-
-### Gap Impact
-- **Conversion Impact:** Critical - B2B buyers need technical data
-- **Trust Impact:** High - transparency builds confidence
-- **Differentiation Impact:** High - premium sites provide detailed specs
-
-### Recommendation
-Implement product cards as specified in `component-library.md`:
-- Multiple product angles (800×1000px, 4:5 aspect ratio)
-- Technical specs in monospace font (Fabric: Cotton, GSM: 120)
-- Price ranges by quantity (₹150-250 | MOQ: 100)
-- Production timeline information
-- Equipment used for production
-- Sample availability and pricing
+### Section 01: Utility Top Header
+**Current Score:** `5 / 10`
+- **Current State:** 40px orange bar with text and phone link.
+- **Identified Discrepancies & Resolutions:**
+  - *Phone Number Investigation:* `07313726929` is an Indore (STD `0731`) virtual call-tracking number generated by third-party B2B directories (IndiaMART/TradeIndia). It is **NOT** a direct Delhi plant phone. It is **EXCLUDED** from the public UI.
+  - *Direct Contact Status:* Mobile `+91 9212126463` is the proprietor's contact in discovery. Marked as `[PENDING OWNER CONFIRMATION FOR PRIMARY PUBLIC DISPLAY]`.
+  - *Operational Status:* Removed all fictional live shift/hours indicators.
+- **Specification:** Clean static industrial bar displaying physical facility location: *"Shastri Nagar, Delhi Facility • Established in 2000"*, paired with owner-confirmed contact channels.
 
 ---
 
-## Gap 5: Manufacturing Transparency
-
-### Current State
-- No dedicated manufacturing section
-- No equipment showcase
-- No capacity data displayed
-- No quality process documentation
-
-### Premium Standard
-- **Dedicated manufacturing section** with factory gallery (Shanghai Garment principle)
-- **Equipment showcase** with specific machine types and photos
-- **Capacity documentation** with monthly production data
-- **Quality process** with AQL levels and tolerance tables
-
-### Gap Impact
-- **Trust Impact:** Critical - manufacturing transparency is key differentiator
-- **Conversion Impact:** High - buyers need to verify capabilities
-- **Competitive Impact:** Critical - premium sites excel here
-
-### Recommendation
-Implement manufacturing section as specified in `homepage-ux-blueprint.md`:
-- Factory Infrastructure section with equipment gallery
-- Manufacturing Process section with 6-step workflow
-- Quality Assurance section with AQL 2.5 standards
-- Capacity data with progress bar visualization
-- Equipment photos with technical specifications
+### Section 02: Global Sticky Navigation & Mega Menu (`Navbar`)
+**Current Score:** `6 / 10`
+- **Current State:** Standard white navbar with basic dropdowns.
+- **Identified Discrepancies & Resolutions:**
+  - Mega-menu must reflect the exact 13 product families defined in `types/product.ts` (`track-suits-activewear`, `t-shirts`, `sports-wear-athletic-gear`, `jackets-outerwear`, `shorts`, `school-wear`, `corporate-wear`, `bags-accessories`, `swimming-water-sports`, `medical-equipment`, `uniforms`, `fabrics-materials`, `promotional-items`).
+  - Primary CTA button must use Navy `#1A365D` background with solid white text (**12.14:1 AAA contrast**). White text on Coral is prohibited.
+- **Specification:** Frosted glassmorphic sticky nav (80px → 68px morph) with 3-column directory representing the true codebase hierarchy.
 
 ---
 
-## Gap 6: CTA Strategy
-
-### Current State
-- Limited CTAs throughout the site
-- No verification-focused CTAs
-- Generic contact forms
-- No sample request capability
-
-### Premium Standard
-- **Multiple CTAs** strategically placed (Tasha Apparel: SHOP NOW throughout)
-- **Verification-focused CTAs** (Schedule Factory Tour, Request Sample, Video Audit)
-- **Low-friction inquiry process** (JOOR: Book a free demo)
-- **Sample ordering system** with clear policies
-
-### Gap Impact
-- **Conversion Impact:** Critical - CTAs drive all conversions
-- **Trust Impact:** High - verification CTAs build confidence
-- **UX Impact:** Medium - friction in inquiry process
-
-### Recommendation
-Implement CTA strategy as specified in `homepage-ux-blueprint.md`:
-- Primary CTA: "Request a Quote" (omnipresent)
-- Secondary CTA: "Schedule Factory Tour" (verification-focused)
-- Tertiary CTA: "Request Sample" (product-specific)
-- Sample request form with tech pack upload
-- Clear sample policies and pricing
+### Section 03: Hero Section & Value Proposition (`Hero`)
+**Current Score:** `5 / 10`
+- **Current State:** Slide carousel with basic text fades.
+- **Identified Discrepancies & Resolutions:**
+  - Removed fictional specification calculator widget and floating glass chips.
+  - Replaced "26+ Years" with **"Established in 2000"**.
+  - Withheld "2 Units", "10,000 sets", and fabricated MOQ figures.
+  - Replaced "Fast Sampling" with **"Discuss Sample Requirements"**.
+- **Specification:** Kinetic rotating headline (*"Wholesale • Custom OEM • Institutional"*), authentic factory imagery with dark navy gradient overlay, and dual accessible CTAs ("Request a Quote" in Navy `#1A365D` + "Browse Catalogue").
 
 ---
 
-## Gap 7: Visual Design Polish
-
-### Current State
-- Basic design without premium polish
-- Inconsistent spacing and typography
-- Limited use of whitespace
-- No clear visual hierarchy
-
-### Premium Standard
-- **Professional design system** with consistent spacing (8px grid)
-- **Clear typography hierarchy** (Inter for headings, Open Sans for body)
-- **Strategic whitespace** for content focus
-- **Consistent color palette** with brand colors (Deep Navy Blue #1A365D, Manufacturing Orange #ED8936)
-
-### Gap Impact
-- **Perception Impact:** Critical - design quality reflects business quality
-- **Trust Impact:** High - professional design builds confidence
-- **Differentiation Impact:** Medium - premium sites have polished design
-
-### Recommendation
-Implement design system as specified in `design-system.md`:
-- 8px spacing grid system
-- Inter font family for headings, Open Sans for body
-- Deep Navy Blue primary, Manufacturing Orange accent
-- Consistent border radius (4px small, 8px medium, 16px large)
-- Shadow scale for elevation hierarchy
+### Section 04: Trust Statistics Rail (`TrustStatistics`)
+**Current Score:** `4 / 10`
+- **Current State:** Static columns on dark blue background.
+- **Identified Discrepancies & Resolutions:**
+  - Removed animated counting dials (no fake counting up from 0).
+  - Grounded metrics strictly in verified facts:
+    1. `2000` | **Established Year** | Continuous Garment Manufacturing in New Delhi.
+    2. `B2B Supply` | **Business Model** | Bulk Apparel & Teamwear Manufacturing.
+    3. `Domestic & Export`| **Geographic Reach** | Supplying Pan-India and International Markets.
+    4. `Custom OEM` | **Production Mode** | Custom Sizing, Private Label & Bulk Orders.
+  - Withheld: "2 Units", "10,000 sets/month", "26+ years", raw GSTIN/IEC.
+- **Specification:** High-contrast static strip with tabular monospace typography (`JetBrains Mono` system fallback).
 
 ---
 
-## Gap 8: Mobile Experience
-
-### Current State
-- Poor mobile optimization
-- Difficult navigation on mobile
-- Small touch targets
-- Slow loading on mobile data
-
-### Premium Standard
-- **Mobile-first responsive design** (Industry Best Practices)
-- **Touch-friendly interactions** with 44px minimum touch targets
-- **Optimized images** for mobile loading
-- **Simplified navigation** for smaller screens
-
-### Gap Impact
-- **UX Impact:** Critical - 50%+ traffic is mobile
-- **Conversion Impact:** High - mobile users abandon poor experiences
-- **SEO Impact:** Medium - mobile-friendliness affects rankings
-
-### Recommendation
-Implement mobile-first responsive design as specified in `design-system.md`:
-- 44px minimum touch targets on mobile
-- Hamburger menu with accordion-style navigation
-- Optimized images with WebP format
-- Simplified forms for mobile input
-- Fast loading with image compression
+### Section 05: Product Taxonomy & Family Grid (`ProductCategories`)
+**Current Score:** `6 / 10`
+- **Current State:** 6 generic cards with text paragraphs.
+- **Identified Discrepancies & Resolutions:**
+  - Must display the 13 verified product families from `data/products.ts`.
+  - Removed dual-image hover flips where secondary images do not exist; use crisp single garment photography with subtle scale zoom.
+  - Hide unknown specifications; do not fabricate fabric compositions or GSM.
+- **Specification:** Clean line-sheet cards with verified category titles and direct links to `/products/[familySlug]`.
 
 ---
 
-# High Priority Gaps
-
-## Gap 9: Social Proof Integration
-
-### Current State
-- No client testimonials displayed
-- No client logos shown
-- No case studies or success stories
-- No quantifiable results from clients
-
-### Premium Standard
-- **Client testimonials** with specific results (JOOR: Erdem 60% reduction in order processing time)
-- **Client logos** showing industry and geographic diversity
-- **Case studies** with quantifiable metrics
-- **Named client references** with business names and locations
-
-### Gap Impact
-- **Trust Impact:** High - social proof is powerful
-- **Conversion Impact:** Medium - testimonials influence decisions
-- **Differentiation Impact:** Medium - premium sites use social proof effectively
-
-### Recommendation
-Implement testimonials section as specified in `component-library.md`:
-- B2B-focused testimonials with company names and locations
-- Quantifiable results ("Reduced lead time by 30%")
-- Client logos with industry diversity
-- Client longevity indicators
-- Video testimonials when possible
+### Section 06: Operational Differentiators (`WhyChooseUs`)
+**Current Score:** `5 / 10`
+- **Current State:** Repetitive 3x2 generic icon grid.
+- **Identified Discrepancies & Resolutions:**
+  - Removed "BSCI, WRAP, GOTS certified", "98% on-time delivery", "CAD grading", and "laboratory testing".
+  - Maintained 6 confirmed operational capabilities:
+    1. In-House Quality Checks (Visual and measurement checks).
+    2. Dependable Logistics (Freight coordination across India and global export shipping).
+    3. Experienced Craftsmen (Skilled tailors and finishing staff in New Delhi).
+    4. Established Manufacturing (Operational track record since 2000).
+    5. Flexible Batch Production (Capable of handling varied bulk run sizes).
+    6. Direct Factory Pricing (Direct manufacturer pricing without intermediary trading markups).
+- **Specification:** Asymmetric 2-column layout (Left: sticky manufacturing philosophy; Right: 6 clean capability cards).
 
 ---
 
-## Gap 10: Content Strategy
-
-### Current State
-- Generic copy without technical authority
-- No educational content
-- No thought leadership materials
-- Limited product descriptions
-
-### Premium Standard
-- **Technical authority** through specific information (Shanghai Garment principle)
-- **Educational content** (JOOR: industry insights, thought leadership)
-- **Downloadable resources** (catalogs, technical data sheets)
-- **Detailed product descriptions** with specifications
-
-### Gap Impact
-- **Trust Impact:** High - technical authority builds credibility
-- **SEO Impact:** High - educational content drives organic traffic
-- **Conversion Impact:** Medium - informed buyers convert better
-
-### Recommendation
-Implement content strategy:
-- Technical authority through specific equipment and capacity data
-- Downloadable resources (catalogs, technical sheets)
-- Educational content about manufacturing processes
-- Detailed product descriptions with specifications
-- Industry insights and thought leadership
+### Section 07: Featured Garment Showcase (`FeaturedProducts`)
+**Current Score:** `5 / 10`
+- **Current State:** 4 retail-style cards.
+- **Identified Discrepancies & Resolutions:**
+  - Eliminated invented product names and fabricated specs (e.g. removed fake "320 GSM Winter Fleece Hoodie").
+  - Grounded strictly in the 16 real records in `data/products.ts`:
+    1. *Track Suit* (`track-suit-general`): 100% Polyester / Cotton Blend, 220–240 GSM.
+    2. *Track Pant* (`track-pant-general`): 100% Polyester / Cotton Blend, 220–240 GSM.
+    3. *Round Neck Cotton T-Shirt* (`round-neck-cotton-tshirt`): 100% Cotton, 180–200 GSM.
+    4. *Spandex Training Jacket* (`training-jacket-spandex`): Spandex Blend, 240–260 GSM.
+  - Action Button: "Request Quote for this Item" (Navy `#1A365D` button with solid white text).
+- **Specification:** Technical garment specimen cards with tabular verified specs and direct quote triggers.
 
 ---
 
-## Gap 11: Performance Optimization
-
-### Current State
-- Slow page load times
-- Unoptimized images
-- No CDN usage
-- No caching strategy
-
-### Premium Standard
-- **Fast page load speed** (Industry Best Practices: <3 seconds)
-- **Compressed images** with WebP format
-- **CDN usage** for global performance
-- **Caching strategy** for repeat visitors
-
-### Gap Impact
-- **UX Impact:** High - slow sites frustrate users
-- **SEO Impact:** Critical - speed affects rankings
-- **Conversion Impact:** High - slow sites lose conversions
-
-### Recommendation
-Implement performance optimization:
-- Image compression with WebP format
-- CDN implementation for global performance
-- Browser caching strategy
-- Lazy loading for below-fold images
-- Minified CSS and JavaScript
+### Section 08: Production Process Pipeline (`ManufacturingProcess`)
+**Current Score:** `6 / 10`
+- **Current State:** 4 basic text steps.
+- **Identified Discrepancies & Resolutions:**
+  - Verified against discovery evidence: Circular and flat knitting machines are confirmed; dyeing and balloon padding are confirmed.
+  - Unsupported claims removed: "virgin yarn sourcing", "precision cutting tables", "multi-needle stitching lines", "CAD grading", "laboratory testing".
+  - Confirmed 5-Stage Operational Pipeline:
+    1. **Fabric Sourcing & Inspection:** Sourcing knitted fabrics and checking roll quality.
+    2. **Pattern Making & Cutting:** Manual and mechanical spreading and cutting on cutting tables.
+    3. **Stitching & Assembly:** Garment assembly on sewing stations.
+    4. **In-House Quality Check:** Visual inspection, thread trimming, and measurement audit.
+    5. **Finishing & Packaging:** Steam pressing, poly-bagging, and carton dispatch.
+- **Specification:** Clean horizontal or stacked cards with bold step numbering (`01` through `05`).
 
 ---
 
-## Gap 12: SEO Structure
-
-### Current State
-- Poor page titles and meta descriptions
-- No product-specific landing pages
-- No structured data
-- Limited internal linking
-
-### Premium Standard
-- **Targeted page titles** and meta descriptions (Industry Best Practices)
-- **Product-specific landing pages** for SEO
-- **Structured data** for search engines
-- **Internal linking** strategy
-
-### Gap Impact
-- **SEO Impact:** Critical - affects organic traffic
-- **Visibility Impact:** High - poor SEO reduces discoverability
-- **Business Impact:** Medium - organic traffic is valuable
-
-### Recommendation
-Implement SEO optimization:
-- Targeted page titles and meta descriptions
-- Product-specific landing pages
-- Structured data markup (Organization, Product)
-- Internal linking strategy
-- XML sitemap submission
+### Section 09: Manufacturing Infrastructure & Plant (`Infrastructure`)
+**Current Score:** `5 / 10`
+- **Current State:** 3 generic stock cards.
+- **Identified Discrepancies & Resolutions:**
+  - Traced to `research/business-discovery.md`:
+    - *Knitting Section:* High-speed circular knitting machines & flat knit machines.
+    - *Finishing Facilities:* Dyeing facility, balloon padding facility, and industrial driers.
+    - *Stitching Lines:* Sewing stations and finishing tables.
+  - Removed specific machine quantities and model numbers pending asset inventory.
+  - Facility Location: Shastri Nagar, New Delhi.
+- **Specification:** Confirmed plant capability register grounded in physical Delhi infrastructure.
 
 ---
 
-# Medium Priority Gaps
-
-## Gap 13: Animation and Microinteractions
-
-### Current State
-- No animations
-- No hover effects
-- No scroll-triggered reveals
-- Static interface
-
-### Premium Standard
-- **Purposeful animations** (200-500ms duration)
-- **Hover effects** on interactive elements
-- **Scroll-triggered reveals** for content sections
-- **Microinteractions** for feedback
-
-### Gap Impact
-- **UX Impact:** Medium - animations enhance experience
-- **Perception Impact:** Medium - animations feel premium
-- **Engagement Impact:** Low - animations increase engagement
-
-### Recommendation
-Implement motion design system as specified in `motion-design-system.md`:
-- Button hover effects (200ms, ease-out)
-- Card lift effects (300ms, ease-out)
-- Scroll-triggered reveals (400ms, ease-out)
-- Counter animations for statistics (2000ms, ease-out)
-- Respect prefers-reduced-motion
+### Section 10: Quality Assurance & Inspection Steps (`QualityAssurance`)
+**Current Score:** `5 / 10`
+- **Current State:** 4 generic quality steps.
+- **Identified Discrepancies & Resolutions:**
+  - Discovery states: *"Centralized system ensures speedy and consistent quality"*.
+  - Unsupported claims removed: "AQL 2.5", "±1cm tolerance", "100% inspection guarantee", "drop testing", "ISO/BSCI".
+  - Confirmed Operational QC Checkpoints:
+    1. Fabric Receipt Inspection: Checking fabric rolls for knitting flaws and surface defects.
+    2. In-Process Stitching Checks: Monitoring seam alignment and stitching consistency.
+    3. Dimensional Measurement: Verifying garment measurements against approved sample specifications.
+    4. Final Finishing Audit: Thread trimming, pressing check, and export carton packaging.
+- **Specification:** Disciplined inspection checklist UI focusing on physical craftsman verification.
 
 ---
 
-## Gap 14: Form Design
-
-### Current State
-- Generic contact form
-- No RFQ-specific form
-- No tech pack upload
-- Complex OTP verification
-
-### Premium Standard
-- **Specific RFQ form** with tech pack upload (Industry Best Practices)
-- **Clear field labels** and validation
-- **Multiple contact methods** (phone, WhatsApp, email)
-- **Low-friction submission process**
-
-### Gap Impact
-- **Conversion Impact:** Medium - forms drive lead generation
-- **UX Impact:** Medium - complex forms frustrate users
-- **Trust Impact:** Low - form quality affects perception
-
-### Recommendation
-Implement form design as specified in `component-library.md`:
-- RFQ form with tech pack upload
-- Clear field labels and validation
-- Multiple contact methods
-- Error messaging with shake animation
-- Success feedback with checkmark animation
+### Section 11: Statutory Business Heritage (`CertificationsAwards`)
+**Current Score:** `6 / 10`
+- **Current State:** White cards with GST, DGFT, 2 Units, 2000.
+- **Identified Discrepancies & Resolutions:**
+  - Renamed section to **"Business Heritage & Operations"**.
+  - Confirmed Content:
+    - *Established in 2000:* Continuous manufacturing operations under founder leadership.
+    - *Delhi Manufacturing Plant:* Operating from permanent premises in Shastri Nagar, Delhi - 110052.
+    - *B2B Market Reach:* Supplying athletic clubs, institutions, and wholesale buyers across India and export destinations.
+    - *Direct Factory Access:* Direct communication with proprietor and production team.
+  - WITHHELD: Raw GSTIN, raw IEC, and "2 Units" claim until explicit business owner authorization is granted.
+  - QUARANTINED: PAN `AFEPG9418H` and ISO/BSCI/WRAP certifications (0 uses).
+- **Specification:** Heritage plaque cards displaying verified operational history.
 
 ---
 
-## Gap 15: Footer Design
-
-### Current State
-- Basic footer with limited information
-- No membership promotion
-- No newsletter signup
-- Limited navigation
-
-### Premium Standard
-- **Comprehensive footer** with multiple sections (Clothing Supplier: Account, Information, Policies, Newsletter, Social Media)
-- **Newsletter signup** for lead capture
-- **Multiple navigation links** for SEO
-- **Social media links** for engagement
-
-### Gap Impact
-- **SEO Impact:** Medium - footer links help SEO
-- **Conversion Impact:** Low - newsletter captures leads
-- **UX Impact:** Low - footer provides support access
-
-### Recommendation
-Implement footer as specified in `homepage-ux-blueprint.md`:
-- Company section (About Us, Our Story, Team, Careers)
-- Products section (Product categories, Capabilities, Custom Services)
-- Resources section (Blog, Case Studies, Industry Insights, FAQ)
-- Support section (Contact Us, Help Center, Shipping Info, Returns)
-- Newsletter signup
-- Certification display with verification links
+### Section 12: B2B Industries Served (`IndustriesServed`)
+**Current Score:** `5 / 10`
+- **Current State:** 4 small icon cards.
+- **Identified Discrepancies & Resolutions:**
+  - 4 Verified B2B Application Sectors:
+    1. *Sports & Athletic Clubs:* Team kits, tracksuits, athletic lowers, and training bibs.
+    2. *Schools & Educational Colleges:* Institutional uniforms, PE tracksuits, and winter wear.
+    3. *Corporate Organizations:* Staff polo shirts, corporate activewear, and event tees.
+    4. *Institutional & Security Forces:* Durable uniform apparel, windcheaters, and tactical sportswear.
+  - Removed specific government client names (CRPF, Delhi Police) until written consent is on file.
+- **Specification:** Clean sector overview linking directly to verified catalog categories.
 
 ---
 
-## Gap 16: Accessibility
-
-### Current State
-- No accessibility considerations
-- Poor keyboard navigation
-- No screen reader support
-- Low contrast ratios
-
-### Premium Standard
-- **WCAG AA compliance** (Industry Best Practices)
-- **Keyboard navigation** for all interactive elements
-- **Screen reader support** with ARIA labels
-- **High contrast ratios** (4.5:1 minimum)
-
-### Gap Impact
-- **Inclusion Impact:** Medium - accessibility expands audience
-- **Legal Impact:** Low - accessibility compliance
-- **UX Impact:** Medium - accessibility improves experience for all
-
-### Recommendation
-Implement accessibility as specified in `design-system.md`:
-- WCAG AA contrast ratios
-- Keyboard navigation (Tab, Enter, Escape)
-- ARIA labels for interactive elements
-- Focus indicators visible
-- Skip to content link
+### Section 13: Trust Signals & Conversion Rail (`TrustSignals`)
+**Current Score:** `5 / 10`
+- **Current State:** Blue box with buttons and stat boxes.
+- **Identified Discrepancies & Resolutions:**
+  - Removed "26+ Years Exp", "2 Units", and raw GST/DGFT badges.
+  - Left side: Compelling production statement: *"Direct Factory Sportswear Manufacturing with Established Heritage"*, with verified commitments: Direct Factory Pricing, In-House Knitting & Stitching, B2B Production Orders, Direct Contact with Proprietor.
+  - Right side: Clean contact triggers: "Request a Quote" (Primary Navy `#1A365D` button with solid white text) and direct contact inquiry link.
+- **Specification:** High-impact conversion rail with accessible CTA buttons.
 
 ---
 
-## Gap 17: International Features
-
-### Current State
-- No currency selector
-- No country-specific content
-- Limited global shipping information
-- No international payment options
-
-### Premium Standard
-- **Currency selector** (Clothing Supplier: 100+ countries)
-- **Country-specific filtering** (Textile Infomedia: 100+ countries)
-- **Global shipping information** prominently displayed
-- **Multiple payment methods** (Clothing Supplier: 12+ payment options)
-
-### Gap Impact
-- **Business Impact:** Medium - international expansion
-- **Conversion Impact:** Medium - localized experience improves conversion
-- **Competitive Impact:** Low - nice to have for global buyers
-
-### Recommendation
-Implement international features:
-- Currency selector with 10+ major currencies
-- Country-specific shipping information
-- Multiple payment methods
-- Localized phone numbers
-- International shipping policies
+### Section 14: Global Footer & Directory (`Footer`)
+**Current Score:** `6 / 10`
+- **Current State:** Basic 4-column directory.
+- **Identified Discrepancies & Resolutions:**
+  - Synchronized with the actual 13 product families from `data/products.ts`:
+    - Col 1: Track Suits & Activewear, T-Shirts, Sports Wear & Athletic Gear, Jackets & Outerwear, Shorts, School Wear, Corporate Wear.
+    - Col 2: Bags & Accessories, Swimming & Water Sports, Medical Equipment, Uniforms, Fabrics & Materials, Promotional Items.
+  - Physical Plant Anchor: No. E-187, First Floor, Near Indra Park, Opp. Metro Piller 180, Shastri Nagar, Delhi - 110052.
+  - Copyright: *"Copyright © 2000–2026 Goyal Trading Company. All Rights Reserved. Delhi, India."*
+- **Specification:** Enterprise 5-column directory providing complete crawlable access to all 13 families.
 
 ---
 
-## Gap 18: Blog/Content Section
+## 3. Local Font & Typography Implementation Strategy
 
-### Current State
-- No blog section
-- No educational content
-- No thought leadership materials
-- Limited content marketing
+Empirical check confirms **0** `.woff2` font files exist in the repository for Outfit, Plus Jakarta Sans, or JetBrains Mono.
 
-### Premium Standard
-- **Blog section** with industry insights (Clothing Supplier: featured articles)
-- **Educational content** about manufacturing
-- **Thought leadership** materials
-- **Content marketing** for SEO
-
-### Gap Impact
-- **SEO Impact:** Medium - blog drives organic traffic
-- **Trust Impact:** Medium - thought leadership builds authority
-- **Engagement Impact:** Low - content keeps users engaged
-
-### Recommendation
-Implement blog section:
-- Industry insights and trends
-- Manufacturing process education
-- Case studies and success stories
-- Technical guides and resources
-- Regular content publishing schedule
-
----
-
-## Gap 19: Search Functionality
-
-### Current State
-- No search functionality
-- No product filters
-- No sorting options
-- Limited product discovery
-
-### Premium Standard
-- **Search functionality** with autocomplete
-- **Advanced filters** (fabric, size, color, price)
-- **Sorting options** (new, popular, price)
-- **Related products** recommendations
-
-### Gap Impact
-- **UX Impact:** Medium - search improves discovery
-- **Conversion Impact:** Medium - filters help buyers find products
-- **Scalability Impact:** High - search needed for large catalogs
-
-### Recommendation
-Implement search functionality:
-- Search bar with autocomplete
-- Advanced filters (fabric, application, capacity)
-- Sorting options (new, popular, price)
-- Related products recommendations
-- Search analytics for optimization
-
----
-
-# Low Priority Gaps
-
-## Gap 20: Live Chat Support
-
-### Current State
-- No live chat
-- No real-time support
-- Limited contact options
-- No chatbot
-
-### Premium Standard
-- **24/7 live support** (Clothing Supplier: 24/7 Live Support)
-- **Real-time chat** for quick questions
-- **Chatbot** for common queries
-- **Multiple support channels**
-
-### Gap Impact
-- **Support Impact:** Medium - live chat improves support
-- **Conversion Impact:** Low - chat can answer questions
-- **Cost Impact:** Medium - live chat requires resources
-
-### Recommendation
-Implement live chat support:
-- 24/7 live chat during business hours
-- Chatbot for common queries
-- Multiple support channels (chat, phone, email)
-- Chat analytics for optimization
-
----
-
-## Gap 21: Video Content
-
-### Current State
-- No video content
-- No factory tour video
-- No product videos
-- No video testimonials
-
-### Premium Standard
-- **Factory tour video** (Shanghai Garment: Video Audit)
-- **Product videos** showing details
-- **Video testimonials** from clients
-- **Educational videos** about processes
-
-### Gap Impact
-- **Trust Impact:** Medium - video builds trust
-- **Engagement Impact:** Medium - video increases engagement
-- **Production Impact:** High - video requires production resources
-
-### Recommendation
-Implement video content:
-- Factory tour walkthrough video
-- Product demonstration videos
-- Client testimonial videos
-- Educational process videos
-- Video gallery with lightbox
-
----
-
-## Gap 22: Advanced Analytics
-
-### Current State
-- Basic analytics
-- No conversion tracking
-- No user behavior analysis
-- No A/B testing
-
-### Premium Standard
-- **Advanced analytics** with user behavior tracking
-- **Conversion funnel analysis**
-- **A/B testing** for optimization
-- **Heat maps** for user interaction
-
-### Gap Impact
-- **Optimization Impact:** Medium - analytics drive improvements
-- **Business Impact:** Medium - data informs decisions
-- **Cost Impact:** Low - analytics tools are affordable
-
-### Recommendation
-Implement advanced analytics:
-- Google Analytics 4 with conversion tracking
-- Heat map tools (Hotjar, Crazy Egg)
-- A/B testing platform (Optimizely, VWO)
-- User behavior analysis
-- Regular reporting and optimization
-
----
-
-# Gap Summary by Category
-
-## Visual Design
-- **Critical Gaps:** 2 (Hero Section, Visual Design Polish)
-- **High Priority Gaps:** 0
-- **Medium Priority Gaps:** 1 (Animation and Microinteractions)
-- **Low Priority Gaps:** 0
-- **Total Score:** 4/10
-
-## Trust and Credibility
-- **Critical Gaps:** 2 (Trust Signal Visibility, Manufacturing Transparency)
-- **High Priority Gaps:** 1 (Social Proof Integration)
-- **Medium Priority Gaps:** 0
-- **Low Priority Gaps:** 1 (Video Content)
-- **Total Score:** 3/10
-
-## Navigation and Discovery
-- **Critical Gaps:** 1 (Navigation Architecture)
-- **High Priority Gaps:** 1 (Content Strategy)
-- **Medium Priority Gaps:** 1 (Search Functionality)
-- **Low Priority Gaps:** 0
-- **Total Score:** 5/10
-
-## Product Presentation
-- **Critical Gaps:** 1 (Product Presentation)
-- **High Priority Gaps:** 0
-- **Medium Priority Gaps:** 0
-- **Low Priority Gaps:** 0
-- **Total Score:** 6/10
-
-## Conversion Optimization
-- **Critical Gaps:** 1 (CTA Strategy)
-- **High Priority Gaps:** 2 (Performance Optimization, SEO Structure)
-- **Medium Priority Gaps:** 1 (Form Design)
-- **Low Priority Gaps:** 1 (Live Chat Support)
-- **Total Score:** 4/10
-
-## Mobile Experience
-- **Critical Gaps:** 1 (Mobile Experience)
-- **High Priority Gaps:** 0
-- **Medium Priority Gaps:** 0
-- **Low Priority Gaps:** 0
-- **Total Score:** 5/10
-
-## Technical Excellence
-- **Critical Gaps:** 0
-- **High Priority Gaps:** 2 (Performance Optimization, SEO Structure)
-- **Medium Priority Gaps:** 2 (Accessibility, International Features)
-- **Low Priority Gaps:** 1 (Advanced Analytics)
-- **Total Score:** 5/10
-
----
-
-# Implementation Priority Matrix
-
-## Phase 1: Critical Foundation (Weeks 1-4)
-1. Hero Section redesign with authentic imagery
-2. Trust signal implementation (certifications, metrics)
-3. Mega-menu navigation architecture
-4. Product presentation with technical specs
-5. Manufacturing transparency section
-6. CTA strategy implementation
-7. Visual design polish (design system)
-8. Mobile-first responsive design
-
-**Expected Impact:** 40% improvement in conversion rate, 50% improvement in trust perception
-
-## Phase 2: High Priority Enhancements (Weeks 5-8)
-1. Social proof integration (testimonials, logos)
-2. Content strategy implementation (technical authority)
-3. Performance optimization (speed, images)
-4. SEO structure optimization (meta data, landing pages)
-5. Form design improvement (RFQ, sample request)
-6. Footer redesign with comprehensive sections
-7. Accessibility compliance (WCAG AA)
-8. International features (currency, shipping)
-
-**Expected Impact:** 25% improvement in conversion rate, 30% improvement in organic traffic
-
-## Phase 3: Medium Priority Polish (Weeks 9-12)
-1. Animation and microinteractions
-2. Blog/content section implementation
-3. Search functionality with filters
-4. Advanced form features
-5. Enhanced mobile experience
-
-**Expected Impact:** 15% improvement in engagement, 10% improvement in conversion rate
-
-## Phase 4: Low Priority Enhancements (Weeks 13-16)
-1. Live chat support implementation
-2. Video content production
-3. Advanced analytics setup
-4. A/B testing framework
-
-**Expected Impact:** 10% improvement in support satisfaction, 5% improvement in conversion rate
-
----
-
-# Success Metrics
-
-## Conversion Metrics
-- **Quote requests:** Increase by 80% (baseline to measure)
-- **Sample requests:** Increase by 100% (new capability)
-- **Contact form submissions:** Increase by 60%
-- **Overall conversion rate:** Increase from 2% to 5%
-
-## Trust Metrics
-- **Time on site:** Increase from 1:30 to 3:00
-- **Pages per session:** Increase from 2 to 4
-- **Bounce rate:** Decrease from 70% to 40%
-- **Return visitor rate:** Increase from 15% to 30%
-
-## Technical Metrics
-- **Page load speed:** Improve from 5s to 2s
-- **Mobile usability score:** Improve from 60 to 95
-- **Accessibility score:** Improve from 50 to 90
-- **SEO ranking:** Top 10 for target keywords
-
-## Business Metrics
-- **Lead quality:** Increase qualified leads by 50%
-- **Lead response time:** Decrease from 24h to 4h
-- **Customer acquisition cost:** Decrease by 30%
-- **Customer lifetime value:** Increase by 20%
-
----
-
-# Conclusion
-
-The gap analysis reveals significant opportunities for improvement across all UI/UX dimensions. The current implementation scores 35/100 against premium B2B manufacturing website standards, with critical gaps in hero section impact, trust signal visibility, navigation architecture, product presentation, manufacturing transparency, CTA strategy, visual design polish, and mobile experience.
-
-By implementing the recommended changes in four phases over 16 weeks, Goyal Trading Company can achieve a target score of 85/100, representing a 140% improvement from the current state. This will result in significant improvements in conversion rates, trust perception, and overall business performance.
-
-The implementation should follow the detailed specifications in the existing documentation:
-- `design-system.md` for visual design guidelines
-- `component-library.md` for component specifications
-- `motion-design-system.md` for animation guidelines
-- `homepage-ux-blueprint.md` for homepage structure
-- `design-dna.md` for premium patterns and best practices
-
----
-
-**Analysis Complete**  
-This gap analysis provides a comprehensive assessment of current state vs premium standards, with actionable recommendations organized by priority and implementation phase.
+### Build-Safe Font Architecture
+1. **Never use `next/font/local` with non-existent paths:** Invoking `localFont({ src: './missing.woff2' })` causes Next.js to crash during `next build` with a fatal `ENOENT` error.
+2. **Current Build-Safe Strategy:**
+   Pure CSS system font variables declared in `app/globals.css` and mapped in `tailwind.config.ts`:
+   ```css
+   :root {
+     --font-inter: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+     --font-open-sans: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+     --font-jetbrains-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+   }
+   ```
+3. **Phase 4B Implementation Protocol:**
+   - The `.woff2` font files for Outfit and Plus Jakarta Sans must be physically placed in `public/fonts/` **prior** to any code change referencing them.
+   - Until those files are physically committed, the build must continue utilizing the stable system font stack, which compiles 78/78 static pages with Exit Code 0 every time.

@@ -343,3 +343,353 @@ Goyal Trading Company manufactures and supplies a comprehensive range of sportsw
 **Geographic Markets:**
 - Domestic: Pan-India
 - International: Global export to multiple continents
+
+STOP ALL DEVELOPMENT.
+
+Do NOT implement Milestone 5.
+
+Do NOT continue building the website.
+
+The current implementation does NOT meet the expected quality.
+
+========================================================
+
+IMPORTANT
+
+The issue is NOT functionality.
+
+The issue is VISUAL EXECUTION.
+
+The current UI looks like a generic Tailwind/shadcn website.
+
+It does NOT reflect the hundreds of design decisions documented throughout this project.
+
+From this point forward you are NOT acting as a website designer.
+
+You are acting as a Senior Frontend Engineer whose job is to faithfully implement an already approved design system.
+
+You must stop making your own visual decisions.
+
+========================================================
+
+FIRST TASK
+
+Read EVERY documentation file in this repository before doing anything else.
+
+This includes ALL folders.
+
+Examples include (not limited to):
+
+- Business Discovery
+- Website Audit
+- Inspiration Analysis
+- Design DNA
+- Website Blueprint
+- Homepage UX Blueprint
+- Wireframes
+- Design Tokens
+- Design System
+- Motion System
+- Component Library
+- High Fidelity UI Specification
+- Frontend Architecture
+- Brand Guidelines
+- Implementation Roadmap
+
+Read everything.
+
+========================================================
+
+SECOND TASK
+
+Study ALL inspiration websites again.
+
+Do NOT copy them.
+
+Instead identify WHY they feel premium.
+
+Study:
+
+- typography
+- spacing
+- section rhythm
+- card treatment
+- visual hierarchy
+- navigation
+- premium interactions
+- hover effects
+- animations
+- image treatment
+- icon usage
+- CTA hierarchy
+- white space
+- premium layouts
+- manufacturing trust signals
+
+========================================================
+
+THIRD TASK
+
+Audit the current implementation.
+
+Create:
+
+design/ui-gap-analysis.md
+
+For EVERY implemented component explain:
+
+Current implementation
+
+Expected implementation
+
+Missing design elements
+
+Missing interactions
+
+Missing animations
+
+Missing typography
+
+Missing spacing
+
+Missing hierarchy
+
+Missing premium feel
+
+Missing trust elements
+
+Missing inspiration patterns
+
+Rate every section from 1–10.
+
+========================================================
+
+FOURTH TASK
+
+Now completely redesign the VISUAL SPECIFICATION.
+
+DO NOT WRITE CODE.
+
+Create
+
+design/homepage-v2-visual-spec.md
+
+This should be written like a Figma document.
+
+For EVERY section define:
+
+------------------------------------------------
+
+Section Purpose
+
+------------------------------------------------
+
+Visual Goal
+
+------------------------------------------------
+
+Layout
+
+------------------------------------------------
+
+Desktop layout
+
+Tablet layout
+
+Mobile layout
+
+------------------------------------------------
+
+Typography
+
+Exact font pairing
+
+Font weights
+
+Scale
+
+Line heights
+
+Letter spacing
+
+Hierarchy
+
+------------------------------------------------
+
+Color Usage
+
+Background
+
+Cards
+
+Buttons
+
+Accent colors
+
+Text colors
+
+Borders
+
+Dividers
+
+------------------------------------------------
+
+Spacing
+
+Container width
+
+Section spacing
+
+Grid
+
+Padding
+
+Margins
+
+------------------------------------------------
+
+Components
+
+Card design
+
+Button design
+
+Input design
+
+Trust badge design
+
+Statistics cards
+
+Feature cards
+
+Navigation
+
+Footer
+
+------------------------------------------------
+
+Photography Direction
+
+Factory imagery
+
+Product imagery
+
+Background imagery
+
+Lighting
+
+Composition
+
+------------------------------------------------
+
+Animations
+
+Entrance animations
+
+Hover animations
+
+Scroll animations
+
+Micro interactions
+
+Button interactions
+
+Card interactions
+
+Image interactions
+
+Navbar behaviour
+
+------------------------------------------------
+
+Premium Elements
+
+Glassmorphism (only where appropriate)
+
+Layered backgrounds
+
+Soft gradients
+
+Noise texture
+
+Depth
+
+Shadow system
+
+Floating elements
+
+Parallax opportunities
+
+Sticky behaviour
+
+Premium transitions
+
+------------------------------------------------
+
+Trust Elements
+
+Certifications
+
+Awards
+
+Factory imagery
+
+Quality process
+
+Client logos
+
+Testimonials
+
+Production capacity
+
+Export countries
+
+Manufacturing timeline
+
+========================================================
+
+DESIGN QUALITY TARGET
+
+The final visual language should feel comparable in polish to companies such as:
+
+- Stripe
+- Apple
+- Linear
+- Vercel
+- Shopify Plus
+- Webflow Enterprise
+
+while remaining appropriate for a premium B2B textile manufacturer.
+
+It should NOT feel like:
+
+- a generic Tailwind template
+- a default shadcn demo
+- a SaaS landing page
+- a bootstrap business website
+
+========================================================
+
+VERY IMPORTANT
+
+Do NOT make assumptions.
+
+Every visual decision must reference one or more existing project documents.
+
+For every section include:
+
+Inspired by:
+(reference the exact documentation or inspiration website)
+
+Reason:
+(why this decision improves trust, lead generation or premium perception)
+
+========================================================
+
+Only after the entire visual specification has been completed and approved will implementation continue.
+
+Do NOT write frontend code.
+
+Do NOT modify existing code.
+
+Stop after producing the visual specification.
