@@ -5,6 +5,7 @@ import { type ProductFamilySlug } from '@/types/product'
 import { ProductImageFallback } from '@/components/ui/ProductImageFallback'
 import { ProductCard } from '@/components/products/ProductCard'
 import { generateProductJsonLd, generateBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
+import { siteConfig } from '@/config/site'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
@@ -69,24 +70,28 @@ export default async function ProductPage({ params }: PageProps) {
   }
 
   const { product, category, family } = result
-  const quoteUrl = `/contact/request-quote?product=${encodeURIComponent(product.name)}&family=${encodeURIComponent(family.slug)}&category=${encodeURIComponent(category.slug)}`
-  const sampleUrl = `/contact/request-sample?product=${encodeURIComponent(product.name)}&family=${encodeURIComponent(family.slug)}&category=${encodeURIComponent(category.slug)}`
+  const quoteUrl = `/contact/request-quote?product=${encodeURIComponent(product.id)}&family=${encodeURIComponent(family.slug)}&category=${encodeURIComponent(category.slug)}`
+  const sampleUrl = `/contact/request-sample?product=${encodeURIComponent(product.id)}&family=${encodeURIComponent(family.slug)}&category=${encodeURIComponent(category.slug)}`
 
-  // WhatsApp click-to-chat inquiry link with prefilled B2B context
-  const waMessage = `Hello Goyal Trading Company, I would like to inquire regarding wholesale/institutional procurement of *${product.name}* (Category: ${category.name}, Family: ${family.shortName || family.name}). Please share quotation details and minimum production lead times.`
-  const whatsappUrl = `https://wa.me/919212126463?text=${encodeURIComponent(waMessage)}`
+  // WhatsApp click-to-chat inquiry link with prefilled B2B context (conditional on owner approval)
+  const isWhatsAppApproved = siteConfig.contact.publicWhatsAppApproved && siteConfig.contact.publicPhoneApproved
+  const waMessage = `Hello Goyal Trading Company, I would like to inquire regarding wholesale procurement of *${product.name}* (Category: ${category.name}, Family: ${family.shortName || family.name}). Please share quotation details and production lead times.`
+  const whatsappUrl = `https://wa.me/${siteConfig.links.whatsapp}?text=${encodeURIComponent(waMessage)}`
 
-  // Related products from the same category or family (excluding current product)
+  // Related products from the same category or family (excluding current product, deduplicated)
   const categoryProducts = category.subcategories
     .flatMap((sub) => sub.products)
-    .filter((p) => p.slug !== product.slug)
+    .filter((p) => p.id !== product.id && p.slug !== product.slug)
 
-  const relatedProducts = categoryProducts.length > 0
-    ? categoryProducts
-    : family.categories
-        .flatMap((c) => c.subcategories.flatMap((s) => s.products))
-        .filter((p) => p.slug !== product.slug)
-        .slice(0, 4)
+  const familyProducts = family.categories
+    .flatMap((c) => c.subcategories.flatMap((s) => s.products))
+    .filter((p) => p.id !== product.id && p.slug !== product.slug)
+
+  const relatedProducts = Array.from(
+    new Map(
+      (categoryProducts.length > 0 ? categoryProducts : familyProducts).map((p) => [p.id, p])
+    ).values()
+  ).slice(0, 3)
 
   const productJsonLd = generateProductJsonLd(product, family, category)
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
@@ -269,16 +274,25 @@ export default async function ProductPage({ params }: PageProps) {
                     </Button>
                   </div>
 
-                  {/* WhatsApp Quick Inquire Action */}
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-sans text-sm font-semibold rounded-lg transition-colors shadow-xs"
-                  >
-                    <MessageSquare size={16} />
-                    <span>Inquire via WhatsApp (+91 9212126463)</span>
-                  </a>
+                  {/* Inquire Action: WhatsApp when approved, otherwise General Contact */}
+                  {isWhatsAppApproved ? (
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-sans text-sm font-semibold rounded-lg transition-colors shadow-xs"
+                    >
+                      <MessageSquare size={16} />
+                      <span>Inquire via WhatsApp</span>
+                    </a>
+                  ) : (
+                    <Button variant="secondary" size="lg" fullWidth asChild>
+                      <Link href="/contact">
+                        <MessageSquare size={16} className="mr-2 text-accent" />
+                        <span>General Business Inquiry</span>
+                      </Link>
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -339,7 +353,7 @@ export default async function ProductPage({ params }: PageProps) {
             Order Custom {product.name}
           </h2>
           <p className="font-body text-base text-gray-200 mb-8 leading-relaxed">
-            We manufacture for sports clubs, academies, police institutions, and corporate brands with custom embroidery, printing, and bespoke sizing.
+            We supply sports clubs, athletic academies, schools, and corporate organizations with customized garment manufacturing, embroidery, and bulk sizing options.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
@@ -353,7 +367,7 @@ export default async function ProductPage({ params }: PageProps) {
               href={sampleUrl}
               className="inline-block px-8 py-4 bg-white/10 text-white font-sans font-semibold rounded-lg hover:bg-white/20 transition-all border border-white/30"
             >
-              <span>Order Sample</span>
+              <span>Request Sample</span>
             </Link>
           </div>
         </div>

@@ -200,7 +200,7 @@ export default async function CategoryPage({ params }: PageProps) {
             Custom {category.name} Manufacturing
           </h2>
           <p className="font-body text-base text-gray-200 mb-8 leading-relaxed">
-            We provide custom OEM manufacturing for institutional and corporate bulk orders. Contact us to discuss your fabric compositions, colorways, custom embroidery, and delivery milestones.
+            We provide custom OEM manufacturing for institutional and corporate bulk orders. Contact us to discuss your fabric compositions, colorways, custom embroidery, and production details.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

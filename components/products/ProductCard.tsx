@@ -28,7 +28,8 @@ export function ProductCard({
 }: ProductCardProps) {
   const [imageError, setImageError] = useState(false)
   const productUrl = `/products/${familySlug}/${categorySlug}/${product.slug}`
-  const quoteUrl = `/contact/request-quote?product=${encodeURIComponent(product.name)}&family=${encodeURIComponent(familySlug)}&category=${encodeURIComponent(categorySlug)}`
+  const quoteUrl = `/contact/request-quote?product=${encodeURIComponent(product.id)}&family=${encodeURIComponent(familySlug)}&category=${encodeURIComponent(categorySlug)}`
+  const sampleUrl = `/contact/request-sample?product=${encodeURIComponent(product.id)}&family=${encodeURIComponent(familySlug)}&category=${encodeURIComponent(categorySlug)}`
 
   const hasValidImage = Boolean(product.image && product.image.trim() !== '' && !imageError)
 
@@ -159,13 +160,22 @@ export function ProductCard({
             <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
           </Link>
 
-          <Link
-            href={quoteUrl}
-            className="inline-flex items-center gap-1 px-3 py-1.5 bg-accent/10 hover:bg-accent text-accent hover:text-white rounded-lg text-xs font-semibold transition-all duration-200"
-          >
-            <FileText size={12} />
-            <span>Request Quote</span>
-          </Link>
+          <div className="flex items-center gap-1.5">
+            <Link
+              href={sampleUrl}
+              className="inline-flex items-center px-2 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-xs font-semibold transition-all duration-200"
+              title="Request Sample"
+            >
+              <span>Sample</span>
+            </Link>
+            <Link
+              href={quoteUrl}
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-accent/10 hover:bg-accent text-accent hover:text-white rounded-lg text-xs font-semibold transition-all duration-200"
+            >
+              <FileText size={12} />
+              <span>Quote</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

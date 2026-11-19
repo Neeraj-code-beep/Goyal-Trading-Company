@@ -55,10 +55,10 @@ export default function ProductsPage() {
                 B2B Manufacturer & Supplier Catalogue
               </span>
               <h1 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight tracking-tight">
-                Industrial Garment &amp; Apparel Manufacturing
+                B2B Garment &amp; Apparel Manufacturing Catalogue
               </h1>
               <p className="font-body text-base sm:text-lg text-gray-200 max-w-2xl leading-relaxed mb-8">
-                Comprehensive manufacturing catalog covering sports activewear, institutional uniforms, corporate apparel, and custom OEM bulk orders manufactured to strict institutional specifications.
+                Comprehensive manufacturing catalogue covering sports activewear, institutional uniforms, corporate apparel, and custom OEM bulk orders based on client specifications.
               </p>
               <div className="flex flex-wrap items-center gap-4">
                 <Link
@@ -81,7 +81,7 @@ export default function ProductsPage() {
               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/20 shadow-xl space-y-6">
                 <h3 className="font-sans text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
                   <ShieldCheck size={18} className="text-accent" />
-                  <span>Verified Catalogue Scope</span>
+                  <span>Catalogue Scope</span>
                 </h3>
 
                 <div className="grid grid-cols-3 gap-4">
@@ -196,7 +196,7 @@ export default function ProductsPage() {
             Need Custom Apparel Specifications?
           </h2>
           <p className="font-body text-base sm:text-lg text-gray-200 mb-8 leading-relaxed">
-            We manufacture customized garments for sports clubs, educational institutions, police academies, and corporate organizations. Share your fabric specifications, GSM requirements, and target delivery schedule.
+            We manufacture customized garments for sports clubs, educational institutions, academies, and corporate organizations. Share your fabric specifications, GSM requirements, and target schedule.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

@@ -117,8 +117,8 @@ export function ProductCatalogueExplorer({
             )}
           </div>
 
-          {/* View Mode Switcher (when not searching) */}
-          {!searchResults && (
+          {/* View Mode Switcher (when not searching and on all ranges) */}
+          {!searchResults && selectedFamilySlug === 'all' && (
             <div className="flex items-center gap-1 p-1 bg-gray-100 rounded-xl self-start md:self-auto">
               <button
                 type="button"
@@ -143,6 +143,18 @@ export function ProductCatalogueExplorer({
                 Concrete Products ({allProducts.length})
               </button>
             </div>
+          )}
+
+          {/* Reset button when a family is active */}
+          {!searchResults && selectedFamilySlug !== 'all' && (
+            <button
+              type="button"
+              onClick={() => setSelectedFamilySlug('all')}
+              className="inline-flex items-center gap-1.5 px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-xs font-semibold transition-colors self-start md:self-auto"
+            >
+              <X size={14} />
+              <span>Show All 13 Families</span>
+            </button>
           )}
         </div>
 
@@ -174,7 +186,7 @@ export function ProductCatalogueExplorer({
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
-              {fam.shortName}
+              {fam.shortName} <span className="opacity-60 text-[10px]">({fam.categories.length})</span>
             </button>
           ))}
         </div>
@@ -291,6 +303,123 @@ export function ProductCatalogueExplorer({
             </div>
           )}
         </div>
+      ) : selectedFamilySlug !== 'all' ? (
+        /* FOCUSED FAMILY EXPLORER VIEW */
+        (() => {
+          const activeFamily = families.find((f) => f.slug === selectedFamilySlug)
+          if (!activeFamily) return null
+
+          return (
+            <div className="space-y-12">
+              {/* Active Family Header */}
+              <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="max-w-2xl">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent font-sans text-xs font-semibold uppercase tracking-wider mb-2">
+                    <span>Product Family Range</span>
+                  </div>
+                  <h3 className="font-sans text-2xl md:text-3xl font-extrabold text-primary mb-2">
+                    {activeFamily.name}
+                  </h3>
+                  <p className="font-body text-sm text-gray-600 leading-relaxed mb-4">
+                    {activeFamily.description}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500">
+                    <span className="font-medium text-primary">
+                      {activeFamily.categories.length} {activeFamily.categories.length === 1 ? 'Category' : 'Categories'}
+                    </span>
+                    <span>•</span>
+                    <span className="font-medium text-primary">
+                      {filteredProducts.length} {filteredProducts.length === 1 ? 'Concrete Product' : 'Concrete Products'} Available
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3 flex-shrink-0">
+                  <Link
+                    href={`/products/${activeFamily.slug}`}
+                    className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-primary text-white font-sans text-xs font-semibold rounded-lg hover:bg-primary-dark transition-colors shadow-xs"
+                  >
+                    <span>View Dedicated Family Page</span>
+                    <ArrowRight size={14} />
+                  </Link>
+                  <Link
+                    href={`/contact/request-quote?family=${encodeURIComponent(activeFamily.slug)}`}
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-accent text-white font-sans text-xs font-semibold rounded-lg hover:bg-accent/90 transition-colors shadow-xs"
+                  >
+                    <span>Request Family Quote</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Categories in this family */}
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <h4 className="font-sans text-xl font-bold text-primary">
+                    {activeFamily.shortName} Categories ({activeFamily.categories.length})
+                  </h4>
+                  <span className="text-xs text-gray-500">Select a category to view subcategories</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {activeFamily.categories.map((category) => (
+                    <CategoryCard
+                      key={category.slug}
+                      category={category}
+                      familySlug={activeFamily.slug}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Concrete products in this family */}
+              {filteredProducts.length > 0 ? (
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <h4 className="font-sans text-xl font-bold text-primary">
+                      Available Products in {activeFamily.shortName} ({filteredProducts.length})
+                    </h4>
+                    <span className="text-xs text-gray-500">Ready for instant quote and sample enquiry</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {filteredProducts.map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        familySlug={activeFamily.slug}
+                        categorySlug={product.categorySlug}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-12 px-6 bg-white rounded-2xl border border-gray-200">
+                  <div className="w-12 h-12 rounded-full bg-accent/10 text-accent flex items-center justify-center mx-auto mb-3">
+                    <Sparkles size={20} />
+                  </div>
+                  <h4 className="font-sans text-base font-bold text-primary mb-1">
+                    Custom OEM Manufacturing for {activeFamily.name}
+                  </h4>
+                  <p className="font-body text-xs text-gray-500 max-w-md mx-auto mb-4 leading-relaxed">
+                    Products in this family are manufactured to custom buyer specifications. Submit your fabric, GSM, and branding requirements.
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-3">
+                    <Link
+                      href={`/contact/request-quote?family=${encodeURIComponent(activeFamily.slug)}`}
+                      className="px-4 py-2 bg-accent text-white font-sans text-xs font-semibold rounded-lg hover:bg-accent/90 transition-colors"
+                    >
+                      Request Custom Quotation
+                    </Link>
+                    <Link
+                      href={`/contact/request-sample?family=${encodeURIComponent(activeFamily.slug)}`}
+                      className="px-4 py-2 bg-gray-100 text-gray-700 font-sans text-xs font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+                    >
+                      Request Fabric Sample
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          )
+        })()
       ) : viewMode === 'products' ? (
         /* CONCRETE PRODUCTS VIEW */
         <div>

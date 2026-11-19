@@ -188,7 +188,7 @@ export default async function FamilyPage({ params }: PageProps) {
                   </h3>
                 </div>
                 <p className="font-body text-xs text-gray-500 max-w-md">
-                  Concrete garment items with verified fabric compositions and specification profiles.
+                  Concrete garment items with fabric compositions and technical specification profiles.
                 </p>
               </div>
 
@@ -222,7 +222,7 @@ export default async function FamilyPage({ params }: PageProps) {
             Institutional Procurement for {family.name}
           </h2>
           <p className="font-body text-base text-gray-200 mb-8 leading-relaxed">
-            We manufacture customized bulk orders for sports teams, corporate brands, and institutions. Connect with our production desk to review fabrics, trims, and production timelines.
+            We manufacture customized bulk orders for sports teams, corporate brands, and institutions. Reach out to discuss fabrics, trims, and production requirements.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

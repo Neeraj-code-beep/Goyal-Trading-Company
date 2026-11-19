@@ -3,6 +3,7 @@
 import { useState, useTransition } from 'react'
 import { submitQuoteInquiry, InquiryActionState } from '@/app/actions/inquiry'
 import { Button } from '@/components/ui/Button'
+import { siteConfig } from '@/config/site'
 import { CheckCircle2, AlertTriangle, MessageSquare, PhoneCall, ArrowRight, ShieldCheck } from 'lucide-react'
 
 export interface QuoteFormData {
@@ -134,7 +135,7 @@ export function QuoteForm({
               </p>
 
               <div className="flex flex-wrap gap-3">
-                {state.fallbackWhatsAppUrl && (
+                {siteConfig.contact.publicWhatsAppApproved && siteConfig.contact.publicPhoneApproved && state.fallbackWhatsAppUrl ? (
                   <a
                     href={state.fallbackWhatsAppUrl}
                     target="_blank"
@@ -145,8 +146,16 @@ export function QuoteForm({
                     <span>Send via WhatsApp ({state.verifiedContactPhone})</span>
                     <ArrowRight size={14} />
                   </a>
+                ) : (
+                  <a
+                    href={`mailto:${siteConfig.links.email}?subject=${encodeURIComponent('B2B Wholesale Quotation Request - ' + (formData.productInterest || 'General Inquiry'))}`}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-dark text-white font-sans text-sm font-semibold rounded-lg transition-colors shadow-sm"
+                  >
+                    <span>Email Specifications to Business Desk ({siteConfig.links.email})</span>
+                    <ArrowRight size={14} />
+                  </a>
                 )}
-                {state.verifiedContactPhone && (
+                {siteConfig.contact.publicPhoneApproved && state.verifiedContactPhone && (
                   <a
                     href={`tel:${state.verifiedContactPhone.replace(/\s+/g, '')}`}
                     className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-amber-300 hover:bg-amber-100 text-amber-900 font-sans text-sm font-semibold rounded-lg transition-colors"

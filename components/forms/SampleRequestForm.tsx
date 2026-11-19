@@ -3,6 +3,7 @@
 import { useState, useTransition } from 'react'
 import { submitSampleInquiry, InquiryActionState } from '@/app/actions/inquiry'
 import { Button } from '@/components/ui/Button'
+import { siteConfig } from '@/config/site'
 import { CheckCircle2, AlertTriangle, MessageSquare, PhoneCall, ArrowRight, Package } from 'lucide-react'
 
 export interface SampleFormData {
@@ -121,11 +122,11 @@ export function SampleRequestForm({
                 Direct Sample Dispatch Desk Ready
               </h4>
               <p className="font-body text-sm text-amber-800 leading-relaxed mb-4">
-                Automated email dispatch is awaiting backend provider configuration. To arrange sample dispatch without delay, please send your courier address directly to our production coordinator via WhatsApp or telephone.
+                Automated email dispatch is awaiting backend provider configuration. To arrange sample dispatch without delay, please send your courier address directly to our sales desk.
               </p>
 
               <div className="flex flex-wrap gap-3">
-                {state.fallbackWhatsAppUrl && (
+                {siteConfig.contact.publicWhatsAppApproved && siteConfig.contact.publicPhoneApproved && state.fallbackWhatsAppUrl ? (
                   <a
                     href={state.fallbackWhatsAppUrl}
                     target="_blank"
@@ -136,14 +137,22 @@ export function SampleRequestForm({
                     <span>Send Sample Address via WhatsApp ({state.verifiedContactPhone})</span>
                     <ArrowRight size={14} />
                   </a>
+                ) : (
+                  <a
+                    href={`mailto:${siteConfig.links.email}?subject=${encodeURIComponent('Sample Request Delivery Details - ' + (formData.productInterest || 'General Sample'))}`}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-dark text-white font-sans text-sm font-semibold rounded-lg transition-colors shadow-sm"
+                  >
+                    <span>Email Courier Address to Business Desk ({siteConfig.links.email})</span>
+                    <ArrowRight size={14} />
+                  </a>
                 )}
-                {state.verifiedContactPhone && (
+                {siteConfig.contact.publicPhoneApproved && state.verifiedContactPhone && (
                   <a
                     href={`tel:${state.verifiedContactPhone.replace(/\s+/g, '')}`}
                     className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-amber-300 hover:bg-amber-100 text-amber-900 font-sans text-sm font-semibold rounded-lg transition-colors"
                   >
                     <PhoneCall size={16} />
-                    <span>Call Production Desk</span>
+                    <span>Call Sales Desk</span>
                   </a>
                 )}
               </div>
