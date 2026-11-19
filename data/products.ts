@@ -1549,6 +1549,24 @@ export function getProductByHierarchy(
   return undefined
 }
 
+export interface CatalogueStats {
+  familyCount: number
+  categoryCount: number
+  productCount: number
+}
+
+export function getCatalogueStats(): CatalogueStats {
+  const families = getAllProductFamilies()
+  const categories = getAllCategories()
+  const products = getAllProducts()
+  return {
+    familyCount: families.length,
+    categoryCount: categories.length,
+    productCount: products.length,
+  }
+}
+
+
 export function getProductsByFamily(familySlug: ProductFamilySlug): Product[] {
   const family = getProductFamily(familySlug)
   if (!family) return []

@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { ProductImageFallback } from '@/components/ui/ProductImageFallback'
+import { getCatalogueStats } from '@/data/products'
 
 export const metadata: Metadata = {
   title: 'Gallery - Goyal Trading Company',
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default function GalleryPage() {
+  const stats = getCatalogueStats()
   const featuredCategories = [
     { 
       category: 'track-suits-activewear', 
@@ -110,16 +112,16 @@ export default function GalleryPage() {
                 {/* Floating Categories Badge */}
                 <div className="absolute -bottom-6 -left-6 bg-accent text-white rounded-xl p-4 shadow-xl">
                   <div className="text-center">
-                    <div className="font-sans text-2xl font-bold">50+</div>
+                    <div className="font-sans text-2xl font-bold">{stats.categoryCount}</div>
                     <div className="font-body text-xs">Categories</div>
                   </div>
                 </div>
 
-                {/* Floating Products Badge */}
+                {/* Floating Product Families Badge */}
                 <div className="absolute -top-4 -right-4 bg-white/10 backdrop-blur-sm text-white rounded-xl p-4 border border-white/30">
                   <div className="text-center">
-                    <div className="font-sans text-2xl font-bold">500+</div>
-                    <div className="font-body text-xs">Products</div>
+                    <div className="font-sans text-2xl font-bold">{stats.familyCount}</div>
+                    <div className="font-body text-xs">Product Families</div>
                   </div>
                 </div>
 

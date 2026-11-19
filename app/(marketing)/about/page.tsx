@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { BusinessMetricsGrid } from './BusinessMetricsGrid'
+import { getCatalogueStats } from '@/data/products'
 
 export const metadata: Metadata = {
   title: 'About Us - Goyal Trading Company',
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default function AboutPage() {
+  const stats = getCatalogueStats()
   return (
     <div className="min-h-screen">
       {/* Premium Hero */}
@@ -267,8 +269,8 @@ export default function AboutPage() {
               {/* Floating Badge */}
               <div className="absolute -bottom-4 -left-4 bg-accent text-white rounded-xl p-4 shadow-xl">
                 <div className="text-center">
-                  <div className="font-sans text-2xl font-bold">50+</div>
-                  <div className="font-body text-xs">Product Types</div>
+                  <div className="font-sans text-2xl font-bold">{stats.categoryCount}</div>
+                  <div className="font-body text-xs">Categories</div>
                 </div>
               </div>
             </div>

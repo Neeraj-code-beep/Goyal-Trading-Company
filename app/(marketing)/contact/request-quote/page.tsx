@@ -1,259 +1,150 @@
-'use client'
+import { Metadata } from 'next'
+import { resolveCataloguePrefill } from '@/lib/catalogue/prefill'
+import { QuoteForm } from '@/components/forms/QuoteForm'
+import { generateBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
+import { Phone, MessageSquare, Clock, ShieldCheck } from 'lucide-react'
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/Button'
+export const metadata: Metadata = {
+  title: 'Request a Wholesale Quote | Goyal Trading Company',
+  description:
+    'Submit your garment manufacturing specifications, bulk order volumes, and custom apparel requirements for institutional B2B pricing.',
+  alternates: {
+    canonical: '/contact/request-quote',
+  },
+}
 
-export default function RequestQuotePage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-    productInterest: '',
-    quantity: '',
-    message: '',
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    setIsSubmitting(false)
-    setSubmitted(true)
+export default async function RequestQuotePage({ searchParams }: PageProps) {
+  const rawParams = await searchParams
+  const prefill = resolveCataloguePrefill(rawParams)
+
+  const initialData = {
+    productInterest: prefill.product?.name || (typeof rawParams.product === 'string' ? '' : undefined),
+    familySlug: prefill.family?.slug,
+    categorySlug: prefill.category?.slug,
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
-  }
-
-  if (submitted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-24">
-        <div className="bg-white p-12 rounded-2xl border border-gray-100 max-w-md mx-auto text-center shadow-lg">
-          <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg className="w-10 h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h2 className="font-sans text-display-3 text-primary mb-4">Quote Request Submitted</h2>
-          <p className="font-body text-body-lg text-gray-600 mb-8 leading-relaxed">
-            Thank you for your inquiry. Our team will review your requirements and get back to you within 24-48 hours with a custom quote.
-          </p>
-          <Button variant="primary" size="lg" onClick={() => setSubmitted(false)}>
-            Submit Another Request
-          </Button>
-        </div>
-      </div>
-    )
-  }
+  const breadcrumbJsonLd = generateBreadcrumbJsonLd([
+    { name: 'Home', url: '/' },
+    { name: 'Contact', url: '/contact' },
+    { name: 'Request Quote', url: '/contact/request-quote' },
+  ])
 
   return (
     <div className="min-h-screen">
-      {/* Premium Hero */}
-      <section className="relative min-h-[50vh] lg:min-h-[60vh] flex items-center bg-gradient-to-br from-primary via-primary-dark to-accent overflow-hidden">
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-          backgroundSize: '40px 40px'
-        }} />
-        
-        {/* Gradient overlays */}
+      {/* Schema.org Breadcrumbs */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
+      {/* Hero Header */}
+      <section className="relative min-h-[45vh] lg:min-h-[50vh] flex items-center bg-gradient-to-br from-primary via-primary-dark to-accent overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+            backgroundSize: '40px 40px',
+          }}
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/40" />
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-primary/80 to-transparent" />
-        
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
+
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl">
-            <span className="font-sans text-caption font-semibold text-accent uppercase tracking-wider mb-4 inline-block">
-              Get Started
+          <div className="max-w-3xl">
+            <span className="font-sans text-xs font-semibold uppercase tracking-widest text-accent mb-3 inline-block">
+              Institutional & Bulk Procurement
             </span>
-            <h1 className="font-sans text-display-1-mobile md:text-display-1-tablet lg:text-display-1 text-white mb-6 leading-tight">
-              Request a Quote
+            <h1 className="font-sans text-display-1-mobile md:text-display-1-tablet lg:text-display-1 text-white mb-4 leading-tight">
+              Request a Wholesale Quote
             </h1>
-            <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-200 max-w-2xl leading-relaxed mb-8">
-              Fill out the form below with your requirements and we&apos;ll provide a custom quote for your bulk order needs.
+            <p className="font-body text-body-lg text-gray-200 max-w-2xl leading-relaxed">
+              Submit your garment specifications, fabric GSM, and volume targets. Our production desk provides custom OEM pricing for institutions, clubs, and brands.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Form Section */}
-      <section className="py-24 bg-white">
+      {/* Main Content & Form Grid */}
+      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-              {/* Form */}
-              <div className="lg:col-span-2">
-                <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                  <h2 className="font-sans text-display-3 text-primary mb-8">Quote Request Form</h2>
-                  
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="name" className="block font-sans text-sm font-medium text-gray-700 mb-2">
-                          Name *
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          required
-                          value={formData.name}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                          placeholder="Your name"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="company" className="block font-sans text-sm font-medium text-gray-700 mb-2">
-                          Company
-                        </label>
-                        <input
-                          type="text"
-                          id="company"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                          placeholder="Company name"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="email" className="block font-sans text-sm font-medium text-gray-700 mb-2">
-                          Email *
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          required
-                          value={formData.email}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                          placeholder="your@email.com"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="phone" className="block font-sans text-sm font-medium text-gray-700 mb-2">
-                          Phone *
-                        </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          required
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                          placeholder="+91 XXXXX XXXXX"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="productInterest" className="block font-sans text-sm font-medium text-gray-700 mb-2">
-                        Product Interest *
-                      </label>
-                      <select
-                        id="productInterest"
-                        name="productInterest"
-                        required
-                        value={formData.productInterest}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all bg-white"
-                      >
-                        <option value="">Select a product category</option>
-                        <option value="track-suits">Track Suits</option>
-                        <option value="t-shirts">T-Shirts</option>
-                        <option value="sports-wear">Sports Wear</option>
-                        <option value="jackets">Jackets</option>
-                        <option value="shorts">Shorts</option>
-                        <option value="school-wear">School Wear</option>
-                        <option value="corporate-wear">Corporate Wear</option>
-                        <option value="bags">Bags & Accessories</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label htmlFor="quantity" className="block font-sans text-sm font-medium text-gray-700 mb-2">
-                        Estimated Quantity *
-                      </label>
-                      <input
-                        type="text"
-                        id="quantity"
-                        name="quantity"
-                        required
-                        value={formData.quantity}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                        placeholder="e.g., 500 sets"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block font-sans text-sm font-medium text-gray-700 mb-2">
-                        Additional Requirements
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        value={formData.message}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all resize-none"
-                        placeholder="Describe your specific requirements, customization needs, etc."
-                      />
-                    </div>
-
-                    <Button 
-                          type="submit" 
-                          variant="primary" 
-                          size="lg" 
-                          fullWidth 
-                          disabled={isSubmitting}
-                        >
-                          {isSubmitting ? 'Submitting...' : 'Submit Quote Request'}
-                        </Button>
-                  </form>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+              {/* Left Column: Interactive Form Island (8 cols) */}
+              <div className="lg:col-span-8">
+                <div className="mb-6">
+                  <h2 className="font-sans text-2xl font-bold text-primary mb-2">
+                    Garment Order Specifications
+                  </h2>
+                  <p className="font-body text-sm text-gray-600">
+                    Fields marked with an asterisk (*) are required for accurate bulk quotation.
+                  </p>
                 </div>
+
+                <QuoteForm initialData={initialData} />
               </div>
 
-              {/* Contact Info */}
-              <div>
-                <div className="bg-primary rounded-2xl p-8 text-white mb-6">
-                  <h3 className="font-sans text-h3 mb-6">Contact Directly</h3>
+              {/* Right Column: Verified Contact & Desk Info (4 cols) */}
+              <div className="lg:col-span-4 space-y-6">
+                <div className="bg-primary rounded-2xl p-7 text-white shadow-md">
+                  <h3 className="font-sans text-xl font-bold mb-4 flex items-center gap-2">
+                    <span>Direct Sales Desk</span>
+                  </h3>
+                  <p className="font-body text-xs text-white/70 mb-6 leading-relaxed">
+                    Have urgent institutional tender requirements or bespoke tech pack files? Contact our verified Delhi headquarters directly.
+                  </p>
+
                   <div className="space-y-4">
-                    <div>
-                      <p className="font-body text-sm text-white/60 mb-1">Phone</p>
-                      <p className="font-body text-body font-medium">07313726929</p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+                        <Phone size={18} className="text-accent" />
+                      </div>
+                      <div>
+                        <p className="font-body text-xs text-white/60">Phone Line</p>
+                        <a
+                          href="tel:+919212126463"
+                          className="font-body text-sm font-semibold hover:text-accent transition-colors"
+                        >
+                          +91 9212126463
+                        </a>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-body text-sm text-white/60 mb-1">WhatsApp</p>
-                      <p className="font-body text-body font-medium">9212126463</p>
-                    </div>
-                    <div>
-                      <p className="font-body text-sm text-white/60 mb-1">Skype</p>
-                      <p className="font-body text-body font-medium">goyals27</p>
+
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+                        <MessageSquare size={18} className="text-green-400" />
+                      </div>
+                      <div>
+                        <p className="font-body text-xs text-white/60">WhatsApp Business</p>
+                        <a
+                          href="https://wa.me/919212126463"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-body text-sm font-semibold hover:text-accent transition-colors"
+                        >
+                          +91 9212126463
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                  <h3 className="font-sans text-h3 text-primary mb-4">Response Time</h3>
-                  <p className="font-body text-body text-gray-600 leading-relaxed">
-                    We typically respond to quote requests within 24-48 hours. For urgent inquiries, please contact us directly via phone or WhatsApp.
+                <div className="bg-gray-50 rounded-2xl p-7 border border-gray-200">
+                  <div className="flex items-center gap-2 mb-3 text-primary">
+                    <Clock size={18} className="text-accent" />
+                    <h4 className="font-sans font-bold text-sm">Response Timeline</h4>
+                  </div>
+                  <p className="font-body text-xs text-gray-600 leading-relaxed mb-4">
+                    Standard wholesale quotation analysis is completed within 24 to 48 business hours. Direct WhatsApp submissions receive faster preliminary confirmation.
                   </p>
+
+                  <div className="flex items-center gap-2 pt-3 border-t border-gray-200 text-xs text-gray-500">
+                    <ShieldCheck size={16} className="text-primary/60" />
+                    <span>Established in 2000 | Delhi Factory</span>
+                  </div>
                 </div>
               </div>
             </div>
