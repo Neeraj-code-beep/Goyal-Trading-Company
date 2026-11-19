@@ -1,25 +1,25 @@
-import { ShieldCheck, FileText, Globe, Award } from 'lucide-react'
+import { Calendar, MapPin, Layers, Users } from 'lucide-react'
 
 const credentials = [
   {
-    icon: ShieldCheck,
-    name: 'GST Registered',
-    description: 'Fully Compliant Tax Enterprise',
+    icon: Calendar,
+    name: 'Established in 2000',
+    description: 'Over Two Decades of Garment Manufacturing Experience',
   },
   {
-    icon: Globe,
-    name: 'DGFT Export Licensed',
-    description: 'Authorized IEC Holder for Global Trade',
+    icon: MapPin,
+    name: 'Delhi Business Base',
+    description: 'Commercial Operations Based in New Delhi',
   },
   {
-    icon: FileText,
-    name: 'Manufacturing Units',
-    description: '2 Dedicated Facilities in New Delhi',
+    icon: Layers,
+    name: '13 Product Families',
+    description: '35 Categories Covering Activewear & Uniforms',
   },
   {
-    icon: Award,
-    name: 'Industry Heritage',
-    description: 'Established in 2000',
+    icon: Users,
+    name: 'B2B Textile Range',
+    description: 'Supplying Bulk Wholesale & Institutional Requirements',
   },
 ]
 
@@ -45,10 +45,10 @@ export function CertificationsAwards() {
             id="credentials-heading"
             className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-4"
           >
-            Business Credentials
+            Company at a Glance
           </h2>
           <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            Registered and compliant with statutory requirements for manufacturing and export operations.
+            Delhi-based B2B textile manufacturing and trading company offering structured apparel solutions for organizations.
           </p>
         </div>
 

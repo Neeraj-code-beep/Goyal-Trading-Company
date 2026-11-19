@@ -7,33 +7,33 @@ import { staggerContainer, slideUp } from '@/lib/animations/variants'
 const processSteps = [
   {
     step: 1,
-    title: 'Design & Pattern Drafting',
-    description: 'Custom pattern drafting with precise technical specifications and material selection.',
+    title: 'Pattern & Specifications',
+    description: 'Developing patterns aligned with buyer specifications and fabric selections.',
   },
   {
     step: 2,
-    title: 'Fabric Sourcing & Knitting',
-    description: 'Direct procurement of quality yarn, circular/flat knitting, and fabric preparation.',
+    title: 'Fabric Sourcing & Preparation',
+    description: 'Sourcing fabrics and materials appropriate for the required garment styles.',
   },
   {
     step: 3,
     title: 'Cutting & Stitching',
-    description: 'Precision table cutting and assembly at dedicated stitching stations in our Delhi units.',
+    description: 'Precision fabric cutting and structured garment stitching assembly.',
   },
   {
     step: 4,
-    title: 'In-House Quality Checks',
-    description: 'Rigorous inspection verifying stitching integrity, dimensional accuracy, and finishing.',
+    title: 'Finishing & Inspection',
+    description: 'Reviewing assembled garments, seams, trims, and fasteners prior to packing.',
   },
   {
     step: 5,
-    title: 'Packaging & Verification',
-    description: 'Order verification, bulk packing, and proper batch labeling for institutional delivery.',
+    title: 'Packaging & Labelling',
+    description: 'Bulk carton packing and labelling aligned with order specifications.',
   },
   {
     step: 6,
-    title: 'Logistics & Dispatch',
-    description: 'Coordinated domestic road freight and sea cargo dispatch for timely delivery.',
+    title: 'Dispatch & Logistics',
+    description: 'Order coordination and dispatch based on mutually agreed shipping terms.',
   },
 ]
 
@@ -69,13 +69,13 @@ export function ManufacturingProcess() {
             id="manufacturing-process-heading"
             className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-4"
           >
-            Our Manufacturing Process
+            Apparel Production Workflow
           </motion.h2>
           <motion.p
             variants={slideUp}
             className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed"
           >
-            A streamlined process ensuring quality, efficiency, and transparency from design to delivery.
+            An illustrative overview of the key stages involved in garment manufacturing, from initial specifications to packaging.
           </motion.p>
         </motion.div>
 

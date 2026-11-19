@@ -1,100 +1,79 @@
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { getFeaturedProducts } from '@/data/products'
-import { ProductImageFallback } from '@/components/ui/ProductImageFallback'
-import Image from 'next/image'
+import { ProductCard } from '@/components/products/ProductCard'
+import { ProductFamilySlug } from '@/types/product'
 
 export function FeaturedProducts() {
-  const featuredProducts = getFeaturedProducts().slice(0, 4)
+  const allFeatured = getFeaturedProducts()
+
+  // Select 4 prime showcase products across core apparel categories
+  const showcaseSlugs = [
+    'track-suit-general',
+    'round-neck-cotton-tshirt',
+    'dry-fit-polo-black',
+    'football-kit-navy',
+  ]
+
+  const featuredProducts = showcaseSlugs
+    .map((slug) => allFeatured.find((p) => p.slug === slug))
+    .filter(Boolean)
 
   return (
-    <section className="py-24 bg-gray-50 relative overflow-hidden" aria-labelledby="featured-products-heading">
-      {/* Top gradient divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-      
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-3" style={{
-        backgroundImage: 'radial-gradient(circle at 2px 2px, #ED8936 1px, transparent 0)',
-        backgroundSize: '48px 48px'
-      }} />
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-transparent to-accent/3" />
-      {/* Decorative glow */}
-      <div className="absolute top-20 right-20 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
+    <section className="py-20 sm:py-24 bg-gray-50/70 relative overflow-hidden" aria-labelledby="featured-products-heading">
+      {/* Top divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2
-            id="featured-products-heading"
-            className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-4"
-          >
-            Featured Products
-          </h2>
-          <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            Highlighted athletic and institutional garments manufactured for wholesale and institutional clients.
-          </p>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-4">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent font-sans text-xs font-semibold uppercase tracking-wider mb-3">
+              <Sparkles size={14} />
+              <span>Garment Specifications</span>
+            </div>
+            <h2
+              id="featured-products-heading"
+              className="font-sans text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary tracking-tight leading-tight"
+            >
+              Featured Garments &amp; Activewear
+            </h2>
+            <p className="font-body text-base text-gray-600 mt-2 leading-relaxed">
+              Showcase of key garments with technical fabric weights, composition details, and direct enquiry options.
+            </p>
+          </div>
+
+          <div className="flex-shrink-0">
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 text-accent hover:text-primary font-sans text-sm font-semibold transition-colors group"
+            >
+              <span>Explore All Products</span>
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Standardized ProductCard Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredProducts.map((product) => (
-            <Link
-              key={product.id}
-              href={`/products/${product.familySlug}/${product.categorySlug}/${product.slug}`}
-              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-accent/30 group block"
-            >
-              {/* Product Image */}
-              <div className="aspect-[4/5] bg-gray-100 rounded-xl mb-4 relative overflow-hidden">
-                {product.image ? (
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  />
-                ) : (
-                  <ProductImageFallback
-                    categoryName={product.categorySlug}
-                    productName={product.name}
-                    aspectRatio="portrait"
-                    className="w-full h-full group-hover:scale-105 transition-transform duration-500"
-                  />
-                )}
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white font-semibold text-sm">View Details</span>
-                </div>
-              </div>
-
-              {/* Product Info */}
-              <div className="space-y-2">
-                <div className="font-sans text-caption-mobile md:text-caption-tablet lg:text-caption font-semibold text-accent uppercase tracking-wider">
-                  {product.categorySlug}
-                </div>
-                <h3 className="font-sans text-h3-mobile md:text-h3-tablet lg:text-h3 text-primary leading-tight group-hover:text-accent transition-colors">
-                  {product.name}
-                </h3>
-                <p className="font-body text-body-mobile md:text-body-tablet lg:text-body text-gray-500 line-clamp-2 leading-relaxed">
-                  {product.description}
-                </p>
-                {product.inquiryLabel && (
-                  <div className="font-body text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm text-accent font-semibold pt-2">
-                    {product.inquiryLabel}
-                  </div>
-                )}
-              </div>
-            </Link>
+            <ProductCard
+              key={product!.id}
+              product={product!}
+              familySlug={product!.familySlug as ProductFamilySlug}
+              categorySlug={product!.categorySlug}
+              variant="featured"
+            />
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <Button variant="secondary" size="lg" asChild>
-            <Link href="/products">
-              <span>View All Products</span>
-              <ArrowRight size={16} className="ml-2" />
+        {/* Section Action Button */}
+        <div className="text-center mt-12 sm:mt-16 pt-8 border-t border-gray-200">
+          <Button variant="primary" size="lg" asChild>
+            <Link href="/products" className="inline-flex items-center gap-2">
+              <span>View All Products in Catalogue</span>
+              <ArrowRight size={16} />
             </Link>
           </Button>
         </div>

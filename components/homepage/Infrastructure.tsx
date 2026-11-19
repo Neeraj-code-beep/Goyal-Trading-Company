@@ -1,23 +1,23 @@
 const infrastructureData = [
   {
-    metric: '02',
-    label: 'PRODUCTION UNITS',
-    description: 'Dedicated manufacturing facilities in New Delhi',
+    metric: '2000',
+    label: 'ESTABLISHED YEAR',
+    description: 'Over two decades of continuous business in Delhi',
   },
   {
     metric: 'DELHI',
-    label: 'URBAN BASE',
-    description: 'Permanent commercial facility in Shastri Nagar',
+    label: 'BUSINESS BASE',
+    description: 'Commercial operations based in New Delhi',
   },
   {
-    metric: 'IN-HOUSE',
-    label: 'STITCHING & QA',
-    description: 'Dedicated craftsmen across cutting, assembly, and finishing',
+    metric: 'KNIT & SEW',
+    label: 'PRODUCT SCOPE',
+    description: 'Knitted activewear, uniform sets, and basics',
   },
   {
-    metric: 'CIRCULAR',
-    label: 'KNIT & FLAT KNIT',
-    description: 'Specialized knitting machinery and commercial finishing units',
+    metric: '13',
+    label: 'PRODUCT FAMILIES',
+    description: 'Comprehensive apparel categories and styles',
   },
 ]
 
@@ -39,20 +39,20 @@ export function Infrastructure() {
           <div>
             <div className="mb-6">
               <span className="font-sans text-caption font-semibold text-accent uppercase tracking-wider">
-                Established Operations
+                Operational Profile
               </span>
             </div>
             <h2
               id="infrastructure-heading"
               className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-white mb-6 leading-tight"
             >
-              Our Infrastructure
+              Operations &amp; Scope
             </h2>
             <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-white/80 max-w-xl leading-relaxed mb-8">
-              Established manufacturing infrastructure in New Delhi with dedicated production units, flat knit and circular knitting equipment, and skilled craftsmen enabling quality bulk production.
+              Delhi-based textile business established in 2000, supplying athletic wear, corporate uniforms, and institutional garments through structured wholesale procurement.
             </p>
             <div className="flex items-center gap-2 text-white/60 text-sm">
-              <span>Shastri Nagar, Delhi · Established Manufacturing Base</span>
+              <span>New Delhi Business Address · Established 2000</span>
             </div>
           </div>
 
@@ -60,7 +60,7 @@ export function Infrastructure() {
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
             <div className="mb-6">
               <span className="font-sans text-xs font-semibold text-accent uppercase tracking-wider">
-                VERIFIED OPERATIONAL DATA
+                BUSINESS PROFILE
               </span>
             </div>
             <div className="grid grid-cols-2 gap-0">

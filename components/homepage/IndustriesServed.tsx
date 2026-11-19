@@ -3,23 +3,23 @@ import { Trophy, GraduationCap, Building2, Shield } from 'lucide-react'
 const industries = [
   {
     icon: Trophy,
-    name: 'Sports & Athletic Clubs',
-    description: 'High-performance team kits, tracksuits, and training gear.',
+    name: 'Sports & Athletic Organizations',
+    description: 'Team tracksuits, training kits, jerseys, and activewear for sports clubs and academies.',
   },
   {
     icon: GraduationCap,
     name: 'Schools & Colleges',
-    description: 'Durable institutional uniforms, physical education kits, and winter wear.',
+    description: 'Institutional uniform garments, physical education kits, and winter pullovers.',
   },
   {
     icon: Building2,
     name: 'Corporate Organizations',
-    description: 'Custom staff polo shirts, corporate activewear, and branded event apparel.',
+    description: 'Staff polo shirts, uniform work shirts, and branded promotional apparel.',
   },
   {
     icon: Shield,
-    name: 'Institutional & Security',
-    description: 'Specialized uniform apparel and durable tactical wear for institutional forces.',
+    name: 'Security & Staff Uniforms',
+    description: 'Uniform shirts, trousers, and outer jackets suited for facility and security personnel.',
   },
 ]
 
@@ -41,10 +41,10 @@ export function IndustriesServed() {
             id="industries-served-heading"
             className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-4"
           >
-            Industries We Serve
+            Product Ranges for Organizations
           </h2>
           <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            Supplying tailored athletic wear, educational apparel, and corporate uniforms across key B2B sectors.
+            Apparel collections structured by organizational requirements across athletic, educational, corporate, and staffing sectors.
           </p>
         </div>
 

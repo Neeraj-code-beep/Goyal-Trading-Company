@@ -1,30 +1,30 @@
 const credentials = [
   {
-    metric: 'GST REGISTERED',
-    detail: 'VERIFIED TAX ENTITY',
-  },
-  {
-    metric: 'DGFT / IE CODE',
-    detail: 'EXPORT LICENSED',
-  },
-  {
     metric: 'ESTABLISHED 2000',
     detail: 'OVER TWO DECADES EXP.',
   },
   {
-    metric: '2 UNITS',
-    detail: 'PRODUCTION FACILITIES',
+    metric: 'DELHI FACILITY',
+    detail: 'SHASTRI NAGAR BASE',
+  },
+  {
+    metric: '13 FAMILIES',
+    detail: 'SPORTSWEAR & UNIFORMS',
+  },
+  {
+    metric: 'B2B WHOLESALE',
+    detail: 'BULK ORDERS & INQUIRIES',
   },
 ]
 
 const organizations = [
   {
-    name: 'Government & Paramilitary Departments',
-    location: 'Institutional athletic & training uniforms',
+    name: 'Sports & Athletic Academies',
+    location: 'Team kits, tracksuits, and athletic training apparel',
   },
   {
-    name: 'Educational & Sports Academies',
-    location: 'Student athletic kits & custom tracksuits',
+    name: 'Educational & Corporate Institutions',
+    location: 'Staff polo shirts, student uniforms, and event wear',
   },
 ]
 
@@ -43,14 +43,14 @@ export function TrustSignals() {
           <div className="mb-20">
             <div className="mb-6">
               <span className="font-sans text-caption font-semibold text-accent uppercase tracking-wider">
-                VERIFIED BUSINESS CREDENTIALS
+                ESTABLISHED FOUNDATION
               </span>
             </div>
             <h2
               id="trust-signals-heading"
               className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-white mb-12 leading-tight"
             >
-              Built on Verified Business Credentials
+              Established B2B Garment Manufacturing
             </h2>
 
             {/* Credentials Rail */}
@@ -76,7 +76,7 @@ export function TrustSignals() {
             </div>
           </div>
 
-          {/* Organizations Served Section */}
+          {/* Sectors Served Section */}
           <div>
             <div className="mb-6">
               <span className="font-sans text-caption font-semibold text-accent uppercase tracking-wider">
@@ -84,7 +84,7 @@ export function TrustSignals() {
               </span>
             </div>
             <h3 className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 text-white mb-8 leading-tight">
-              Sectors We Serve
+              Sectors We Supply
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

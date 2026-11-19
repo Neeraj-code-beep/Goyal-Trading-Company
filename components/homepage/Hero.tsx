@@ -1,16 +1,18 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { heroSlides } from '@/data/hero-images'
 import Link from 'next/link'
 import Image from 'next/image'
+import { ArrowRight, FileText, MapPin, Layers, Calendar, Sparkles } from 'lucide-react'
 
 export function Hero() {
-  const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 500], [0, 200])
-  const prefersReducedMotion = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
+  const prefersReducedMotion =
+    typeof window !== 'undefined'
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      : false
 
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -19,49 +21,23 @@ export function Hero() {
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroSlides.length)
-    }, 6000)
+    }, 7000)
 
     return () => clearInterval(interval)
   }, [prefersReducedMotion])
 
   const currentSlide = heroSlides[currentIndex]
 
-  const slideVariants = {
-    enter: (direction: number) => ({
-      opacity: 0,
-      y: direction > 0 ? 20 : -20,
-      scale: 0.95,
-    }),
-    center: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.4,
-        ease: 'easeOut',
-      },
-    },
-    exit: (direction: number) => ({
-      opacity: 0,
-      y: direction < 0 ? 20 : -20,
-      scale: 0.95,
-      transition: {
-        duration: 0.3,
-        ease: 'easeIn',
-      },
-    }),
-  }
-
   return (
-    <section className="relative min-h-[80vh] lg:min-h-[100vh] flex items-center overflow-hidden">
-      {/* Background Image Layer */}
+    <section className="relative min-h-[85vh] lg:min-h-[92vh] flex items-center overflow-hidden bg-primary">
+      {/* Background Image Carousel Layer */}
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.div
           key={currentSlide.imageUrl}
-          initial={{ opacity: 0, scale: 1.05 }}
+          initial={{ opacity: 0, scale: 1.04 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.9, ease: 'easeInOut' }}
           className="absolute inset-0 z-0"
         >
           <Image
@@ -76,152 +52,110 @@ export function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Gradient overlays for readability - lighter for better image visibility */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-br from-primary/40 via-primary-dark/35 to-accent/30" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/30 via-black/15 to-black/20" />
-      <div className="absolute bottom-0 left-0 right-0 h-48 z-10 bg-gradient-to-t from-primary/50 to-transparent" />
+      {/* Dark gradient overlay tuned for readable high contrast */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-primary-dark/95 via-primary/85 to-primary/60" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-primary-dark/90 via-transparent to-black/30" />
 
-      {/* Animated Background Pattern */}
-      <motion.div
-        style={{
-          y: prefersReducedMotion ? 0 : y,
-          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-          backgroundSize: '40px 40px'
-        }}
+      {/* Subtle grid pattern */}
+      <div
         className="absolute inset-0 z-10 opacity-10"
+        style={{
+          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+          backgroundSize: '40px 40px',
+        }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 py-20">
-        <div className="max-w-[1000px] mx-auto">
-          {/* Synchronized Content with Crossfade */}
-          <AnimatePresence mode="popLayout" initial={false}>
-            <motion.div
-              key={currentIndex}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              custom={1}
-              className="text-center"
-            >
-              {/* Eyebrow - Changes with slide */}
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-                className="mb-4"
-              >
-                <span className="font-sans text-caption font-semibold text-accent uppercase tracking-wider">
-                  {currentSlide.eyebrow}
-                </span>
-              </motion.div>
+      {/* Content Container */}
+      <div className="relative z-20 container mx-auto px-6 py-20 lg:py-28">
+        <div className="max-w-3xl">
+          {/* Eyebrow Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="font-sans text-xs font-semibold text-accent uppercase tracking-widest">
+              Established 2000 · B2B Textile Manufacturer &amp; Trader
+            </span>
+          </div>
 
-              {/* Headline - Changes with slide */}
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: 'easeOut', delay: 0.1 }}
-                className="font-sans text-display-1-mobile md:text-display-1-tablet lg:text-display-1 text-white mb-6 leading-tight"
-              >
-                {currentSlide.title}
-              </motion.h1>
+          {/* Dynamic Headline */}
+          <h1 className="font-sans text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white mb-6 leading-[1.12] tracking-tight">
+            {currentSlide.title}
+          </h1>
 
-              {/* Description - Changes with slide */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
-                className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed"
-              >
-                {currentSlide.description}
-              </motion.p>
+          {/* Description */}
+          <p className="font-body text-base sm:text-lg text-gray-200 mb-8 max-w-2xl leading-relaxed">
+            {currentSlide.description} Custom manufacturing for institutions, academies, sports teams, and corporate organizations across India.
+          </p>
 
-              {/* CTAs - Primary persistent, secondary changes with slide */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: 'easeOut', delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-              >
-                <Button variant="primary" size="lg" asChild>
-                  <Link href="/contact/request-quote">Request a Quote</Link>
-                </Button>
-                <Button
-                  variant="light-surface"
-                  size="lg"
-                  asChild
-                >
-                  <Link href={currentSlide.secondaryCta.href}>{currentSlide.secondaryCta.label}</Link>
-                </Button>
-              </motion.div>
+          {/* CTAs */}
+          <div className="flex flex-wrap items-center gap-4 mb-12">
+            <Button variant="primary" size="lg" asChild>
+              <Link href="/products" className="inline-flex items-center gap-2 shadow-lg">
+                <span>Explore Products</span>
+                <ArrowRight size={18} />
+              </Link>
+            </Button>
+            <Button variant="light-surface" size="lg" asChild>
+              <Link href="/contact/request-quote" className="inline-flex items-center gap-2">
+                <FileText size={18} />
+                <span>Request a Quote</span>
+              </Link>
+            </Button>
+          </div>
 
-              {/* Trust Metrics - Persistent */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: 'easeOut', delay: 0.4 }}
-                className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
-              >
-                {/* GST Registration */}
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                    <span className="font-sans text-white font-bold text-xs">GST</span>
-                  </div>
-                  <span className="font-body text-white/80 text-xs">Registered</span>
-                </div>
-                {/* DGFT/IE Code */}
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                    <span className="font-sans text-white font-bold text-xs">DGFT</span>
-                  </div>
-                  <span className="font-body text-white/80 text-xs">Export License</span>
-                </div>
-                {/* Established Year */}
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                    <span className="font-sans text-white font-bold text-xs">2000</span>
-                  </div>
-                  <span className="font-body text-white/80 text-xs">Established</span>
-                </div>
-                {/* Dual Facilities */}
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                    <span className="font-sans text-white font-bold text-xs">2</span>
-                  </div>
-                  <span className="font-body text-white/80 text-xs">Units</span>
-                </div>
-              </motion.div>
+          {/* Verified Trust Strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-white/15">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 text-accent">
+                <Calendar size={18} />
+              </div>
+              <div>
+                <div className="font-sans text-sm font-bold text-white">2000</div>
+                <div className="font-body text-xs text-gray-300">Year Founded</div>
+              </div>
+            </div>
 
-              {/* Manufacturing Focus - Persistent */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: 'easeOut', delay: 0.5 }}
-                className="mt-8 flex flex-wrap justify-center gap-8 text-white/90"
-              >
-                <div className="text-center">
-                  <div className="font-sans text-h2-mobile md:text-h2-tablet lg:text-h2 font-bold text-white">B2B Bulk</div>
-                  <div className="font-body text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm text-white/70 mt-1">Manufacturing</div>
-                </div>
-                <div className="text-center">
-                  <div className="font-sans text-h2-mobile md:text-h2-tablet lg:text-h2 font-bold text-white">Global</div>
-                  <div className="font-body text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm text-white/70 mt-1">Export Supply</div>
-                </div>
-              </motion.div>
-            </motion.div>
-          </AnimatePresence>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 text-accent">
+                <Layers size={18} />
+              </div>
+              <div>
+                <div className="font-sans text-sm font-bold text-white">13 Families</div>
+                <div className="font-body text-xs text-gray-300">35 Categories</div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 text-accent">
+                <Sparkles size={18} />
+              </div>
+              <div>
+                <div className="font-sans text-sm font-bold text-white">Custom OEM</div>
+                <div className="font-body text-xs text-gray-300">Bulk Grading &amp; Trims</div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 text-accent">
+                <MapPin size={18} />
+              </div>
+              <div>
+                <div className="font-sans text-sm font-bold text-white">Delhi Base</div>
+                <div className="font-body text-xs text-gray-300">Delhi-Based Business</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Progress Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      {/* Slide Navigation Dots */}
+      <div className="absolute bottom-8 right-8 z-20 hidden sm:flex items-center gap-2 bg-black/30 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/10">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`h-1 rounded-full transition-all duration-300 ${index === currentIndex ? 'w-8 bg-accent' : 'w-2 bg-white/30'
-              }`}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex ? 'w-6 bg-accent' : 'w-2 bg-white/40 hover:bg-white/70'
+            }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

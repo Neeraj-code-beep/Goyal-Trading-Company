@@ -20,7 +20,7 @@ export function Footer() {
               <span className="font-sans text-h3-mobile md:text-h3-tablet lg:text-h3">Goyal Trading</span>
             </div>
             <p className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">
-              Premium wholesale textile manufacturing for global retailers. Custom manufacturing with transparent pricing and verified quality.
+              B2B apparel manufacturing and wholesale textile trading established in 2000. Supplying activewear, sports apparel, school wear, and corporate uniforms from New Delhi.
             </p>
             {/* Contact Info */}
             <div className="space-y-3 pt-4">
@@ -31,16 +31,19 @@ export function Footer() {
                 <Mail size={16} />
                 <span>{siteConfig.links.email}</span>
               </a>
-              <a
-                href={`tel:${siteConfig.links.phone}`}
-                className="flex items-center gap-3 font-body text-white/80 hover:text-accent transition-colors text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm"
-              >
-                <Phone size={16} />
-                <span>{siteConfig.links.phone}</span>
-              </a>
+              {siteConfig.contact.publicPhoneApproved && (
+                <a
+                  href={`tel:${siteConfig.links.phone}`}
+                  className="flex items-center gap-3 font-body text-white/80 hover:text-accent transition-colors text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm"
+                >
+                  <Phone size={16} />
+                  <span>{siteConfig.links.phone}</span>
+                </a>
+              )}
               <div className="flex items-start gap-3 font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">
                 <MapPin size={16} className="mt-0.5 flex-shrink-0" />
                 <address className="not-italic">
+                  <span className="block text-xs uppercase tracking-wider text-accent font-semibold mb-0.5">New Delhi Business Address</span>
                   <span>{siteConfig.links.address.full}</span>
                 </address>
               </div>

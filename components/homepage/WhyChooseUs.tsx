@@ -1,82 +1,76 @@
-import { Shield, Truck, Users, Award, Clock, DollarSign } from 'lucide-react'
+import { Building2, Package, PhoneCall, Award, Layers, FileCheck } from 'lucide-react'
 
-const features = [
-  {
-    icon: Shield,
-    title: 'In-House Quality Checks',
-    description: 'Systematic inspection protocols covering fabric integrity, stitching strength, and finishing.',
-  },
-  {
-    icon: Truck,
-    title: 'Dependable Logistics',
-    description: 'Coordinated freight delivery across India by road and sea shipping for global export orders.',
-  },
-  {
-    icon: Users,
-    title: 'Experienced Craftsmen',
-    description: 'Dedicated team of skilled tailors, pattern masters, and finishing technicians in New Delhi.',
-  },
+const valueProps = [
   {
     icon: Award,
-    title: 'Established Manufacturing',
-    description: 'Over two decades of continuous manufacturing experience with verified business credentials.',
+    title: 'Established Business Since 2000',
+    description: 'Over two decades of continuous presence in Delhi garment manufacturing and wholesale textile trading.',
   },
   {
-    icon: Clock,
-    title: 'Flexible Batch Production',
-    description: 'Agile manufacturing setups capable of handling customized small-to-large bulk runs.',
+    icon: Layers,
+    title: 'Organized Product Catalogue',
+    description: '13 product families and 35 categories covering sports activewear, school wear, uniforms, and basics.',
   },
   {
-    icon: DollarSign,
-    title: 'Direct Factory Pricing',
-    description: 'Competitive manufacturer pricing without intermediary markups for bulk procurement.',
+    icon: Package,
+    title: 'Sample Enquiries for Discussion',
+    description: 'Submit a sample enquiry for discussion regarding fabrics, styles, and specifications prior to bulk orders.',
+  },
+  {
+    icon: FileCheck,
+    title: 'Custom Quotation Enquiries',
+    description: 'Request a quotation for your product requirements tailored to fabric selection and order specifications.',
+  },
+  {
+    icon: Building2,
+    title: 'Delhi-Based Business',
+    description: 'Established B2B textile manufacturing and wholesale trading operations based in New Delhi.',
+  },
+  {
+    icon: PhoneCall,
+    title: 'Direct Business Communication',
+    description: 'Direct communication through approved business channels to discuss requirements and lead times.',
   },
 ]
 
 export function WhyChooseUs() {
   return (
-    <section className="py-24 bg-gray-50 relative overflow-hidden" aria-labelledby="why-choose-us-heading">
-      {/* Top gradient divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-      
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-3" style={{
-        backgroundImage: 'radial-gradient(circle at 2px 2px, #1A365D 1px, transparent 0)',
-        backgroundSize: '40px 40px'
-      }} />
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-transparent to-accent/3" />
-      {/* Decorative glow */}
-      <div className="absolute top-20 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
-      <div className="container mx-auto px-6">
+    <section className="py-20 sm:py-24 bg-gray-50/70 relative overflow-hidden" aria-labelledby="why-choose-us-heading">
+      {/* Top divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="font-sans text-xs font-semibold text-accent uppercase tracking-widest block mb-2">
+            Why Partner With Us
+          </span>
           <h2
             id="why-choose-us-heading"
-            className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-4"
+            className="font-sans text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary tracking-tight leading-tight mb-4"
           >
-            Why Choose Us
+            Built for Institutional Buyers &amp; Wholesale Procurement
           </h2>
-          <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            We combine manufacturing excellence with transparent operations to deliver reliable apparel solutions for bulk procurement.
+          <p className="font-body text-base text-gray-600 leading-relaxed">
+            We combine manufacturing reliability with transparent communication to deliver dependable textile and apparel solutions for organizations.
           </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
-          {features.map((feature) => (
+        {/* Value Proposition Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {valueProps.map((item) => (
             <div
-              key={feature.title}
-              className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-accent/20 group"
+              key={item.title}
+              className="bg-white p-7 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-accent/40 group flex flex-col"
             >
-              <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                <feature.icon size={24} strokeWidth={2} className="text-accent" />
+              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors text-accent flex-shrink-0">
+                <item.icon size={22} strokeWidth={2} />
               </div>
-              <h3 className="font-sans text-h3-mobile md:text-h3-tablet lg:text-h3 text-primary mb-2 leading-tight group-hover:text-accent transition-colors">
-                {feature.title}
+              <h3 className="font-sans text-lg font-bold text-primary mb-2 leading-snug group-hover:text-accent transition-colors">
+                {item.title}
               </h3>
-              <p className="font-body text-body-mobile md:text-body-tablet lg:text-body text-gray-500 leading-relaxed">
-                {feature.description}
+              <p className="font-body text-sm text-gray-600 leading-relaxed">
+                {item.description}
               </p>
             </div>
           ))}

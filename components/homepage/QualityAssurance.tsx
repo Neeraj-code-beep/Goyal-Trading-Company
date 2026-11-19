@@ -3,23 +3,23 @@ import { CheckCircle, Shield, Search, FileText } from 'lucide-react'
 const qualitySteps = [
   {
     icon: Search,
-    title: 'Raw Material Testing',
-    description: 'Visual inspection of fabric rolls, GSM consistency, and color uniformity prior to cutting.',
+    title: 'Fabric Check',
+    description: 'Visual review of fabric rolls, color uniformity, and material texture prior to cutting.',
   },
   {
     icon: Shield,
-    title: 'In-Process Inspection',
-    description: 'In-line stitching checks and dimensional verification during garment assembly.',
+    title: 'Stitching Assembly',
+    description: 'Review of seam alignment and construction during garment stitching.',
   },
   {
     icon: CheckCircle,
-    title: 'Final Quality Check',
-    description: 'Thorough inspection of finished products, trims, and zippers before packaging.',
+    title: 'Garment Finishing',
+    description: 'Review of finished garments, trims, fasteners, and labels prior to packing.',
   },
   {
     icon: FileText,
-    title: 'Order Verification',
-    description: 'Accurate packing lists, quantity counts, and batch labeling for delivery.',
+    title: 'Packaging & Counts',
+    description: 'Order verification, carton packing, and labelling for dispatch.',
   },
 ]
 
@@ -48,7 +48,7 @@ export function QualityAssurance() {
             Quality Assurance
           </h2>
           <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            Multi-stage in-house quality inspection ensuring reliable stitching, sizing, and finishing across all bulk batches.
+            Standard workflow steps reviewing fabric, stitching, and finishing across bulk apparel orders.
           </p>
         </div>
 
@@ -76,16 +76,16 @@ export function QualityAssurance() {
         <div className="mt-16 bg-primary p-8 rounded-2xl shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 font-bold text-accent mb-2">100%</div>
-              <div className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">Inspection Coverage</div>
+              <div className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 font-bold text-accent mb-2">Visual</div>
+              <div className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">Fabric & Seam Review</div>
             </div>
             <div>
-              <div className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 font-bold text-accent mb-2">In-House</div>
-              <div className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">Standardized QC Protocol</div>
+              <div className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 font-bold text-accent mb-2">Detailed</div>
+              <div className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">Pre-Packing Garment Check</div>
             </div>
             <div>
-              <div className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 font-bold text-accent mb-2">Strict</div>
-              <div className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">Stitching & Sizing Checks</div>
+              <div className="font-sans text-display-3-mobile md:text-display-3-tablet lg:text-display-3 font-bold text-accent mb-2">Accurate</div>
+              <div className="font-body text-white/80 text-body-sm-mobile md:text-body-sm-tablet lg:text-body-sm">Carton & Quantity Counts</div>
             </div>
           </div>
         </div>

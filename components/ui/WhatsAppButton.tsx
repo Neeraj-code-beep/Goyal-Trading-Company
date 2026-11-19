@@ -1,17 +1,21 @@
 'use client'
 
 import { MessageCircle } from 'lucide-react'
+import { siteConfig } from '@/config/site'
 
 interface WhatsAppButtonProps {
   hidden?: boolean
 }
 
 export function WhatsAppButton({ hidden = false }: WhatsAppButtonProps) {
-  const whatsappNumber = '919212126463'
+  // Public display and WhatsApp messaging are conditioned on explicit business owner approval
+  if (hidden || !siteConfig.contact.publicWhatsAppApproved || !siteConfig.contact.publicPhoneApproved) {
+    return null
+  }
+
+  const whatsappNumber = siteConfig.links.whatsapp
   const message = encodeURIComponent('Hi, I am interested in your products. Please share more details.')
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`
-
-  if (hidden) return null
 
   return (
     <a
