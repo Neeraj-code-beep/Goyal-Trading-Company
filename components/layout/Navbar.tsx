@@ -7,7 +7,7 @@ import { useScroll } from '@/hooks/useScroll'
 import { navigation } from '@/config/navigation'
 import { Button } from '@/components/ui/Button'
 import { MegaMenu } from '@/components/layout/MegaMenu'
-import { getProductFamily, getFeaturedProductFamilies } from '@/data/products'
+import { getProductFamily, getAllProductFamilies } from '@/data/products'
 import { type ProductFamilySlug } from '@/types/product'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -172,7 +172,7 @@ export function Navbar({ onMobileMenuChange }: NavbarProps = {}) {
     _setSelectedCategory(null)
   }
 
-  const featuredFamilies = getFeaturedProductFamilies()
+  const featuredFamilies = getAllProductFamilies()
 
   return (
     <>
