@@ -4,15 +4,14 @@ import { QuoteForm } from '@/components/forms/QuoteForm'
 import { generateBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
 import { Phone, MessageSquare, Clock, ShieldCheck, Mail, MapPin } from 'lucide-react'
 import { siteConfig } from '@/config/site'
+import { constructMetadata } from '@/config/seo'
 
-export const metadata: Metadata = {
-  title: 'Request a Wholesale Quote | Goyal Trading Company',
+export const metadata: Metadata = constructMetadata({
+  title: 'Request a Wholesale Quote',
   description:
     'Submit your garment manufacturing specifications, bulk order volumes, and custom apparel requirements for institutional B2B pricing.',
-  alternates: {
-    canonical: '/contact/request-quote',
-  },
-}
+  canonicalPath: '/contact/request-quote',
+})
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>

@@ -2,11 +2,14 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { ProductImageFallback } from '@/components/ui/ProductImageFallback'
 import { getCatalogueStats } from '@/data/products'
+import { constructMetadata } from '@/config/seo'
 
-export const metadata: Metadata = {
-  title: 'Gallery - Goyal Trading Company',
-  description: 'View our product gallery showcasing our range of sportswear, corporate wear, and custom manufacturing capabilities.',
-}
+export const metadata: Metadata = constructMetadata({
+  title: 'Product Gallery',
+  description:
+    'View our product gallery showcasing our range of sportswear, corporate wear, and custom manufacturing capabilities.',
+  canonicalPath: '/gallery',
+})
 
 export default function GalleryPage() {
   const stats = getCatalogueStats()

@@ -2,11 +2,14 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { BusinessMetricsGrid } from './BusinessMetricsGrid'
 import { getCatalogueStats } from '@/data/products'
+import { constructMetadata } from '@/config/seo'
 
-export const metadata: Metadata = {
-  title: 'About Us - Goyal Trading Company',
-  description: 'Learn about Goyal Trading Company, a premier manufacturer and supplier of sportswear since 2000, operating from New Delhi with global export capabilities.',
-}
+export const metadata: Metadata = constructMetadata({
+  title: 'About Us',
+  description:
+    'Learn about Goyal Trading Company, an established manufacturer and supplier of sportswear since 2000, operating from Delhi with domestic and institutional supply capabilities.',
+  canonicalPath: '/about',
+})
 
 export default function AboutPage() {
   const stats = getCatalogueStats()

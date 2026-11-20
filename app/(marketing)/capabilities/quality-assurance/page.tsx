@@ -1,10 +1,13 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { constructMetadata } from '@/config/seo'
 
-export const metadata: Metadata = {
-  title: 'Quality Assurance - Goyal Trading Company',
-  description: 'Learn about our quality assurance processes, standards, and commitment to delivering premium quality products.',
-}
+export const metadata: Metadata = constructMetadata({
+  title: 'Quality Assurance',
+  description:
+    'Learn about our quality assurance processes, fabric inspection, and commitment to delivering consistent apparel production.',
+  canonicalPath: '/capabilities/quality-assurance',
+})
 
 export default function QualityAssurancePage() {
   return (

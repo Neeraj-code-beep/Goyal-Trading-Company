@@ -3,14 +3,14 @@ import { getAllProductFamilies, getAllCategories, getAllProducts, getCatalogueSt
 import Link from 'next/link'
 import { ProductCatalogueExplorer } from '@/components/products/ProductCatalogueExplorer'
 import { ArrowRight, ShieldCheck } from 'lucide-react'
+import { constructMetadata } from '@/config/seo'
 
-export const metadata: Metadata = {
-  title: 'B2B Product Catalogue - Goyal Trading Company',
-  description: 'Explore our complete B2B manufacturing catalogue: 13 product families, 35 garment categories, including sportswear, track suits, uniforms, and corporate apparel.',
-  alternates: {
-    canonical: '/products',
-  },
-}
+export const metadata: Metadata = constructMetadata({
+  title: 'B2B Product Catalogue',
+  description:
+    'Explore our complete B2B manufacturing catalogue: 13 product families, 35 garment categories, including sportswear, track suits, uniforms, and corporate apparel.',
+  canonicalPath: '/products',
+})
 
 export default function ProductsPage() {
   const families = getAllProductFamilies()

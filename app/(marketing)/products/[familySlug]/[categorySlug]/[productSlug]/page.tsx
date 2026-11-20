@@ -5,6 +5,7 @@ import { type ProductFamilySlug } from '@/types/product'
 import { ProductImageFallback } from '@/components/ui/ProductImageFallback'
 import { ProductCard } from '@/components/products/ProductCard'
 import { generateProductJsonLd, generateBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
+import { constructMetadata } from '@/config/seo'
 import { siteConfig } from '@/config/site'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -24,20 +25,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const result = getProductByHierarchy(familySlug as ProductFamilySlug, categorySlug, productSlug)
 
   if (!result) {
-    return {
-      title: 'Product Not Found - Goyal Trading Company',
-    }
+    return constructMetadata({
+      title: 'Product Not Found',
+      noIndex: true,
+    })
   }
 
   const { product, category } = result
 
-  return {
-    title: `${product.name} - ${category.name} | Goyal Trading Company`,
+  return constructMetadata({
+    title: `${product.name} - ${category.name}`,
     description: product.description,
-    alternates: {
-      canonical: `/products/${familySlug}/${categorySlug}/${productSlug}`,
-    },
-  }
+    canonicalPath: `/products/${familySlug}/${categorySlug}/${productSlug}`,
+    image: product.image,
+  })
 }
 
 export async function generateStaticParams() {

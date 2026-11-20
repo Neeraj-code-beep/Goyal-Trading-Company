@@ -1,10 +1,13 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { constructMetadata } from '@/config/seo'
 
-export const metadata: Metadata = {
-  title: 'Manufacturing Capabilities - Goyal Trading Company',
-  description: 'Learn about our manufacturing capabilities including production capacity, equipment, and custom manufacturing services.',
-}
+export const metadata: Metadata = constructMetadata({
+  title: 'Manufacturing Capabilities',
+  description:
+    'Learn about our manufacturing capabilities including production setup, equipment, and custom manufacturing services in Delhi.',
+  canonicalPath: '/capabilities/manufacturing',
+})
 
 export default function ManufacturingPage() {
   return (

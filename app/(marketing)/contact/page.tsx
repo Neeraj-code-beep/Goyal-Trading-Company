@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { siteConfig } from '@/config/site'
 import { GoogleMap } from '@/components/ui/GoogleMap'
 import { generateBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
+import { constructMetadata } from '@/config/seo'
 import {
   Mail,
   Phone,
@@ -17,14 +18,12 @@ import {
   MessageSquare,
 } from 'lucide-react'
 
-export const metadata: Metadata = {
-  title: 'Contact Us | Goyal Trading Company - B2B Apparel Manufacturing',
+export const metadata: Metadata = constructMetadata({
+  title: 'Contact Us',
   description:
     'Connect with Goyal Trading Company for bulk apparel manufacturing, wholesale quotations, fabric sample requests, and institutional business inquiries at our Delhi business office.',
-  alternates: {
-    canonical: '/contact',
-  },
-}
+  canonicalPath: '/contact',
+})
 
 export default function ContactPage() {
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([

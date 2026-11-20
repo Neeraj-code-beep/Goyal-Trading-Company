@@ -5,6 +5,7 @@ import { type ProductFamilySlug } from '@/types/product'
 import { CategoryCard } from '@/components/products/CategoryCard'
 import { ProductCard } from '@/components/products/ProductCard'
 import { generateBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
+import { constructMetadata } from '@/config/seo'
 import Link from 'next/link'
 import { ArrowRight, ChevronRight } from 'lucide-react'
 
@@ -19,18 +20,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const family = getProductFamily(familySlug as ProductFamilySlug)
 
   if (!family) {
-    return {
-      title: 'Product Family Not Found - Goyal Trading Company',
-    }
+    return constructMetadata({
+      title: 'Product Family Not Found',
+      noIndex: true,
+    })
   }
 
-  return {
-    title: `${family.name} Manufacturing & Wholesale - Goyal Trading Company`,
+  return constructMetadata({
+    title: `${family.name} Manufacturing & Wholesale`,
     description: family.description,
-    alternates: {
-      canonical: `/products/${familySlug}`,
-    },
-  }
+    canonicalPath: `/products/${familySlug}`,
+  })
 }
 
 export async function generateStaticParams() {

@@ -1,10 +1,13 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { constructMetadata } from '@/config/seo'
 
-export const metadata: Metadata = {
-  title: 'Infrastructure - Goyal Trading Company',
-  description: 'Learn about our infrastructure including production facilities, premises, and operational setup.',
-}
+export const metadata: Metadata = constructMetadata({
+  title: 'Infrastructure & Facilities',
+  description:
+    'Explore our Delhi production facilities, cutting, stitching, and finishing infrastructure for institutional garment manufacturing.',
+  canonicalPath: '/capabilities/infrastructure',
+})
 
 export default function InfrastructurePage() {
   return (

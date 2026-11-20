@@ -4,15 +4,14 @@ import { SampleRequestForm } from '@/components/forms/SampleRequestForm'
 import { generateBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
 import { Phone, MessageSquare, ShieldCheck, Check, Mail, MapPin } from 'lucide-react'
 import { siteConfig } from '@/config/site'
+import { constructMetadata } from '@/config/seo'
 
-export const metadata: Metadata = {
-  title: 'Request Garment Samples | Goyal Trading Company',
+export const metadata: Metadata = constructMetadata({
+  title: 'Request Garment Samples',
   description:
     'Order fabric swatches, prototype garments, or sizing specification sets for institutional evaluation prior to bulk manufacturing.',
-  alternates: {
-    canonical: '/contact/request-sample',
-  },
-}
+  canonicalPath: '/contact/request-sample',
+})
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
