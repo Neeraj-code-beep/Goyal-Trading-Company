@@ -7,7 +7,7 @@ export function GoogleMap() {
   const address = siteConfig.links.address.full
   const encodedAddress = encodeURIComponent(address)
   const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`
-  
+
   // Using Google Maps embed without API key for basic display
   const mapUrl = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=15&ie=UTF8&iwloc=&output=embed`
 
@@ -17,7 +17,7 @@ export function GoogleMap() {
       <div>
         <h3 className="font-sans text-h3 text-primary mb-4">Visit Goyal Trading Company</h3>
         <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
-          <address className="not-font-sans not-italic space-y-1">
+          <address className="font-body not-italic space-y-1">
             <p className="font-body text-body text-gray-900">{siteConfig.links.address.line1}</p>
             <p className="font-body text-body text-gray-900">{siteConfig.links.address.landmark}</p>
             <p className="font-body text-body text-gray-900">{siteConfig.links.address.locality}</p>

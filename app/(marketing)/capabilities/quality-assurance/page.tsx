@@ -101,22 +101,18 @@ export default function QualityAssurancePage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
               <div className="text-center p-4 bg-white rounded-xl shadow-sm">
-                <div className="font-sans text-h2 text-primary mb-1">GST REGISTERED</div>
-                <div className="font-body text-xs text-gray-500">07AFEPG9418H1ZF</div>
+                <div className="font-sans text-h2 text-primary mb-1">SINCE 2000</div>
+                <div className="font-body text-xs text-gray-500">ESTABLISHED YEAR</div>
               </div>
               <div className="text-center p-4 bg-white rounded-xl shadow-sm">
-                <div className="font-sans text-h2 text-primary mb-1">DGFT / IE CODE</div>
-                <div className="font-body text-xs text-gray-500">0511050160</div>
+                <div className="font-sans text-h2 text-primary mb-1">DELHI FACILITY</div>
+                <div className="font-body text-xs text-gray-500">SHASTRI NAGAR</div>
               </div>
               <div className="text-center p-4 bg-white rounded-xl shadow-sm">
-                <div className="font-sans text-h2 text-primary mb-1">26+ YEARS</div>
-                <div className="font-body text-xs text-gray-500">SINCE 2000</div>
-              </div>
-              <div className="text-center p-4 bg-white rounded-xl shadow-sm">
-                <div className="font-sans text-h2 text-primary mb-1">10K SETS/MONTH</div>
-                <div className="font-body text-xs text-gray-500">CAPACITY</div>
+                <div className="font-sans text-h2 text-primary mb-1">13 FAMILIES</div>
+                <div className="font-body text-xs text-gray-500">PRODUCT RANGE</div>
               </div>
             </div>
           </div>
@@ -135,7 +131,7 @@ export default function QualityAssurancePage() {
                 Six Pillars of Quality
               </h2>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 { title: 'Color Fastness', description: 'Ensuring colors remain vibrant through multiple washes' },
@@ -173,7 +169,7 @@ export default function QualityAssurancePage() {
                 Our centralized quality control system ensures consistent quality across all production units.
               </p>
             </div>
-            
+
             <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
               <div className="space-y-0">
                 {[
@@ -208,7 +204,7 @@ export default function QualityAssurancePage() {
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -219,18 +215,18 @@ export default function QualityAssurancePage() {
                 Legal & Regulatory Compliance
               </h2>
             </div>
-            
+
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                  <h3 className="font-sans text-h3 text-white mb-2">GST Registered</h3>
-                  <p className="font-body text-body text-white/70">Compliant Indian Tax Entity</p>
-                  <p className="font-body text-sm text-white/50 mt-2">Verified statutory registration</p>
+                  <h3 className="font-sans text-h3 text-white mb-2">B2B Trade Focus</h3>
+                  <p className="font-body text-body text-white/70">Commercial Supply Entity</p>
+                  <p className="font-body text-sm text-white/50 mt-2">Apparel manufacturing and wholesale</p>
                 </div>
                 <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                  <h3 className="font-sans text-h3 text-white mb-2">Export Licensed</h3>
-                  <p className="font-body text-body text-white/70">DGFT / Import-Export Code</p>
-                  <p className="font-body text-sm text-white/50 mt-2">Authorized for international trade</p>
+                  <h3 className="font-sans text-h3 text-white mb-2">Custom Fabrication</h3>
+                  <p className="font-body text-body text-white/70">Specification Driven</p>
+                  <p className="font-body text-sm text-white/50 mt-2">Fabric, GSM, and finishing support</p>
                 </div>
                 <div className="p-6 bg-white/5 rounded-xl border border-white/10">
                   <h3 className="font-sans text-h3 text-white mb-2">Established Heritage</h3>
@@ -238,9 +234,9 @@ export default function QualityAssurancePage() {
                   <p className="font-body text-sm text-white/50 mt-2">Over two decades of operation</p>
                 </div>
                 <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                  <h3 className="font-sans text-h3 text-white mb-2">Manufacturing Facilities</h3>
-                  <p className="font-body text-body text-white/70">2 Production Units in Delhi</p>
-                  <p className="font-body text-sm text-white/50 mt-2">Equipped for bulk apparel manufacturing</p>
+                  <h3 className="font-sans text-h3 text-white mb-2">Delhi Operations</h3>
+                  <p className="font-body text-body text-white/70">Shastri Nagar Facility</p>
+                  <p className="font-body text-sm text-white/50 mt-2">Batch manufacturing and order fulfillment</p>
                 </div>
               </div>
             </div>
@@ -260,12 +256,12 @@ export default function QualityAssurancePage() {
                 Quality Control Team
               </h2>
             </div>
-            
+
             <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
               <p className="font-body text-body-lg text-gray-600 mb-8 leading-relaxed">
                 Our dedicated quality control team includes experienced professionals who ensure every product meets our stringent quality standards before it reaches our customers.
               </p>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-100">
                   <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -297,7 +293,7 @@ export default function QualityAssurancePage() {
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        
+
         <div className="container mx-auto px-6 text-center relative z-10">
           <h2 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-white mb-4 leading-tight">
             Quality You Can Trust
@@ -306,7 +302,7 @@ export default function QualityAssurancePage() {
             Experience our commitment to quality firsthand. Request a sample to verify our standards.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link 
+            <Link
               href="/contact/request-sample"
               className="inline-block px-8 py-4 bg-accent text-white font-sans font-semibold rounded-lg hover:bg-accent/90 transition-colors"
             >

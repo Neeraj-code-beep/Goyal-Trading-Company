@@ -120,55 +120,84 @@ export function QuoteForm({
   return (
     <div className={`bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-200 ${className}`}>
       {/* 2. Honest Fallback Notice (When email provider is not yet configured) */}
-      {state?.status === 'provider_unavailable' && (
-        <div className="mb-8 p-6 bg-amber-50/80 border border-amber-200 rounded-xl" role="alert">
-          <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <AlertTriangle size={20} />
-            </div>
-            <div>
-              <h4 className="font-sans font-bold text-amber-900 mb-1">
-                Direct Submission Channel Ready
-              </h4>
-              <p className="font-body text-sm text-amber-800 leading-relaxed mb-4">
-                Automated email dispatch is awaiting backend provider configuration. To ensure your quotation is processed immediately without delay, please dispatch your verified specifications directly to our sales desk.
-              </p>
+      {state?.status === 'provider_unavailable' && (() => {
+        const mailSubject = encodeURIComponent(
+          `B2B Wholesale Quotation Request - ${formData.productInterest || formData.categorySlug || 'General Inquiry'}`
+        )
+        const mailBody = encodeURIComponent(
+          [
+            `B2B Wholesale Quotation Request`,
+            `----------------------------------------`,
+            `Buyer / Contact Person: ${formData.name}`,
+            `Company / Organization: ${formData.company}`,
+            `Work Email: ${formData.email}`,
+            `Phone: ${formData.phone}`,
+            formData.productInterest ? `Product Interest: ${formData.productInterest}` : '',
+            formData.familySlug ? `Product Family: ${formData.familySlug}` : '',
+            formData.categorySlug ? `Product Category: ${formData.categorySlug}` : '',
+            `Estimated Order Volume: ${formData.estimatedQuantity}`,
+            formData.targetDeliveryDate ? `Target Delivery Date: ${formData.targetDeliveryDate}` : '',
+            `Garment Specifications & Requirements:\n${formData.specificationsMessage}`,
+            `----------------------------------------`,
+            `Sent from Goyal Trading Company Quotation Desk`,
+          ]
+            .filter(Boolean)
+            .join('\n')
+        )
+        const mailtoUrl = `mailto:${siteConfig.links.email}?subject=${mailSubject}&body=${mailBody}`
 
-              <div className="flex flex-wrap gap-3">
-                {siteConfig.contact.publicWhatsAppApproved && siteConfig.contact.publicPhoneApproved && state.fallbackWhatsAppUrl ? (
+        return (
+          <div className="mb-8 p-6 bg-amber-50/80 border border-amber-200 rounded-xl" role="alert" aria-live="polite">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <AlertTriangle size={20} />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-sans font-bold text-amber-900 mb-1">
+                  Direct Submission Channel Ready
+                </h4>
+                <p className="font-body text-sm text-amber-800 leading-relaxed mb-4">
+                  Automated direct email dispatch is awaiting backend provider configuration. Your specifications have been formatted below for direct dispatch to our business desk. Clicking the email link will open your default email application with all specifications prefilled.
+                </p>
+
+                <div className="flex flex-wrap gap-3 mb-3">
+                  {siteConfig.contact.publicWhatsAppApproved && siteConfig.contact.publicPhoneApproved && state.fallbackWhatsAppUrl ? (
+                    <a
+                      href={state.fallbackWhatsAppUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-sans text-sm font-semibold rounded-lg transition-colors shadow-sm"
+                    >
+                      <MessageSquare size={16} />
+                      <span>Send via WhatsApp ({state.verifiedContactPhone})</span>
+                      <ArrowRight size={14} />
+                    </a>
+                  ) : null}
                   <a
-                    href={state.fallbackWhatsAppUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-sans text-sm font-semibold rounded-lg transition-colors shadow-sm"
-                  >
-                    <MessageSquare size={16} />
-                    <span>Send via WhatsApp ({state.verifiedContactPhone})</span>
-                    <ArrowRight size={14} />
-                  </a>
-                ) : (
-                  <a
-                    href={`mailto:${siteConfig.links.email}?subject=${encodeURIComponent('B2B Wholesale Quotation Request - ' + (formData.productInterest || 'General Inquiry'))}`}
+                    href={mailtoUrl}
                     className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-dark text-white font-sans text-sm font-semibold rounded-lg transition-colors shadow-sm"
                   >
                     <span>Email Specifications to Business Desk ({siteConfig.links.email})</span>
                     <ArrowRight size={14} />
                   </a>
-                )}
-                {siteConfig.contact.publicPhoneApproved && state.verifiedContactPhone && (
-                  <a
-                    href={`tel:${state.verifiedContactPhone.replace(/\s+/g, '')}`}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-amber-300 hover:bg-amber-100 text-amber-900 font-sans text-sm font-semibold rounded-lg transition-colors"
-                  >
-                    <PhoneCall size={16} />
-                    <span>Call Sales Desk</span>
-                  </a>
-                )}
+                  {siteConfig.contact.publicPhoneApproved && state.verifiedContactPhone && (
+                    <a
+                      href={`tel:${state.verifiedContactPhone.replace(/\s+/g, '')}`}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-amber-300 hover:bg-amber-100 text-amber-900 font-sans text-sm font-semibold rounded-lg transition-colors"
+                    >
+                      <PhoneCall size={16} />
+                      <span>Call Sales Desk</span>
+                    </a>
+                  )}
+                </div>
+                <p className="font-body text-xs text-amber-700 italic">
+                  Note: Your email application will open. Please review and send your message to ensure receipt.
+                </p>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      })()}
 
       {/* Verified Context Indicator */}
       {(formData.productInterest || formData.familySlug || formData.categorySlug) && (

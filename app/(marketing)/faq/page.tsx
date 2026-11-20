@@ -14,11 +14,11 @@ const faqs = [
       },
       {
         q: 'What is your production capacity?',
-        a: 'We operate 2 specialized manufacturing units in New Delhi, equipped for flexible batch production to handle medium-to-large bulk institutional and corporate orders.',
+        a: 'We manufacture apparel orders based on customer specifications, volume requirements, and agreed delivery schedules from our Delhi facility.',
       },
       {
-        q: 'Do you export internationally?',
-        a: 'Yes, we export to multiple countries including UAE, USA, UK, Africa, Asia, Australia, Central America, Eastern Europe, Middle East, North America, South America, and Western Europe.',
+        q: 'What geographic markets do you serve?',
+        a: 'We supply institutional buyers, athletic clubs, and corporate organizations across India from our Delhi business office.',
       },
     ],
   },
@@ -44,19 +44,19 @@ const faqs = [
     questions: [
       {
         q: 'How can I request a quote?',
-        a: 'You can request a quote through our website by filling out the quote request form, or contact us directly via phone or WhatsApp.',
+        a: 'You can request a wholesale quote through our website using our quotation request form or by emailing our business desk at Goyals27@yahoo.in.',
       },
       {
         q: 'Can I request a sample before placing a bulk order?',
-        a: 'Yes, we provide samples for quality evaluation. Please use our sample request form or contact us directly.',
+        a: 'Yes, fabric swatches and prototype samples are available for evaluation. Please submit your sample request through our website to discuss availability and arrangements.',
       },
       {
         q: 'What are your payment terms?',
-        a: 'We accept cash, cheque, credit card, and demand draft. Specific payment terms can be discussed based on order size.',
+        a: 'Commercial terms are discussed and agreed upon directly based on order volume, garment specifications, and buyer requirements.',
       },
       {
         q: 'How do you ship orders?',
-        a: 'We ship by road and sea. Shipping method depends on order size, destination, and customer preference.',
+        a: 'Dispatch and freight arrangements are coordinated per order volume, destination, and buyer preferences.',
       },
     ],
   },
@@ -68,8 +68,8 @@ const faqs = [
         a: 'We maintain strict quality control with centralized systems ensuring color fastness, excellent fabric quality, faultless fitting, fine stitching, and shrinkage-free products.',
       },
       {
-        q: 'Are you certified and legally registered?',
-        a: 'Yes, we are a GST-registered enterprise holding an official DGFT Import-Export License with full statutory tax compliance in New Delhi, India.',
+        q: 'What commercial standards do you maintain?',
+        a: 'Established in 2000, Goyal Trading Company operates as an established B2B apparel and textile manufacturer adhering to strict quality controls for fabric hand-feel, color fastness, and stitching construction.',
       },
     ],
   },
@@ -151,7 +151,7 @@ export default function FAQPage() {
                 {/* Floating Support Badge */}
                 <div className="absolute -top-4 -right-4 bg-white/10 backdrop-blur-sm text-white rounded-xl p-4 border border-white/30">
                   <div className="text-center">
-                    <div className="font-sans text-2xl font-bold">24h</div>
+                    <div className="font-sans text-2xl font-bold">Direct</div>
                     <div className="font-body text-xs">Support</div>
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export default function FAQPage() {
                     {category.category === 'Quality' && 'Quality & Compliance'}
                   </h2>
                 </div>
-                
+
                 <div className="space-y-4">
                   {category.questions.map((faq, questionIndex) => (
                     <div
@@ -203,7 +203,7 @@ export default function FAQPage() {
                           size={20}
                         />
                       </button>
-                      
+
                       {openIndex?.category === categoryIndex && openIndex?.question === questionIndex && (
                         <div className="px-6 py-5 bg-gray-50 border-t border-gray-200">
                           <p className="font-body text-body text-gray-600 leading-relaxed">
@@ -226,7 +226,7 @@ export default function FAQPage() {
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        
+
         <div className="container mx-auto px-6 text-center relative z-10">
           <h2 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-white mb-4 leading-tight">
             Still Have Questions?
@@ -241,14 +241,12 @@ export default function FAQPage() {
             >
               Contact Us
             </Link>
-            <a
-              href="https://wa.me/919212126463"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact/request-quote"
               className="inline-block px-8 py-4 bg-white/10 text-white font-sans font-semibold rounded-lg hover:bg-white/20 transition-all duration-300 border border-white/30 hover:shadow-lg hover:-translate-y-0.5"
             >
-              Chat on WhatsApp
-            </a>
+              Request a Quote
+            </Link>
           </div>
         </div>
       </section>

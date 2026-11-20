@@ -2,7 +2,8 @@ import { Metadata } from 'next'
 import { resolveCataloguePrefill } from '@/lib/catalogue/prefill'
 import { SampleRequestForm } from '@/components/forms/SampleRequestForm'
 import { generateBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
-import { Phone, MessageSquare, ShieldCheck, Check } from 'lucide-react'
+import { Phone, MessageSquare, ShieldCheck, Check, Mail, MapPin } from 'lucide-react'
+import { siteConfig } from '@/config/site'
 
 export const metadata: Metadata = {
   title: 'Request Garment Samples | Goyal Trading Company',
@@ -102,52 +103,83 @@ export default async function RequestSamplePage({ searchParams }: PageProps) {
                     </div>
                     <div className="flex items-start gap-2.5">
                       <Check size={16} className="text-accent flex-shrink-0 mt-0.5" />
-                      <span>Dispatch schedule confirmed directly by production coordinator.</span>
+                      <span>Submit your sample inquiry and discuss availability and applicable arrangements with the business.</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="bg-gray-50 rounded-2xl p-7 border border-gray-200">
                   <h4 className="font-sans font-bold text-sm text-primary mb-3">
-                    Direct Coordination Line
+                    Business Coordination Desk
                   </h4>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Phone size={18} className="text-primary" />
+                        <Mail size={18} className="text-primary" />
                       </div>
                       <div>
-                        <p className="font-body text-xs text-gray-500">Telephone Line</p>
+                        <p className="font-body text-xs text-gray-500">Verified Business Email</p>
                         <a
-                          href="tel:+919212126463"
-                          className="font-body text-sm font-semibold text-primary hover:text-accent transition-colors"
+                          href={`mailto:${siteConfig.links.email}`}
+                          className="font-body text-sm font-semibold text-primary hover:text-accent transition-colors break-all"
                         >
-                          +91 9212126463
+                          {siteConfig.links.email}
                         </a>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
-                        <MessageSquare size={18} className="text-green-700" />
+                    {siteConfig.contact.publicPhoneApproved && (
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <Phone size={18} className="text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-body text-xs text-gray-500">Telephone Line</p>
+                          <a
+                            href={`tel:${siteConfig.links.phone.replace(/\s+/g, '')}`}
+                            className="font-body text-sm font-semibold text-primary hover:text-accent transition-colors"
+                          >
+                            {siteConfig.links.phone}
+                          </a>
+                        </div>
+                      </div>
+                    )}
+
+                    {siteConfig.contact.publicWhatsAppApproved && siteConfig.contact.publicPhoneApproved && (
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
+                          <MessageSquare size={18} className="text-green-700" />
+                        </div>
+                        <div>
+                          <p className="font-body text-xs text-gray-500">WhatsApp Desk</p>
+                          <a
+                            href={`https://wa.me/${siteConfig.links.whatsapp}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-body text-sm font-semibold text-primary hover:text-accent transition-colors"
+                          >
+                            +{siteConfig.links.whatsapp}
+                          </a>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="flex items-start gap-3 pt-3 border-t border-gray-200">
+                      <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <MapPin size={18} className="text-primary" />
                       </div>
                       <div>
-                        <p className="font-body text-xs text-gray-500">WhatsApp Desk</p>
-                        <a
-                          href="https://wa.me/919212126463"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-body text-sm font-semibold text-primary hover:text-accent transition-colors"
-                        >
-                          +91 9212126463
-                        </a>
+                        <p className="font-body text-xs text-gray-500">Dispatch Office</p>
+                        <p className="font-body text-xs text-gray-600 leading-relaxed">
+                          {siteConfig.links.address.full}
+                        </p>
                       </div>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2 pt-4 mt-4 border-t border-gray-200 text-xs text-gray-500">
                     <ShieldCheck size={16} className="text-primary/60" />
-                    <span>Delhi Production Facility | E-187, Shastri Nagar</span>
+                    <span>Established in 2000 | Delhi Office</span>
                   </div>
                 </div>
               </div>

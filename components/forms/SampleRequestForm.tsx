@@ -111,55 +111,88 @@ export function SampleRequestForm({
   return (
     <div className={`bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-200 ${className}`}>
       {/* Fallback Notice */}
-      {state?.status === 'provider_unavailable' && (
-        <div className="mb-8 p-6 bg-amber-50/80 border border-amber-200 rounded-xl" role="alert">
-          <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <AlertTriangle size={20} />
-            </div>
-            <div>
-              <h4 className="font-sans font-bold text-amber-900 mb-1">
-                Direct Sample Dispatch Desk Ready
-              </h4>
-              <p className="font-body text-sm text-amber-800 leading-relaxed mb-4">
-                Automated email dispatch is awaiting backend provider configuration. To arrange sample dispatch without delay, please send your courier address directly to our sales desk.
-              </p>
+      {state?.status === 'provider_unavailable' && (() => {
+        const sampleTypeLabelMap: Record<string, string> = {
+          'fabric-swatch': 'Fabric Swatch',
+          'prototype-garment': 'Prototype Garment',
+          'size-set': 'Size Specification Set',
+        }
+        const sampleFormatLabel = sampleTypeLabelMap[formData.sampleType] || formData.sampleType
+        const mailSubject = encodeURIComponent(
+          `Garment Sample Request - ${formData.productInterest || sampleFormatLabel}`
+        )
+        const mailBody = encodeURIComponent(
+          [
+            `Garment Sample Dispatch Request`,
+            `----------------------------------------`,
+            `Recipient Name: ${formData.name}`,
+            `Company / Organization: ${formData.company}`,
+            `Business Email: ${formData.email}`,
+            `Courier Contact Phone: ${formData.phone}`,
+            `Sample Format: ${sampleFormatLabel}`,
+            formData.productInterest ? `Product Interest: ${formData.productInterest}` : '',
+            `Courier Delivery Address:\n${formData.deliveryAddress}\n${formData.city} - ${formData.postalCode}`,
+            formData.customRequirements ? `Custom Specifications:\n${formData.customRequirements}` : '',
+            `----------------------------------------`,
+            `Sent from Goyal Trading Company Sample Request Desk`,
+          ]
+            .filter(Boolean)
+            .join('\n')
+        )
+        const mailtoUrl = `mailto:${siteConfig.links.email}?subject=${mailSubject}&body=${mailBody}`
 
-              <div className="flex flex-wrap gap-3">
-                {siteConfig.contact.publicWhatsAppApproved && siteConfig.contact.publicPhoneApproved && state.fallbackWhatsAppUrl ? (
+        return (
+          <div className="mb-8 p-6 bg-amber-50/80 border border-amber-200 rounded-xl" role="alert" aria-live="polite">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <AlertTriangle size={20} />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-sans font-bold text-amber-900 mb-1">
+                  Direct Sample Dispatch Desk Ready
+                </h4>
+                <p className="font-body text-sm text-amber-800 leading-relaxed mb-4">
+                  Automated direct email dispatch is awaiting backend provider configuration. Your sample request details have been formatted below. Please send them directly to our business desk via email. Your email application will open with your courier details prefilled.
+                </p>
+
+                <div className="flex flex-wrap gap-3 mb-3">
+                  {siteConfig.contact.publicWhatsAppApproved && siteConfig.contact.publicPhoneApproved && state.fallbackWhatsAppUrl ? (
+                    <a
+                      href={state.fallbackWhatsAppUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-sans text-sm font-semibold rounded-lg transition-colors shadow-sm"
+                    >
+                      <MessageSquare size={16} />
+                      <span>Send Sample Address via WhatsApp ({state.verifiedContactPhone})</span>
+                      <ArrowRight size={14} />
+                    </a>
+                  ) : null}
                   <a
-                    href={state.fallbackWhatsAppUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-sans text-sm font-semibold rounded-lg transition-colors shadow-sm"
-                  >
-                    <MessageSquare size={16} />
-                    <span>Send Sample Address via WhatsApp ({state.verifiedContactPhone})</span>
-                    <ArrowRight size={14} />
-                  </a>
-                ) : (
-                  <a
-                    href={`mailto:${siteConfig.links.email}?subject=${encodeURIComponent('Sample Request Delivery Details - ' + (formData.productInterest || 'General Sample'))}`}
+                    href={mailtoUrl}
                     className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-dark text-white font-sans text-sm font-semibold rounded-lg transition-colors shadow-sm"
                   >
                     <span>Email Courier Address to Business Desk ({siteConfig.links.email})</span>
                     <ArrowRight size={14} />
                   </a>
-                )}
-                {siteConfig.contact.publicPhoneApproved && state.verifiedContactPhone && (
-                  <a
-                    href={`tel:${state.verifiedContactPhone.replace(/\s+/g, '')}`}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-amber-300 hover:bg-amber-100 text-amber-900 font-sans text-sm font-semibold rounded-lg transition-colors"
-                  >
-                    <PhoneCall size={16} />
-                    <span>Call Sales Desk</span>
-                  </a>
-                )}
+                  {siteConfig.contact.publicPhoneApproved && state.verifiedContactPhone && (
+                    <a
+                      href={`tel:${state.verifiedContactPhone.replace(/\s+/g, '')}`}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-amber-300 hover:bg-amber-100 text-amber-900 font-sans text-sm font-semibold rounded-lg transition-colors"
+                    >
+                      <PhoneCall size={16} />
+                      <span>Call Sales Desk</span>
+                    </a>
+                  )}
+                </div>
+                <p className="font-body text-xs text-amber-700 italic">
+                  Note: Your email application will open. Please review and send your message to arrange sample evaluation.
+                </p>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      })()}
 
       {/* Target Product Badge */}
       {formData.productInterest && (
@@ -440,7 +473,7 @@ export function SampleRequestForm({
         </div>
 
         <p className="font-body text-xs text-gray-500 leading-relaxed">
-          * Our production coordinator will contact your representative to confirm sample availability, courier tracking, and dispatch schedule per institutional requirements.
+          * Submit your sample inquiry and discuss availability, format options, and applicable courier arrangements with our business representative.
         </p>
 
         <Button

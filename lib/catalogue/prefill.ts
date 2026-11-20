@@ -4,6 +4,7 @@ import { getAllProductFamilies, getAllCategories, getAllProducts } from '@/data/
 export interface VerifiedCataloguePrefill {
   isValid: boolean
   product?: {
+    id: string
     slug: string
     name: string
   }
@@ -34,7 +35,7 @@ export function resolveCataloguePrefill(
   const rawFamily = getParam('family')
   const rawCategory = getParam('category')
 
-  let matchedProduct: { slug: string; name: string } | undefined
+  let matchedProduct: { id: string; slug: string; name: string } | undefined
   let matchedFamily: { slug: ProductFamilySlug; name: string } | undefined
   let matchedCategory: { slug: string; name: string } | undefined
 
@@ -51,7 +52,7 @@ export function resolveCataloguePrefill(
         prod.id === rawProduct
     )
     if (p) {
-      matchedProduct = { slug: p.slug, name: p.name }
+      matchedProduct = { id: p.id, slug: p.slug, name: p.name }
       const f = allFamilies.find(fam => fam.slug === p.familySlug)
       if (f) matchedFamily = { slug: f.slug, name: f.name }
       const c = allCategories.find(cat => cat.slug === p.categorySlug && cat.familySlug === p.familySlug)

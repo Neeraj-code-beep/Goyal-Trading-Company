@@ -128,7 +128,7 @@ export default function AboutPage() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl">
                 <div
                   className="aspect-[4/3] bg-cover bg-center"
-                  style={{ 
+                  style={{
                     backgroundImage: 'url(https://images.unsplash.com/photo-1556906781-9a412961c28c?auto=format&fit=crop&w=800&q=80)',
                     objectPosition: 'center 30%'
                   }}
@@ -169,7 +169,7 @@ export default function AboutPage() {
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <span className="font-sans text-caption font-semibold text-accent uppercase tracking-wider mb-4 inline-block">
@@ -179,12 +179,12 @@ export default function AboutPage() {
               Verified Operational Data
             </h2>
           </div>
-          
+
           <BusinessMetricsGrid metrics={[
             { metric: '2000', label: 'ESTABLISHED', detail: 'Year Founded' },
-            { metric: '02', label: 'UNITS', detail: 'Production Facilities' },
+            { metric: 'Delhi', label: 'LOCATION', detail: 'Shastri Nagar Facility' },
             { metric: '13', label: 'FAMILIES', detail: 'Product Range' },
-            { metric: 'Global', label: 'REACH', detail: 'Export Ready' },
+            { metric: 'B2B', label: 'FOCUS', detail: 'Wholesale & Institutional' },
           ]} />
         </div>
       </section>
@@ -288,7 +288,7 @@ export default function AboutPage() {
             <h2 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-8 leading-tight">
               Verified Legal & Financial Details
             </h2>
-            
+
             <div className="bg-white rounded-2xl p-8 border border-gray-200">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
@@ -312,7 +312,7 @@ export default function AboutPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div>
                   <h3 className="font-sans text-h3 text-primary mb-6">Banking Partners</h3>
                   <div className="space-y-4">
@@ -340,7 +340,7 @@ export default function AboutPage() {
             <h2 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-8 leading-tight">
               Trusted Across Public & Private Sectors
             </h2>
-            
+
             <div className="space-y-4">
               {[
                 { name: 'Government & Institutional Departments', location: 'Institutional uniform supplies & physical training apparel' },
@@ -372,7 +372,7 @@ export default function AboutPage() {
             <h2 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-primary mb-8 leading-tight">
               Diverse Industry Applications
             </h2>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {[
                 'Educational Institutions',
@@ -397,7 +397,7 @@ export default function AboutPage() {
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        
+
         <div className="container mx-auto px-6 text-center relative z-10">
           <h2 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-white mb-4 leading-tight">
             Ready to Work Together?
@@ -406,13 +406,13 @@ export default function AboutPage() {
             Contact us to discuss your sportswear manufacturing requirements. We&apos;re ready to deliver quality products for your organization.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link 
+            <Link
               href="/contact/request-quote"
               className="inline-block px-8 py-4 bg-accent text-white font-sans font-semibold rounded-lg hover:bg-accent/90 transition-colors"
             >
               Request a Quote
             </Link>
-            <Link 
+            <Link
               href="/contact"
               className="inline-block px-8 py-4 bg-white/10 text-white font-sans font-semibold rounded-lg hover:bg-white/20 transition-colors border border-white/30"
             >

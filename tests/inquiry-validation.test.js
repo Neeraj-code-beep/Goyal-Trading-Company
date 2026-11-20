@@ -72,6 +72,9 @@ const {
   getAllProducts,
 } = require('../data/products.ts');
 
+const { resolveCataloguePrefill } = require('../lib/catalogue/prefill.ts');
+const { siteConfig } = require('../config/site.ts');
+
 // -------------------------------------------------------------------
 // 3. Source Code Contract & Structural Audits
 // -------------------------------------------------------------------
@@ -875,5 +878,99 @@ describe('Server Actions Integration (Production submitQuoteInquiry & submitSamp
     assert.ok(result.fieldErrors.name);
     assert.ok(result.fieldErrors.deliveryAddress);
     assert.ok(result.fieldErrors.postalCode);
+  });
+});
+
+// -------------------------------------------------------------------
+// 12. Contact, Enquiry Prefill & Compliance Suite (Sprint 6)
+// -------------------------------------------------------------------
+describe('Contact & Enquiry Experience: Prefill, Approvals & Honest States', () => {
+  it('siteConfig strictly gates public phone and WhatsApp pending confirmed owner approval', () => {
+    assert.strictEqual(siteConfig.contact.publicPhoneApproved, false, 'publicPhoneApproved must default to false');
+    assert.strictEqual(siteConfig.contact.publicWhatsAppApproved, false, 'publicWhatsAppApproved must default to false');
+    assert.strictEqual(siteConfig.links.email, 'Goyals27@yahoo.in');
+    assert.strictEqual(siteConfig.links.address.postalCode, '110052');
+  });
+
+  it('resolveCataloguePrefill matches canonical product by id, slug, and preserves hierarchy', () => {
+    const products = getAllProducts();
+    const firstProduct = products[0];
+    assert.ok(firstProduct, 'Catalogue must have at least one product');
+
+    // 1. Resolve by canonical ID
+    const byId = resolveCataloguePrefill({ product: firstProduct.id });
+    assert.strictEqual(byId.isValid, true);
+    assert.strictEqual(byId.product?.name, firstProduct.name);
+    assert.strictEqual(byId.product?.id, firstProduct.id);
+    assert.strictEqual(byId.product?.slug, firstProduct.slug);
+    assert.strictEqual(byId.family?.slug, firstProduct.familySlug);
+    assert.strictEqual(byId.category?.slug, firstProduct.categorySlug);
+
+    // 2. Resolve by product slug
+    const bySlug = resolveCataloguePrefill({ product: firstProduct.slug });
+    assert.strictEqual(bySlug.isValid, true);
+    assert.strictEqual(bySlug.product?.name, firstProduct.name);
+    assert.strictEqual(bySlug.product?.id, firstProduct.id);
+
+    // 3. Resolve by family only
+    const byFamily = resolveCataloguePrefill({ family: firstProduct.familySlug });
+    assert.strictEqual(byFamily.isValid, true);
+    assert.strictEqual(byFamily.product, undefined);
+    assert.strictEqual(byFamily.family?.slug, firstProduct.familySlug);
+
+    // 4. Resolve by category only
+    const byCategory = resolveCataloguePrefill({ category: firstProduct.categorySlug });
+    assert.strictEqual(byCategory.isValid, true);
+    assert.strictEqual(byCategory.category?.slug, firstProduct.categorySlug);
+    assert.strictEqual(byCategory.family?.slug, firstProduct.familySlug);
+  });
+
+  it('resolveCataloguePrefill safely discards unverified and malicious inputs', () => {
+    // Arbitrary unknown product
+    const unknown = resolveCataloguePrefill({ product: 'fake-nonexistent-luxury-item' });
+    assert.strictEqual(unknown.isValid, false);
+    assert.strictEqual(unknown.product, undefined);
+
+    // Script injection
+    const xss = resolveCataloguePrefill({ product: '<script>alert(1)</script>' });
+    assert.strictEqual(xss.isValid, false);
+    assert.strictEqual(xss.product, undefined);
+
+    // Empty parameters
+    const empty = resolveCataloguePrefill({});
+    assert.strictEqual(empty.isValid, false);
+    assert.strictEqual(empty.product, undefined);
+    assert.strictEqual(empty.family, undefined);
+    assert.strictEqual(empty.category, undefined);
+  });
+
+  it('Server actions return honest fallback messages without unverified production coordinator claims', async () => {
+    const quoteFd = new FormData();
+    quoteFd.append('name', 'Deepak Verma');
+    quoteFd.append('company', 'Modern School');
+    quoteFd.append('email', 'procurement@modernschool.example');
+    quoteFd.append('phone', '+91 9212126463');
+    quoteFd.append('estimatedQuantity', '150 - 500 pieces');
+    quoteFd.append('specificationsMessage', 'Need 250 sets of standard navy blue tracksuits with school monogram.');
+
+    const quoteRes = await submitQuoteInquiry(null, quoteFd);
+    assert.strictEqual(quoteRes.status, 'provider_unavailable');
+    assert.ok(quoteRes.message, 'Must return a descriptive message');
+    assert.strictEqual(quoteRes.message.includes('production coordinator'), false, 'Must not claim production coordinator');
+
+    const sampleFd = new FormData();
+    sampleFd.append('name', 'Anil Mehta');
+    sampleFd.append('company', 'Mehta Uniforms');
+    sampleFd.append('email', 'anil@mehtauniforms.example');
+    sampleFd.append('phone', '+91 9212126463');
+    sampleFd.append('deliveryAddress', 'Shop 14, Commercial Complex, Sector 21');
+    sampleFd.append('city', 'Faridabad');
+    sampleFd.append('postalCode', '121001');
+    sampleFd.append('sampleType', 'fabric-swatch');
+
+    const sampleRes = await submitSampleInquiry(null, sampleFd);
+    assert.strictEqual(sampleRes.status, 'provider_unavailable');
+    assert.ok(sampleRes.message, 'Must return a descriptive message');
+    assert.strictEqual(sampleRes.message.includes('production coordinator'), false, 'Must not claim production coordinator');
   });
 });

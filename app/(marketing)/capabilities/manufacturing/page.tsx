@@ -32,7 +32,7 @@ export default function ManufacturingPage() {
         <div className="absolute inset-0 z-10 bg-gradient-to-br from-primary/50 via-primary-dark/45 to-accent/40" />
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-black/20 to-black/25" />
         <div className="absolute bottom-0 left-0 right-0 h-48 z-10 bg-gradient-to-t from-primary/60 to-transparent" />
-        
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
             <span className="font-sans text-caption font-semibold text-accent uppercase tracking-wider mb-4 inline-block">
@@ -44,7 +44,7 @@ export default function ManufacturingPage() {
             <p className="font-body text-body-lg-mobile md:text-body-lg-tablet lg:text-body-lg text-gray-200 max-w-2xl leading-relaxed mb-8">
               Established production facilities with modern equipment and custom manufacturing capabilities for bulk B2B orders.
             </p>
-            <Link 
+            <Link
               href="/contact/request-quote"
               className="inline-block px-6 py-3 bg-accent text-white font-sans font-semibold rounded-lg hover:bg-accent/90 transition-colors"
             >
@@ -66,14 +66,14 @@ export default function ManufacturingPage() {
                 Verified Operational Metrics
               </h2>
             </div>
-            
+
             <div className="max-w-4xl mx-auto bg-gray-50 rounded-2xl p-8 border border-gray-100">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
                 {[
-                  { metric: '10,000', label: 'SETS/MONTH', detail: 'Production Capacity' },
-                  { metric: '02', label: 'UNITS', detail: 'Production Facilities' },
-                  { metric: '26–50', label: 'PEOPLE', detail: 'Skilled Workforce' },
-                  { metric: '2,000', label: 'SQ FT', detail: 'Premises Size' },
+                  { metric: '2000', label: 'ESTABLISHED', detail: 'Year Founded' },
+                  { metric: 'Delhi', label: 'LOCATION', detail: 'Shastri Nagar Facility' },
+                  { metric: '13', label: 'FAMILIES', detail: 'Product Range' },
+                  { metric: 'Custom', label: 'OEM ORDERS', detail: 'Built to Specification' },
                 ].map((item, index) => (
                   <div
                     key={item.label}
@@ -105,7 +105,7 @@ export default function ManufacturingPage() {
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -116,7 +116,7 @@ export default function ManufacturingPage() {
                 Modern Manufacturing Setup
               </h2>
             </div>
-            
+
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
               <div className="space-y-0">
                 {[
@@ -205,12 +205,12 @@ export default function ManufacturingPage() {
                 Quality Control in Manufacturing
               </h2>
             </div>
-            
+
             <div className="bg-white rounded-2xl p-8 border border-gray-200">
               <p className="font-body text-body-lg text-gray-600 mb-8 leading-relaxed">
                 Our centralized quality control system ensures consistent quality across all production units. Every product undergoes rigorous quality checks before shipment.
               </p>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                   'Color Fastness',
@@ -234,7 +234,7 @@ export default function ManufacturingPage() {
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        
+
         <div className="container mx-auto px-6 text-center relative z-10">
           <h2 className="font-sans text-display-2-mobile md:text-display-2-tablet lg:text-display-2 text-white mb-4 leading-tight">
             Ready to Manufacture Your Products?
@@ -243,13 +243,13 @@ export default function ManufacturingPage() {
             Contact us to discuss your manufacturing requirements. We offer custom solutions for bulk orders across all product categories.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link 
+            <Link
               href="/contact/request-quote"
               className="inline-block px-8 py-4 bg-accent text-white font-sans font-semibold rounded-lg hover:bg-accent/90 transition-colors"
             >
               Request a Quote
             </Link>
-            <Link 
+            <Link
               href="/contact"
               className="inline-block px-8 py-4 bg-white/10 text-white font-sans font-semibold rounded-lg hover:bg-white/20 transition-colors border border-white/30"
             >

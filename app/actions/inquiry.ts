@@ -101,7 +101,7 @@ export async function submitQuoteInquiry(
   return {
     status: 'provider_unavailable',
     message:
-      'Automated email dispatch is awaiting backend email provider configuration. To ensure your quotation is processed immediately, please forward your specifications directly to our sales desk via WhatsApp or telephone.',
+      'Automated email dispatch is awaiting backend provider configuration. Please review and forward your specifications to our verified business email address, or contact us through approved business channels.',
     fallbackWhatsAppUrl,
     verifiedContactPhone: VERIFIED_DISPLAY_PHONE,
     contextSummary: {
@@ -186,7 +186,7 @@ export async function submitSampleInquiry(
   return {
     status: 'provider_unavailable',
     message:
-      'Automated email dispatch is awaiting backend email provider configuration. Please forward your sample request directly to our production coordinator via WhatsApp or telephone.',
+      'Automated email dispatch is awaiting backend provider configuration. Please review and forward your sample request to our verified business email address, or contact us through approved business channels.',
     fallbackWhatsAppUrl,
     verifiedContactPhone: VERIFIED_DISPLAY_PHONE,
     contextSummary: {
